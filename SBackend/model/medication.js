@@ -3,9 +3,10 @@ var schema = mongoose.Schema;
 
 var medSchema = new schema({
     drug: {
-        type: String,
+        type: [String],
         required: true
     },
+
     p_id: {
         type: mongoose.Types.ObjectId,
         ref: "Patient"

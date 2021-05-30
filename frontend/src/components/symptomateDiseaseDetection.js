@@ -24,7 +24,6 @@ function Symptomatediseasedetection(props) {
   }, [location, history]);
   return (
     <div>
-    <Header/>
     
     <div>
       <Introduction />

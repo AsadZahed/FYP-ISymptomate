@@ -67,7 +67,9 @@ export default function ChangeEmail() {
                 <Button
                   href="/editprofile"
                   className="bsubmit"
+                  style = {{color: "#0c0530"}}
                   variant="warning"
+                    size="lg"
                   disabled={!validateForm()}
                 >
                   Submit

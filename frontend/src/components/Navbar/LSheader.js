@@ -30,7 +30,7 @@ function Header(props) {
           <Nav className="mr-auto">
           <Nav.Link href="/signup">Sign Up</Nav.Link>
           <Nav.Link href="/login">Log in</Nav.Link>
-          <Nav.Link href="/admin/login">Amin Log in</Nav.Link>
+          <Nav.Link href="/admin/login">Admin Log in</Nav.Link>
           
          </Nav>
         </Navbar.Collapse>

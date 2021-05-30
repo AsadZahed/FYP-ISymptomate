@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import Myself from "../../components/images/myself.PNG";
 import Someone from "../../components/images/someone.PNG";
 
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router"
 import { BrowserView, MobileView } from "react-device-detect";
 import { Button } from "react-bootstrap";
 
@@ -12,7 +14,25 @@ import "antd/dist/antd.css";
 import "../../styles.css";
 import Header from "../Navbar/header"
 
+import { Link } from "react-router-dom";
+
 function Forwhom() {
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+        console.log(location)
+        setUser(location.state.user);
+        setToken(location.state.token);
+        // setSCancer(cancer);
+        // setImg(img);
+       
+    } else {
+        history.push('/symptoms/forwhom')
+    }
+}, [location, history])
   return (
     <div>
     <Header/>
@@ -45,15 +65,39 @@ function Forwhom() {
             <h1>Who is the checkup for?</h1>
 
             <div style={{ paddingLeft: "30%" }} className="float-child">
-              <Button href="/symptoms/questions" variant="light">
-                <img className="img-size-browser" src={Myself} alt="Myself" />
-              </Button>
-            </div>
-            <div className="float-child">
-              <Button href="/symptoms/questions" variant="light">
-                <img className="img-size-browser" src={Someone} alt="someone" />
-              </Button>
-            </div>
+                <Button variant="light">
+
+                  <Link
+                    to={{
+                      pathname: "/symptoms/questions",
+                      state: {
+                        token: token,
+                        user: user,
+                      },
+                    }}
+                  >
+                    <img className="img-size-browser" src={Myself} alt="Myself" />
+                  </Link>
+
+                </Button>
+              </div>
+              <div className="float-child">
+                <Button variant="light">
+                  <Link
+                    to={{
+                      pathname: "/symptoms/questions",
+                      state: {
+                        token: token,
+                        user: user,
+                      },
+                    }}
+                  >
+                    <img className="img-size-browser" src={Someone} alt="someone" />
+
+                  </Link>
+
+                </Button>
+              </div>
           </div>
           <div>
             <div

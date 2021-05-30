@@ -46,13 +46,15 @@ export default function UserMain() {
 
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "left"
+                // display: "flex",
+                // flexDirection: "column",
+                textAlign: "center",
+                color:"#ffff"
               }}
             >
-              <Button variant="link">
+              <Button variant="warning" style = {{margin: "5px"}}>
                 <Link
+                style = {{color: "#0c0530"}}
                   to={{
                     pathname: "/users/editprofile/changeusername",
                     state: {
@@ -64,9 +66,17 @@ export default function UserMain() {
                   Change username
                 </Link>
               </Button>
-
-              <Button variant="link">
+              {/* <div style={{ textAlign: "center" }}>
+                    <div style={{color: "#ffff"}}>
+                      <Button style = {{color: "black"}} size="lg" variant="warning" type="submit" >
+                        Login
+                    </Button>
+                    </div>
+                    </div> */}
+                      
+              <Button variant="warning"  style = {{margin: "5px"}}>
                 <Link
+                style = {{color: "#0c0530"}}
                   to={{
                     pathname: "/users/editprofile/changepassword",
                     state: {
@@ -78,8 +88,9 @@ export default function UserMain() {
                   Change password
                 </Link>
               </Button>
-              <Button variant="link">
+              <Button variant="warning"  style = {{margin: "5px"}}>
                 <Link
+                style = {{color: "#0c0530"}}
                   to={{
                     pathname: "/users/editprofile/changeDOB",
                     state: {
@@ -91,8 +102,9 @@ export default function UserMain() {
                   Change DOB
                 </Link>
               </Button>
-              <Button variant="link">
+              <Button variant="warning"  style = {{margin: "5px"}}>
                 <Link
+                style = {{color: "#0c0530"}}
                   to={{
                     pathname: "/users/editprofile/deleteuser",
                     state: {

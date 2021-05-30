@@ -12,7 +12,7 @@ function Header(props) {
     <div>
       <div style={{paddingBottom: "70px", backgroundColor: "#0047b3" }}></div>
 
-      <Navbar style={{ paddingLeft: "12%",fontSize:"18px"}}bg="light" expand="lg">
+      <Navbar style={{ paddingLeft: "12%",fontSize:"18px",color: "#0c0530"}} bg="light" expand="lg">
         <Navbar.Brand style={{fontSize:"30px"}}>
         {/* <img src={Logo} alt="logo.png" style={{width:"10%",borderRadius:"40px"}}/> */}
           {/* <SiAddthis style={{ width:"10px",height:"10px",paddingRight: "10px", paddingBottom: "9px" }} /> */}
@@ -29,11 +29,11 @@ function Header(props) {
             I-SYMPTOMATE
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style = {{color: "#0c0530"}}/>
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto" >
             
-            <NavDropdown title="Account" id="basic-nav-dropdown">
+            <NavDropdown title="Account" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -49,7 +49,7 @@ function Header(props) {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Profile" id="basic-nav-dropdown">
+            <NavDropdown title="Profile" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
              
               <NavDropdown.Item>
                 <Link
@@ -77,19 +77,7 @@ function Header(props) {
                   Personal Information
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link
-                  to={{
-                    pathname: "/addinfo/addmedication",
-                    state: {
-                      token: props.token,
-                      user: props.user,
-                    },
-                  }}
-                >
-                  Medication
-                </Link>
-              </NavDropdown.Item>
+             
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -119,19 +107,19 @@ function Header(props) {
               <NavDropdown.Item>
                 <Link
                   to={{
-                    pathname: "/addinfo/conditionlibrary",
+                    pathname: "/addinfo/addmedication",
                     state: {
                       token: props.token,
                       user: props.user,
                     },
                   }}
                 >
-                  Condition Library
+                  Add Medication
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Check up" id="basic-nav-dropdown">
+            <NavDropdown title="Check up" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -159,8 +147,8 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
-
-            {/* <NavDropdown title="Reports" id="basic-nav-dropdown">
+{/* 
+            <NavDropdown title="Reports" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -175,8 +163,24 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
             </NavDropdown> */}
+            
+            <NavDropdown title="Disease Info" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/addinfo/conditionlibrary",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  Know about your disease
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
 
-            <NavDropdown title="Settings" id="basic-nav-dropdown">
+            <NavDropdown title="Settings" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
               <NavDropdown.Item href="/setting/about">
                 <Link
                   to={{
@@ -226,9 +230,11 @@ function Header(props) {
 
               
             </NavDropdown>
-            <Nav.Link href="/login">
+            <Nav.Link href="/login" >
             <Button variant="warning">
-              <Link to={{
+              <Link
+              style = {{color: "#0c0530"}}
+              to={{
                   pathname: '/login',
                   state: {
                     token: props.token,

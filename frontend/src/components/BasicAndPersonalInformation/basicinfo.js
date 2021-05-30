@@ -136,6 +136,8 @@ export default function BasicInfo() {
                     onClick={onClick}
                     block
                     size="lg"
+                    style = {{color: "#0c0530"}}
+                    variant="warning"
                     type="submit"
                     disabled={!validateForm()}
                   >

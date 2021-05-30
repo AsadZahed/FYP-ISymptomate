@@ -1,5 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router"
 import "../../styles.css";
 import SymptomsIntroImg from "../../components/images/symptoms-intro-img.PNG";
 import { Button } from "react-bootstrap";
@@ -8,7 +10,24 @@ import "antd/dist/antd.css";
 import { BrowserView, MobileView } from "react-device-detect";
 import Header from "../Navbar/header"
 
+import { Link } from "react-router-dom";
 function Introduction() {
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+        console.log(location)
+        setUser(location.state.user);
+        setToken(location.state.token);
+        // setSCancer(cancer);
+        // setImg(img);
+       
+    } else {
+        history.push('/symptomatediseasedetection')
+    }
+}, [location, history])
   return (
     <div>
     <div style={{ backgroundColor: "#F8F8F8" }}>
@@ -54,8 +73,19 @@ function Introduction() {
               padding: "3%"
             }}
           >
-            <Button href="/symptoms/terms" variant="warning">
-              Next
+             <Button variant="warning">
+              <Link
+                  to={{
+                    pathname: "/symptoms/terms",
+                    state: {
+                      token: token,
+                      user: user,
+                    },
+                  }}
+                >
+                   Next
+                </Link>
+               
             </Button>{" "}
           </div>
         </div>

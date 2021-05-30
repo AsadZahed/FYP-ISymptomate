@@ -123,7 +123,8 @@ export default function ChangePassword() {
                   <div style={{ alignContent: "center" }}>
                     <p>{msg}</p>
 
-                    <Button size="lg" type="submit" disabled={!validateForm()}>
+                    <Button size="lg" type="submit" style = {{color: "#0c0530"}}
+                    variant="warning" disabled={!validateForm()}>
                       Change
                    </Button>
                   </div>

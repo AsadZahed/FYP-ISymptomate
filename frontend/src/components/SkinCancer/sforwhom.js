@@ -24,7 +24,7 @@ function SForwhom() {
   const [user, setUser] = React.useState(null);
   var history = useHistory();
   var location = useLocation();
-
+  const [someone,setSomeone] = React.useState(null); 
   useEffect(() => {
     if (location.state) {
       console.log(location)

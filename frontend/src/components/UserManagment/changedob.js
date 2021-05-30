@@ -106,7 +106,9 @@ export default function ChangePassword() {
                   <div style={{ alignContent: "center" }}>
                   <p>{msg}</p>
 
-                  <Button size="lg" type="submit" disabled={!validateForm()}>
+                  <Button  style = {{color: "#0c0530"}}
+                    variant="warning"
+                    size="lg" type="submit" disabled={!validateForm()}>
                     Change
                   </Button>
                   </div>
@@ -151,7 +153,9 @@ export default function ChangePassword() {
                   <Button
                     href="/editprofile"
                     className="bsubmit"
+                    style = {{color: "#0c0530"}}
                     variant="warning"
+                    size="lg"
                     disabled={!validateForm()}
                   >
                     Submit

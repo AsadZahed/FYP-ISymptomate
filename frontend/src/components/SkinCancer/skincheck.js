@@ -15,16 +15,22 @@ function SkinCheck() {
     const [user, setUser] = React.useState(null);
     var history = useHistory();
     var location = useLocation();
-    const [cancer,setCancer] = React.useState(null);
-    const [scancer,setSCancer]=React.useState(null);
-    const [img,setImg]= React.useState(null);
-    const listCancer = [   ' Actinic keratoses',
-    'Basal cell carcinoma',
-    'Benign keratosis-like lesions',
-    'Dermatofibroma',
-    'Melanocytic nevi',
-    'Melanoma',
-    'Vascular lesions']
+    const [cancer, setCancer] = React.useState(null);
+    const [scancer, setSCancer] = React.useState(null);
+    const [img, setImg] = React.useState(null);
+    
+
+    const listCancer = [
+        ' Actinic keratoses',
+        'Basal cell carcinoma',
+        'Benign keratosis-like lesions',
+        'Dermatofibroma',
+        'Melanocytic nevi',
+        'Melanoma',
+        'Vascular lesions'
+    ]
+
+
     useEffect(() => {
         if (location.state) {
             console.log(location)
@@ -32,7 +38,7 @@ function SkinCheck() {
             setToken(location.state.token);
             setSCancer(cancer);
             setImg(img);
-            console.log("cancer is ",scancer)
+            console.log("cancer is ", scancer)
 
         } else {
             history.push('/skin/skincheck')
@@ -44,7 +50,6 @@ function SkinCheck() {
     const [scan, setScan] = React.useState(null)
 
     const mySubmitHandler = event => {
-
         event.preventDefault();
         const data = new FormData();
         data.append('file', fileInput.current.files[0]);
@@ -55,10 +60,10 @@ function SkinCheck() {
             }
         })
             .then((res) => {
-                    const i = res.data.label[0]
-                    const t =  listCancer[i]
-                    alert(JSON.stringify(res.data))
-                    setCancer(t)
+                const i = res.data.label[0]
+                const t = listCancer[i]
+                //alert(JSON.stringify(res.data))
+                setCancer(t)
                 console.log(listCancer[i])
                 console.log("I cant print anything")
                 console.log(cancer)
@@ -66,38 +71,38 @@ function SkinCheck() {
 
 
 
-    //     event.preventDefault();
-    //     console.log("i came here")
-    //     //let image = "http://localhost:9000/images/1.jpg";
-    //     const image = document.getElementById('exampleFormControlFile1');
-    //     const SKIN_CLASSES = ["nv","bg","d","e","f","h","i"]
-    //     const model = await tf.loadLayersModel('http://localhost:9000/tfjs_model/model.json');
-    //    // const model = await tf.loadLayersModel('/tfjs_model/model.json');
-    //    let tensor = tf.browser.fromPixels(image)
-	//     .resizeNearestNeighbor([224,224])
-	//     .toFloat();
-    //     let offset = tf.scalar(127.5);
-	//     tensor = tensor.sub(offset)
-	//     .div(offset)
-	//     .expandDims();
-    //     let predictions = await model.predict(tensor).data();
-    // 	let top5 = Array.from(predictions)
-	// 	.map(function (p, i) { // this is Array.map
-	// 		return {
-	// 			probability: p,
-	// 			className: SKIN_CLASSES[i] // we are selecting the value from the obj
-	// 		};
-				
-			
-	// 	}).sort(function (a, b) {
-	// 		return b.probability - a.probability;
-				
-	// 	}).slice(0, 3);
-    //     console.log("Loaded")        
-    console.log(scan ? `http://localhost:9000/${scan.filename}` : '')
-    var t = scan ? `http://localhost:9000/${scan.filename}` : ''
-    setImg(t)
-    console.log("submit clicked")
+        //     event.preventDefault();
+        //     console.log("i came here")
+        //     //let image = "http://localhost:9000/images/1.jpg";
+        //     const image = document.getElementById('exampleFormControlFile1');
+        //     const SKIN_CLASSES = ["nv","bg","d","e","f","h","i"]
+        //     const model = await tf.loadLayersModel('http://localhost:9000/tfjs_model/model.json');
+        //    // const model = await tf.loadLayersModel('/tfjs_model/model.json');
+        //    let tensor = tf.browser.fromPixels(image)
+        //     .resizeNearestNeighbor([224,224])
+        //     .toFloat();
+        //     let offset = tf.scalar(127.5);
+        //     tensor = tensor.sub(offset)
+        //     .div(offset)
+        //     .expandDims();
+        //     let predictions = await model.predict(tensor).data();
+        // 	let top5 = Array.from(predictions)
+        // 	.map(function (p, i) { // this is Array.map
+        // 		return {
+        // 			probability: p,
+        // 			className: SKIN_CLASSES[i] // we are selecting the value from the obj
+        // 		};
+
+
+        // 	}).sort(function (a, b) {
+        // 		return b.probability - a.probability;
+
+        // 	}).slice(0, 3);
+        //     console.log("Loaded")        
+        console.log(scan ? `http://localhost:9000/${scan.filename}` : '')
+        var t = scan ? `http://localhost:9000/${scan.filename}` : ''
+        setImg(t)
+        console.log("submit clicked")
     }
     const handleChange = event => {
         event.preventDefault();
@@ -110,7 +115,7 @@ function SkinCheck() {
             }
         })
             .then((res) => {
-                alert(JSON.stringify(res.data))
+                //alert(JSON.stringify(res.data))
                 setScan(res.data)
                 console.log(scan)
             });
@@ -139,7 +144,7 @@ function SkinCheck() {
                             padding: "7%"
                         }}
                     >
-                        <h2>Diagnose Here</h2>
+                        <h2>Predict Your Disease Here!</h2>
 
                         <div
                             style={{
@@ -168,12 +173,12 @@ function SkinCheck() {
                                 />
                             </form>
                             <div>
-                            <h1> {scan ? cancer : ' '} </h1>
+                                <h1> {scan ? cancer : ' '} </h1>
                             </div>
                             <Button
-                            type='submit'
-                            variant="warning"
-                            onClick={mySubmitHandler}
+                                type='submit'
+                                variant="warning"
+                                onClick={mySubmitHandler}
                             >
                                 <Link
                                     to={{
@@ -181,8 +186,8 @@ function SkinCheck() {
                                         state: {
                                             token: token,
                                             user: user,
-                                            cancer:cancer,
-                                            img:img
+                                            cancer: cancer,
+                                            img: img
                                         },
                                     }}
                                 >

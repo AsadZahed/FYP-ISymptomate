@@ -1,4 +1,4 @@
-[
+const a = [
   {
     "name": "CAPPNA",
     "text": "Community acquired pneumonia (CAP)",
@@ -174,7 +174,7 @@
     "ICD10": "J44.1"
   },
   {
-    "name": "ACEinhibitorRelatedCough",
+    "name": "ACE inhibitor Related Cough",
     "text": "Cough caused by ACE (angiotensin converting enzyme) inhibitor, or ARB (angiotensin receptor blocker)",
     "laytext": "Cough caused by ACE (angiotensin converting enzyme) inhibitor, or ARB (angiotensin receptor blocker)",
     "category": "acute",
@@ -452,7 +452,7 @@
     "ICD10": "J02"
   },
   {
-    "name": "FusobacteriumNecrophorumPharyngitis",
+    "name": "Fuso bacterium",
     "text": "Fusobacterium necrophorum pharyngitis",
     "laytext": "Severe throat infection (pharyngitis) caused by fusobacterium necrophorum",
     "category": "acute",
@@ -469,7 +469,7 @@
     "ICD10": "A69.1"
   },
   {
-    "name": "FusobacteriumNecrophorumPharyngitisComplicatedWithLemierreSyndrome",
+    "name": "Fuso bacterium Necrophorum",
     "text": "Fusobacterium necrophorum pharyngitis complicated with Lemierre syndrome",
     "laytext": "Severe throat infection (pharyngitis) caused by fusobacterium necrophorum complicated by Lemierre syndrome",
     "category": "acute",
@@ -5178,3 +5178,5 @@
     "ICD10": "J96.02"
   }
 ]
+
+export default a

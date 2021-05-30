@@ -130,6 +130,8 @@ export default function AddPersonalInfo() {
                   block
                   size="lg"
                   type="submit"
+                  style = {{color: "#0c0530"}}
+                  variant="warning"
                   disabled={!validateForm()}
                 >
                   Add

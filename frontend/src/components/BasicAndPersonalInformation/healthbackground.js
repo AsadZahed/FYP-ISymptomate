@@ -335,6 +335,8 @@ function Healthbackgoround() {
                         onClick={onClick}
                         block
                         size="lg"
+                        style = {{color: "#0c0530"}}
+                        variant="warning"
                         type="submit"
                         disabled={
                           checked1 ||

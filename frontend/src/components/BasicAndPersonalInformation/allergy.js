@@ -332,6 +332,8 @@ function Question() {
                     <Button
                      onClick={onClick}
                       block
+                      style = {{color: "#0c0530"}}
+                      variant="warning"
                       size="lg"
                       type="submit"
                       disbaled={

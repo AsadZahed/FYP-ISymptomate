@@ -56,6 +56,8 @@ export default function Signup() {
 
   const onClick = () => setShowResults(true)
 
+
+  
   function validateForm() {
     return (
       email.length > 0 &&
@@ -70,8 +72,6 @@ export default function Signup() {
       setError("Password Doesnot match");
     }
   }
-
-
   return (
     <div>
       <Header />
@@ -159,6 +159,7 @@ export default function Signup() {
                   </Form.Group>
                   {showResults ?
                     <div className="validation ">
+
                       {error} </div> : <div></div>}
 
                   <div style={{ textAlign: "center", paddingTop: "3%" }}>

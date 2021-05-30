@@ -6,7 +6,7 @@ import User from "../UserManagment/usermain";
 export default function Account() {
     return (
         <div>
-            <Header />
+         
             <User />
         </div>
     );

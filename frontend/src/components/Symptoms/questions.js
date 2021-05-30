@@ -1,9 +1,14 @@
-import React from "react";
+import React,{useEffect} from "react";
+
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router"
 import { Progress } from "antd";
 import "antd/dist/antd.css";
 import { BrowserView, MobileView } from "react-device-detect";
 import { Button } from "react-bootstrap";
 import Header from "../Navbar/header"
+
+import { Link } from "react-router-dom";
 
 function Question() {
   const [checked1, setChecked1] = React.useState(true);
@@ -12,7 +17,23 @@ function Question() {
   const [checked4, setChecked4] = React.useState(true);
   const [checked5, setChecked5] = React.useState(true);
   const [checked6, setChecked6] = React.useState(true);
-
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+        console.log(location)
+        setUser(location.state.user);
+        setToken(location.state.token);
+        // setSCancer(cancer);
+        // setImg(img);
+       
+    } else {
+        history.push('/symptoms/questions')
+    }
+}, [location, history])
+  
   return (
     <div>
     <Header/>
@@ -292,10 +313,20 @@ function Question() {
                       checked5 ||
                       checked6
                     }
-                    href="/symptoms/symptomsearch"
+                    
                     variant="warning"
                   >
-                    Next
+                    <Link
+                  to={{
+                    pathname: "/symptoms/symptomsearch",
+                    state: {
+                      token: token,
+                      user: user,
+                    },
+                  }}
+                >
+                   Next
+                </Link>
                   </Button>{" "}
                 </div>
               </div>

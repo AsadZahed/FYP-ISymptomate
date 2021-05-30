@@ -104,7 +104,8 @@ export default function ChangePassword() {
                   />
 
                 
-                <Button size="lg" type="submit"  disabled={!validateForm()}>
+                <Button size="lg"style = {{color: "#0c0530"}}
+                    variant="warning" type="submit"  disabled={!validateForm()}>
                     Change
                   </Button>
                 </form>

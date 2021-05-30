@@ -18,7 +18,7 @@ router.use(express.json());
 router.post('/addmedication', authenticate.verifyUser, (req, res, next) => {
     Medication.create({
         p_id: req.user._id,
-        drug: req.body.drug
+        drug: req.body.drug,
     })
         .then((result) => {
             console.log("Medicine has been added", result);

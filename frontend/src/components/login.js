@@ -61,15 +61,15 @@ export default function Login() {
   // // 
   const [showResults, setShowResults] = React.useState(false)
 
-   const onClick = () => setShowResults(true)
-// function onClick() {
-// if(msg == "Login error"){
-//   setShowResults(true)
-// }
-// else{
-//   setShowResults(false)
-// }
-// }
+  // const onClick = () => setShowResults(true)
+function onClick() {
+if(msg == "Login error"){
+  setShowResults(true)
+}
+else{
+  setShowResults(false)
+}
+}
   return (
     <div>
       <Header />
@@ -122,7 +122,7 @@ export default function Login() {
               <div className="Login">
                 <Form onSubmit={handleSubmit}>
                   <Form.Group size="lg" controlId="email">
-                    <Form.Label style={{ textAlign: "left ",color: "#ffff" }}>Email</Form.Label>
+                    <Form.Label style={{ textAlign: "left ",fontSize:"19px",color: "#ffff" }}>Email</Form.Label>
                     <Form.Control
                       autoFocus
                       type="email"
@@ -130,7 +130,7 @@ export default function Login() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </Form.Group>
-                  <Form.Group size="lg" style={{ paddingBottom: "5%",color: "#ffff" }} controlId="password">
+                  <Form.Group size="lg" style={{ paddingBottom: "5%",fontSize:"19px",color: "#ffff" }} controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
@@ -146,7 +146,7 @@ export default function Login() {
 
                   <div style={{ textAlign: "center" }}>
                     <div style={{color: "#ffff"}}>
-                      <Button style = {{color: "#0047b3"}} size="lg" variant="warning" type="submit" disabled={!validateForm()}>
+                      <Button style = {{color: "#0047b3"}} size="lg"  variant="warning" type="submit" disabled={!validateForm()}>
                         Login
                     </Button>
                     </div>

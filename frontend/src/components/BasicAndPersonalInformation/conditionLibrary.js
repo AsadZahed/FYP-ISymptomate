@@ -1,22 +1,26 @@
 import React, { useEffect } from "react";
 import Header from "../Navbar/header";
-import Disease from "./DiseasesOutput.json";
+import Disease from "./diseasesListNew.js";
+
+import { Link } from "react-router-dom";
 
 export default function Library() {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoad] = React.useState(false);
   const [post, setPost] = React.useState([]);
+  
 
 
 
-
-
+  console.log()
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then(response => response.json())
       .then(
         // handle the result
-        (result) => { setPost(result) });
+        (result) => { setPost(Disease) });
+        
+        
   },
 
     // Handle error 
@@ -25,8 +29,29 @@ export default function Library() {
 
     },
   )
+  const showDiseaseCard = (po) => {
 
 
+
+
+  
+    if (po.wiki == "") {
+      return null;
+    }
+    else{
+    return (
+      
+                    <li key={po.name} align="start">
+                      <div>
+                        <h3>{po.name}</h3>
+                        <p>{po.text}</p>
+                        <b><h5>Description: </h5></b><Link href={po.wiki}>{po.wiki}</Link>
+                      </div>
+                    </li>
+                  
+    );
+      }
+  };
 
 
   return (
@@ -41,29 +66,47 @@ export default function Library() {
               paddingBottom: "5%"
             }}
           >
+            {console.log("--+++--")}
+            {console.log(post)}
+            {console.log("--++++--")}
             <div
               style={{
                 border: "1px solid #DCDCDC",
                 backgroundColor: "#fff",
                 padding: "7%",
                 paddingBottom: "5%",
-                alignItems: "center"
+                alignItems: "center",
+                
               }}
             >
 
-              <h1>Youre in Condition Library</h1>
-              <p>Here you can see all the diseases with it descrption</p>
-            
+              <h1 style={{
+                
+                textAlign:"center"
+              }}>Know about Diseases! </h1>
+              <p style={{
+                
+                textAlign:"center"
+              }}>Here you can see all the diseases with their short description</p>
+              <p style={{
+                
+                textAlign:"center"
+              }}> For more info click on the card and you will be taken to Wikipedia for more info</p>
+
                 {
+                    
+                //  post.map(post => showDiseaseCard(post))
+
                   post.map(post => (
-                    <li key={post.id} align="start">
+                    <a href={post.link} target="_blank" >
+                    <li key={post.name} align="start">
                       <div>
-                        <h3>Title</h3>
-                        <p>{post.title}</p>
-                        <h3>Description</h3>
-                        <p>{post.body}</p>
+                        <h3>{post.name}</h3>
+                        {/* <p>{post.text}</p> */}
+                        <b><h5>Link: </h5></b><Link href={post.link}>{post.link}</Link>
                       </div>
                     </li>
+                    </a>
                   ))
                 }
 

@@ -1,4 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
+
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router"
+
+import { Link } from "react-router-dom";
+
 import "../../styles.css";
 import TermImg from "../../components/images/terms-img.PNG";
 import { Button } from "react-bootstrap";
@@ -11,6 +17,22 @@ function Terms() {
   const [checked1, setChecked1] = React.useState(true);
   const [checked2, setChecked2] = React.useState(true);
   var error = "";
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+        console.log(location)
+        setUser(location.state.user);
+        setToken(location.state.token);
+        // setSCancer(cancer);
+        // setImg(img);
+       
+    } else {
+        history.push('/symptoms/terms')
+    }
+}, [location, history])
 
   return (
     <div>
@@ -132,11 +154,21 @@ function Terms() {
               </div>
               <div className="right-group">
                 <Button
-                  href="/symptoms/forwhom"
+                 
                   disabled={checked1 || checked2}
                   variant="warning"
                 >
-                  Next
+                 <Link
+                  to={{
+                    pathname: "/symptoms/forwhom",
+                    state: {
+                      token: token,
+                      user: user,
+                    },
+                  }}
+                >
+                   Next
+                </Link>
                 </Button>
               </div>
             </div>
