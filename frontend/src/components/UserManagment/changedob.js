@@ -58,7 +58,7 @@ export default function ChangePassword() {
 
   function validateForm() {
     return (
-      dob.length > 0
+      dob.length > 0 && dob >12 && dob<123
     );
   }
   return (

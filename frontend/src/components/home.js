@@ -89,7 +89,7 @@ function Home(props) {
                 height: "50%",
                 width: "100%",
                 paddingTop: "5%",
-                borderRadius: "5px",
+                borderRadius: "25px",
                 // zIndex: -10
               }}
             >

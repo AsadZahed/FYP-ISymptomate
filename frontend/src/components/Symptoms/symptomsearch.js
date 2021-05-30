@@ -51,7 +51,7 @@ export default function AutoCompletedText() {
         console.log(location)
         setUser(location.state.user);
         setToken(location.state.token);
-        setCancer(cancer);
+        //setCancer(cancer);
         // console.log(";;;;;;;;;")
         // console.log("cancer is ", cancer)
         // console.log(";;;;;;;;;")
@@ -111,9 +111,9 @@ export default function AutoCompletedText() {
           // const i = res.data.label[0]
           // const t = diseasesList[i]
           // th = diseasesList[i]
-          // console.log("ttttt")
-          // console.log(diseasesList[i])
-          // console.log("ttttt")
+          console.log("ttttt")
+          console.log(diseasesList[i])
+          console.log("ttttt")
           // //alert(JSON.stringify(res.data))
           // setCancer(diseasesList[i])
           // console.log(";;;;;;;;; cancer is")
@@ -259,7 +259,7 @@ export default function AutoCompletedText() {
             >
               <div classsName="float-child block-example border-bottom border-dark">
                 <div id="notebooks" style={{ padding: "5%",margin:"5%" }}>
-                  <h2>Search Diseases</h2>
+                  <h2>Search Symptoms</h2>
                   <input
                     id="query"
                     type="text"
@@ -330,26 +330,28 @@ export default function AutoCompletedText() {
                   })}
                 </div>
               </div>
-
+              <div>
+                                <h1> {cancer} </h1>
+                            </div>
               <div className="right-group">
               <Button
                                 type='submit'
                                 variant="warning"
                                 onClick={mySubmitHandler}
                             >
-                                <Link
+                                {/* <Link
                                     to={{
-                                        pathname: "/reports/viewreports",
+                                        pathname: "/reports/aviewreports",
                                         state: {
                                           token: token,
                                           user: user,
-                                          cancer: cancer,
-                                          img: "asad"
+                                          cancer:cancer,
+                                          img: "AsadFaheem"
                                         },
                                     }}
-                                >
-                                    Get report
-                                 </Link>
+                                > */}
+                                    Get result
+                                 {/* </Link> */}
                             </Button>
               </div>
 

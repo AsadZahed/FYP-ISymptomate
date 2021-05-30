@@ -61,15 +61,15 @@ export default function Login() {
   // // 
   const [showResults, setShowResults] = React.useState(false)
 
-  // const onClick = () => setShowResults(true)
-function onClick() {
-if(msg == "Login error"){
-  setShowResults(true)
-}
-else{
-  setShowResults(false)
-}
-}
+   const onClick = () => setShowResults(true)
+// function onClick() {
+// if(msg == "Login error"){
+//   setShowResults(true)
+// }
+// else{
+//   setShowResults(false)
+// }
+//}
   return (
     <div>
       <Header />

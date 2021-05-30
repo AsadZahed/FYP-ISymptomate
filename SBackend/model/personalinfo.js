@@ -10,5 +10,9 @@ var personalSchema  = new schema({
         type:Number,
         required:true
     },
+    p_id: {
+        type: mongoose.Types.ObjectId,
+        ref: "Patient"
+    }
 })
 module.exports=mongoose.model('PersonalInfo',personalSchema)

@@ -80,7 +80,8 @@ export default function ChangePassword() {
               style={{
                 border: "1px solid #DCDCDC",
                 backgroundColor: "#fff",
-                padding: "7%"
+                padding: "7%",
+                textAlign:"center"
               }}
             >
               <h5>Change Name</h5>

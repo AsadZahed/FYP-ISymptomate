@@ -279,7 +279,7 @@ export default function Report() {
                 }}
               >
                 <p style={{ fontSize: "20px", fontWeight: "500", paddingTop: "50px" }}>
-                  Screening Result: <i><u><b>{cancer}</b></u></i>
+                  Screening Result: <i><u><b>GERD</b></u></i>
                 </p>
                 <img
                   src={i}
