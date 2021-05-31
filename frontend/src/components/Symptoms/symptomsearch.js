@@ -75,6 +75,7 @@ export default function AutoCompletedText() {
     id.map((item, index) => {
       li[item] = 1;
     }) 
+    setId([])
     setItems([])
     const data = { symptoms: li };
     // console.log("LILILILILILIK")
