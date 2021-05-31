@@ -91,7 +91,7 @@ function Header(props) {
                   Allergies
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item>
+              {/* <NavDropdown.Item>
                 <Link
                   to={{
                     pathname: "/addinfo/background",
@@ -103,7 +103,7 @@ function Header(props) {
                 >
                   Health background
                 </Link>
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
               <NavDropdown.Item>
                 <Link
                   to={{

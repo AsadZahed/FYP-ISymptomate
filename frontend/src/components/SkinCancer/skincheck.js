@@ -11,14 +11,19 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function SkinCheck() {
+    const [state, setState] = React.useState({
+        suggestions: [],
+        text: ""
+    });
     const [token, setToken] = React.useState(null)
     const [user, setUser] = React.useState(null);
     var history = useHistory();
     var location = useLocation();
-    const [cancer, setCancer] = React.useState(null);
+    const [cancer, setCancer] = React.useState("");
     const [scancer, setSCancer] = React.useState(null);
     const [img, setImg] = React.useState(null);
-    
+    const fileInput = React.createRef();
+    const [scan, setScan] = React.useState(null)
 
     const listCancer = [
         ' Actinic keratoses',
@@ -36,7 +41,7 @@ function SkinCheck() {
             console.log(location)
             setUser(location.state.user);
             setToken(location.state.token);
-            setSCancer(cancer);
+            setCancer(cancer);
             setImg(img);
             console.log("cancer is ", scancer)
 
@@ -46,8 +51,7 @@ function SkinCheck() {
     }, [location, history])
 
 
-    const fileInput = React.createRef();
-    const [scan, setScan] = React.useState(null)
+
 
     const mySubmitHandler = event => {
         event.preventDefault();
@@ -120,6 +124,10 @@ function SkinCheck() {
                 console.log(scan)
             });
     }
+    const validate = () => {
+        return cancer.length > 0;
+    }
+
     return (
         <div>
             <Header token={token} user={user} />
@@ -167,22 +175,54 @@ function SkinCheck() {
                             </form>
                             <form>
 
-                                <input
-                                    type='submit'
-                                    onClick={mySubmitHandler}
-                                />
+                                <Button type='submit'
+                                style={{
+                                   marginTop:"10%",
+                                   marginBottom:"10%"
+
+                                }}
+                                    onClick={mySubmitHandler} variant="warning">Get Instant result !</Button>
+
+
                             </form>
-                            <div>
-                                <h1> {scan ? cancer : ' '} </h1>
-                            </div>
+                            <div
+              style={{
+                padding: "0px 10px 0px 10px",
+                color: "#282c34",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "500",
+                  textDecoration: "underline",
+                }}
+              >
+                Predicted Result:
+          </p>
+              <ul>
+                <li>
+                  <h2>{scan ? cancer : ' '}</h2>
+                </li>               
+              </ul>
+            </div>
+                            {/* <div>
+                                <h1> Predicted Result:  </h1>
+                            </div> */}
                             <Button
                                 type='submit'
                                 variant="warning"
+                                disabled={!validate()}
                                 onClick={mySubmitHandler}
+                                style={{
+                                    marginTop:"4%",
+                                    //marginBottom:"10%",
+                                    color:"black"
+                                 }}
                             >
                                 <Link
                                     to={{
-                                        pathname: "/reports/viewreports",
+                                        pathname: "/reports/aviewreports",
                                         state: {
                                             token: token,
                                             user: user,
@@ -190,6 +230,11 @@ function SkinCheck() {
                                             img: img
                                         },
                                     }}
+                                    style={{
+                                       //marginTop:"5%",
+                                        //marginBottom:"10%",
+                                        color:"black"
+                                     }}
                                 >
                                     Get report
                                  </Link>

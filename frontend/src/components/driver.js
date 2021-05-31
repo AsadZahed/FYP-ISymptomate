@@ -44,6 +44,7 @@ import Allergy from "../components/BasicAndPersonalInformation/allergy";
 import Library from "../components/BasicAndPersonalInformation/conditionLibrary";
 
 import Reports from "../components/Reports/viewreports";
+import AReports from "../components/Reports/areport";
 
 import About from "../components/Settings/about";
 import Account from "../components/Settings/accounts";
@@ -126,6 +127,9 @@ function Driver() {
 
 
         <Route path="/reports/viewreports" exact component={Reports} />
+
+        <Route path="/reports/aviewreports" exact component={Reports} />
+
 
         <Route path="/setting/about" exact component={About} />
 

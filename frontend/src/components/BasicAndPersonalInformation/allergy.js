@@ -121,7 +121,7 @@ function Question() {
                     paddingTop: "5%"
                   }}
                 >
-                  <p style={{ paddingRight: "10%" }}>Do you have asthma?</p>
+                  <p style={{ paddingRight: "10%" }}>Do you have Asthma?</p>
                   <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
@@ -161,7 +161,7 @@ function Question() {
                     paddingTop: "5%"
                   }}
                 >
-                  <p style={{ paddingRight: "10%" }}>Do you have asthma?</p>
+                  <p style={{ paddingRight: "10%" }}>Do you have Pollen allergy?</p>
                   <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
@@ -200,7 +200,7 @@ function Question() {
                     paddingTop: "5%"
                   }}
                 >
-                  <p style={{ paddingRight: "10%" }}>Do you have asthma?</p>
+                  <p style={{ paddingRight: "10%" }}>Do you have Dust allergy?</p>
                   <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
@@ -238,7 +238,7 @@ function Question() {
                     paddingTop: "5%"
                   }}
                 >
-                  <p style={{ paddingRight: "10%" }}>Do you have asthma?</p>
+                  <p style={{ paddingRight: "10%" }}>Do you have Insect allergy?</p>
                   <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
@@ -277,7 +277,7 @@ function Question() {
                     paddingTop: "5%"
                   }}
                 >
-                  <p style={{ paddingRight: "10%" }}>Do you have asthma?</p>
+                  <p style={{ paddingRight: "10%" }}>Do you have Food Allergy?</p>
                   <input
                     style={{ marginLeft: "5%" }}
                     type="radio"

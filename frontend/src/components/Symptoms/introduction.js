@@ -30,6 +30,7 @@ function Introduction() {
 }, [location, history])
   return (
     <div>
+      <Header token={token} user={user}/>
     <div style={{ backgroundColor: "#F8F8F8" }}>
       <BrowserView>
         <div

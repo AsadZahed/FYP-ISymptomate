@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 
 //import scan from "../../../../SBackend/public/images/screenshot.png"
-export default function Report() {
+export default function AReport() {
 
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);

@@ -28,12 +28,14 @@ export default function AddMedication() {
   });
   const [data, setData] = React.useState("");
   const [items, setItems] = React.useState([]);
+  const [message,setMessage]=React.useState('')
   
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token)
+      setMessage(message)
     } else {
       history.push('/')
     }
@@ -55,6 +57,8 @@ export default function AddMedication() {
       }
     })
       .then((res) => {
+        setMessage("Added successfully!")
+
         console.log(res)
         if (res.status === 200) {
           history.push({
@@ -65,17 +69,16 @@ export default function AddMedication() {
 
             },
           });
-          added();
         }
 
 
       })
       .catch(res => setMSG(res.message));
   }
-  function added() {
+  const added = () =>  {
     return (
       <div>
-        Added Successfully!
+       {message}
       </div>
     );
   }
@@ -186,7 +189,8 @@ const { text, suggestions } = state;
             >
               <div classsName="float-child block-example border-bottom border-dark">
                 <div id="notebooks" style={{ padding: "5%",margin:"5%" }}>
-                  <h2>Search Diseases</h2>
+                
+                  <h2>Search Medicines</h2>
                   <input
                     id="query"
                     type="text"
@@ -208,6 +212,7 @@ const { text, suggestions } = state;
                   >
                     Add Selected Medications
                 </Button>
+                {message}
                 </form>
 
 
@@ -219,10 +224,11 @@ const { text, suggestions } = state;
 
                     {/* <Button>Suggestions: { suggestions.length}</Button> */}
                   </div>
+                  
                 </div>
               </div>
               <div classsName="float-child" style={{ paddingTop: "40%" }}>
-                <h1>Selected Diseases are</h1>
+                <h1>Selected Medications are</h1>
                 <div
                   style={{
                     border: "1px solid #DCDCDC",
@@ -326,6 +332,7 @@ const { text, suggestions } = state;
                   >
                     Add
                 </Button>
+                <p>{message}</p>
                 </form>
               </div>
             </div>
