@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
-
+import Print from "./ComponentToPrint"
+import Example from "./ComponentToPrint";
 
 //import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function Report() {
@@ -50,90 +51,90 @@ export default function Report() {
   }, [location, history])
 
 
- 
+
   const checkdiseases = () => {
     var w = " ";
-      if (cancer == "Melanoma" ) {
-         
-          w = dlist[0]
-       
-      }
-      else if (cancer == 'Basal cell carcinoma') {
-         
-        w = dlist[1]
-  
+    if (cancer == "Melanoma") {
+
+      w = dlist[0]
+
     }
-    else if (cancer == "Benign keratosis-like lesions" ) {
-         
+    else if (cancer == 'Basal cell carcinoma') {
+
+      w = dlist[1]
+
+    }
+    else if (cancer == "Benign keratosis-like lesions") {
+
       w = dlist[3]
-  
-  }
-  else if (cancer == "Dermatofibroma" ) {
-         
-    w = dlist[6]
-  
-  }
-  else if (cancer == "Melanocytic nevi" ) {
-         
-    w = dlist[2]
-  
-  }
-  else if (cancer == "Actinic keratoses" ) {
-         
-    w = dlist[4]
-  
-  }
-  else if (cancer == "Vascular lesions" ) {
-         
-    w = dlist[4]
-  
-  }
-  else {
-         
-    w = "No Data Available"
-  
-  }
-  
-      return (
-        <div
-            style={{
-              padding: "0px 10px 0px 10px",
-              color: "#282c34",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "20px",
-                fontWeight: "500",
-                textDecoration: "underline",
-              }}
-            >
-              Detail:
+
+    }
+    else if (cancer == "Dermatofibroma") {
+
+      w = dlist[6]
+
+    }
+    else if (cancer == "Melanocytic nevi") {
+
+      w = dlist[2]
+
+    }
+    else if (cancer == "Actinic keratoses") {
+
+      w = dlist[4]
+
+    }
+    else if (cancer == "Vascular lesions") {
+
+      w = dlist[4]
+
+    }
+    else {
+
+      w = "No Data Available"
+
+    }
+
+    return (
+      <div
+        style={{
+          padding: "0px 10px 0px 10px",
+          color: "#282c34",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "20px",
+            fontWeight: "500",
+            textDecoration: "underline",
+          }}
+        >
+          Detail:
+        </p>
+        <ul>
+
+          <li>
+            <p>
+              {w}
             </p>
-            <ul>
-              
-              <li>
-                <p>
-                  {w}
-                </p>
-              </li>
-              
-            </ul>
-          </div>
-        
-          // <div>
-          //   <p style={{border:"2px solid black"}}>
-          //       {w}
-          //   </p>
-          // </div>
-       
-      );
-    };
-  
+          </li>
+
+        </ul>
+      </div>
+
+      // <div>
+      //   <p style={{border:"2px solid black"}}>
+      //       {w}
+      //   </p>
+      // </div>
+
+    );
+  };
+
   const setDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today);
-  
-  
-  
+
+
+
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
@@ -169,15 +170,16 @@ export default function Report() {
       })
       .catch(res => setMSG("This report cannot be saved"));
   }
- 
+
   const [showResults, setShowResults] = React.useState(false)
 
-   const onClick = () => setShowResults(true)
+  const onClick = () => setShowResults(true)
 
 
   return (
-    <div>
-      <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black" }}>
+    <div style={{
+      paddingBottom:"5%"}}>
+      <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom:"1%" }}>
         <form onSubmit={handleSubmit}>
           <div
             style={{
@@ -191,13 +193,12 @@ export default function Report() {
             }}
           >
 
-
             <p style={{ fontSize: "20px", fontWeight: "500" }}>
               I-Symptomate | An intelligent
-        </p>
+            </p>
             <p style={{ alignSelf: "center" }}>
               Skin cancer diagnosing Report
-        </p>
+            </p>
           </div>
           <div style={{ backgroundColor: "#ffff", padding: "10px" }}>
             <div
@@ -215,7 +216,7 @@ export default function Report() {
                 }}
               >
                 Patient Information:
-          </p>
+              </p>
             </div>
             <div
               style={{
@@ -244,10 +245,10 @@ export default function Report() {
                 </p>
                 <p>
                   <strong>Date Of Birth:</strong> 13-07-1998
-            </p>
+                </p>
                 <p>
                   <strong>Gender:</strong> male
-            </p>
+                </p>
               </div>
             </div>
             <hr />
@@ -265,7 +266,7 @@ export default function Report() {
                 }}
               >
                 Skin Cancer Scan Summary:
-          </p>
+              </p>
 
               <div
                 style={{
@@ -311,7 +312,7 @@ export default function Report() {
                 }}
               >
                 Plan and Recommendations:
-          </p>
+              </p>
               <ul>
                 <li>
                   <p>Check is advised from classified Doctor.</p>
@@ -322,7 +323,7 @@ export default function Report() {
                     controlling blood sugar, cholesterol and blood pressure as well
                     the importance of routine follow-up with an ophthalmologist
                     regardless of whether visual symptoms are present or absent.
-              </p>
+                  </p>
                 </li>
                 <li>
                   <p>Report Date: {new Date(Date.now()).toString()}</p>
@@ -343,27 +344,44 @@ export default function Report() {
                 This screening does not take place of a
                 regular check up for the purpose of assessing the presence of
                 different diseases based on thier symptoms.
-          </p>
+              </p>
             </div>
           </div>
 
           {showResults ?
             <div className="validation">
-          {msg} </div> : <div></div>}
+              {msg} </div> : <div></div>}
 
+         <div className="btn-toolbar">
+          <div className="left-group">
+            <Button
 
-          {/* <Button
-          
-            block
-            size="lg"
-            type="submit"
-          >
-            Add
-        </Button> */}
+              block
+              size="lg"
+              type="submit"
+            >
+              Add
+            </Button>
+          </div>
+
+          <div className="right-group">
+            <Button
+
+              block
+              size="lg"
+              type="submit"
+            >
+              Print
+            </Button>
+          </div>
+          {/* <Print /> */}
+          </div>
         </form>
+
 
       </div>
     </div>
 
   );
 }
+

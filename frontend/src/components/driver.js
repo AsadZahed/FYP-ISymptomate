@@ -46,7 +46,11 @@ import Allergy from "../components/BasicAndPersonalInformation/allergy";
 import Library from "../components/BasicAndPersonalInformation/conditionLibrary";
 
 import Reports from "../components/Reports/viewreports";
+import AReports from "../components/Reports/areport";
 import Analysis from "../components/Reports/anaylsis";
+import ViewReports from "../components/Reports/reportsview"
+
+import DeleteReports from "../components/Reports/delete"
 
 import About from "../components/Settings/about";
 import Account from "../components/Settings/accounts";
@@ -124,8 +128,10 @@ function Driver() {
 
         {/* Reports */}
         <Route path="/reports/viewreports" exact component={Reports} />
-        <Route path="/reports/aviewreports" exact component={Reports} />
+        <Route path="/reports/aviewreports" exact component={AReports} />
         <Route path="/reports/analysis" exact component={Analysis} />
+        <Route path="/reports/view" exact component={ViewReports} />
+        <Route path="/reports/view/delete" exact component={DeleteReports} />
 
         {/* Settings */}
         <Route path="/setting/about" exact component={About} />

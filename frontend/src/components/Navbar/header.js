@@ -249,6 +249,18 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
 
+              <NavDropdown.Item href="/reports/view">
+                <Link to={{
+                  pathname: '/reports/view',
+                  state: {
+                    token: props.token,
+                    user: props.user
+                  }
+                }}>
+                  View
+                </Link>
+              </NavDropdown.Item>
+
               <NavDropdown.Item href="/reports/analysis">
                 <Link to={{
                   pathname: '/reports/analysis',

@@ -1,28 +1,14 @@
-import React from "react";
-import Header from "../Navbar/header"
+// import React, { useRef } from 'react';
+// import { useReactToPrint } from 'react-to-print';
+// import Reports from "./report";
 
-export class ComponentToPrint extends React.PureComponent {
-  render() {
-    
-    return (
-      <div>
-      <Header />
+
+// function Example (){
   
-      <table>
-        <thead>
-          <th>column 1</th>
-          <th>column 2</th>
-          <th>column 3</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>data 1</td>
-            <td>data 2</td>
-            <td>data 3</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    );
-  }
-}
+//   return (
+//     <h1><faheem/h1>
+//     );
+// }
+
+// export default Example;
+

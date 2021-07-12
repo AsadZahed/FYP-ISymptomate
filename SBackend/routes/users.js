@@ -5,7 +5,7 @@ var Patient = require('../model/Patient');
 var Basic = require("../model/basicinfo");
 var passport = require('passport');
 var Admin = require('../model/admin');
-
+var Report = require("../model/report")
 var authenticate = require('../authenticate');
 const mongoose = require("mongoose")
 const passportlocalmangoose = require('passport-local-mongoose')
@@ -117,7 +117,16 @@ router.get('/admin/viewusers', function (req, res, next) {
     res.json(results);
   });
 });
+router.get('/reports/view', function (req, res, next) {
+  Report.find({}).sort('name')
+  .exec(function (err, data) {
+      if (err) {
+          return next(err)
+      }
+      res.json(data)
+  })
 
+});
 router.get('/totalPatients', function (req, res, next) {
   Patient.find({}).sort('name')
       .exec(function (err, data, next) {
@@ -271,6 +280,40 @@ router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) =>
   console.log(req.user._id)
   console.log(req.body)
   Patient.findOne({ _id: req.user._id }, (err, user) => {
+    console.log(req.user._id)
+    if (err)
+      res.json({
+        success: false,
+        message: err
+      })
+    else if (user) {
+      user.deleteOne((err) => {
+        if (err) {
+          res.json({
+            success: false,
+            message: err.name
+          })
+        }
+        else {
+          res.json({
+            success: true,
+            message: 'Deleted Successffully'
+          })
+        }
+      })
+    } else {
+      res.json({
+        success: false,
+        message: 'User not found'
+      }); // Return error, user was not found in db
+    }
+  })
+})
+
+router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
+  console.log(req.user._id)
+  console.log(req.body)
+  Report.findOne({ _id: req.user._id }, (err, user) => {
     console.log(req.user._id)
     if (err)
       res.json({

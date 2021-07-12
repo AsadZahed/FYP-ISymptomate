@@ -131,7 +131,6 @@ export default function ViewReports() {
         <Header />
         <Report />
     
-        <div>Hellow Worldss</div>
         </div>
     )
 }

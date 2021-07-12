@@ -8,13 +8,18 @@ import { Button } from "react-bootstrap";
 //import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function AReport() {
 
+  const [age, setAge] = React.useState("12");
+  const [date, setDate] = React.useState();
+  const [patientid, setpatientID] = React.useState();
+  const [reportid, setReportID] = React.useState();
+  const [gender, setgender] = React.useState("male");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
+
   const [name, setName] = React.useState("anonymous");
   const [id, setID] = React.useState("1234");
   const [cancer, sets] = React.useState("");
   const [i, setI] = React.useState("")
-  const today = Date.now();
   const [msg, setMSG] = React.useState(null);
   const dlist = [
     "Melanoma, also redundantly known as malignant melanoma, is a type of skin cancer that develops from the pigment-producing cells known as melanocytes. Melanomas typically occur in the skin but may rarely occur in the mouth, intestines or eye (uveal melanoma)",
@@ -33,12 +38,20 @@ export default function AReport() {
       if (location.state) {
         console.log(location)
         // {user?user.name:""}
+        console.log("my name is",patientid)
         setUser(location.state.user);
         setToken(location.state.token)
-        setName(location.state.user.name)
+        setName(location.state.name)
+        setDate(location.state.date)
+        setpatientID(location.state.patientid)
+        console.log("my name is",patientid)
+        setReportID(location.state.reportID)
+        setName(location.state.name)
         setID(location.state.user._id)
         sets(location.state.cancer)
         setI(location.state.img)
+        console.log(date)
+        
       } else {
         history.push('/skin/skincheck')
       }
@@ -51,97 +64,96 @@ export default function AReport() {
   }, [location, history])
 
 
- 
+
   const checkdiseases = () => {
     var w = " ";
-      if (cancer == "Melanoma" ) {
-         
-          w = dlist[0]
-       
-      }
-      else if (cancer == 'Basal cell carcinoma') {
-         
-        w = dlist[1]
-  
+    if (cancer == "Melanoma") {
+
+      w = dlist[0]
+
     }
-    else if (cancer == "Benign keratosis-like lesions" ) {
-         
+    else if (cancer == 'Basal cell carcinoma') {
+
+      w = dlist[1]
+
+    }
+    else if (cancer == "Benign keratosis-like lesions") {
+
       w = dlist[3]
-  
-  }
-  else if (cancer == "Dermatofibroma" ) {
-         
-    w = dlist[6]
-  
-  }
-  else if (cancer == "Melanocytic nevi" ) {
-         
-    w = dlist[2]
-  
-  }
-  else if (cancer == "Actinic keratoses" ) {
-         
-    w = dlist[4]
-  
-  }
-  else if (cancer == "Vascular lesions" ) {
-         
-    w = dlist[4]
-  
-  }
-  else {
-         
-    w = "No Data Available"
-  
-  }
-  
-      return (
-        <div
-            style={{
-              padding: "0px 10px 0px 10px",
-              color: "#282c34",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "20px",
-                fontWeight: "500",
-                textDecoration: "underline",
-              }}
-            >
-              Detail:
+
+    }
+    else if (cancer == "Dermatofibroma") {
+
+      w = dlist[6]
+
+    }
+    else if (cancer == "Melanocytic nevi") {
+
+      w = dlist[2]
+
+    }
+    else if (cancer == "Actinic keratoses") {
+
+      w = dlist[4]
+
+    }
+    else if (cancer == "Vascular lesions") {
+
+      w = dlist[4]
+
+    }
+    else {
+
+      w = "No Data Available"
+
+    }
+
+    return (
+      <div
+        style={{
+          padding: "0px 10px 0px 10px",
+          color: "#282c34",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "20px",
+            fontWeight: "500",
+            textDecoration: "underline",
+          }}
+        >
+          Detail:
+        </p>
+        <ul>
+
+          <li>
+            <p>
+              {w}
             </p>
-            <ul>
-              
-              <li>
-                <p>
-                  {w}
-                </p>
-              </li>
-              
-            </ul>
-          </div>
-        
-          // <div>
-          //   <p style={{border:"2px solid black"}}>
-          //       {w}
-          //   </p>
-          // </div>
-       
-      );
-    };
+          </li>
+
+        </ul>
+      </div>
+
+      // <div>
+      //   <p style={{border:"2px solid black"}}>
+      //       {w}
+      //   </p>
+      // </div>
+
+    );
+  };
+
   
-  const setDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today);
-  
-  
-  
+
+
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
       name: name,
       cancer: "cancer",
       age: 12,
-      time: setDate,
+      time: date,
       reportID: "1",
       gender: "male"
 
@@ -170,10 +182,10 @@ export default function AReport() {
       })
       .catch(res => setMSG("This report cannot be saved"));
   }
- 
+
   const [showResults, setShowResults] = React.useState(false)
 
-   const onClick = () => setShowResults(true)
+  const onClick = () => setShowResults(true)
 
 
   return (
@@ -195,10 +207,10 @@ export default function AReport() {
 
             <p style={{ fontSize: "20px", fontWeight: "500" }}>
               I-Symptomate | An intelligent
-        </p>
+            </p>
             <p style={{ alignSelf: "center" }}>
               Skin cancer diagnosing Report
-        </p>
+            </p>
           </div>
           <div style={{ backgroundColor: "#ffff", padding: "10px" }}>
             <div
@@ -216,7 +228,7 @@ export default function AReport() {
                 }}
               >
                 Patient Information:
-          </p>
+              </p>
             </div>
             <div
               style={{
@@ -230,13 +242,13 @@ export default function AReport() {
             >
               <div style={{ marginRight: "-10%" }}>
                 <p>
-                  <strong>Patient ID:</strong> {id.substring(1, 10)}
+                  <strong>Patient ID:</strong> {patientid}
                 </p>
                 <p>
-                  <strong>Report ID:</strong> {id.substring(11, 20) + 1}
+                  <strong>Report ID:</strong> {patientid+1}
                 </p>
                 <p>
-                  <strong>Submission Date:</strong> {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today)}
+                  <strong>Submission Date:</strong>{date}
                 </p>
               </div>
               <div>
@@ -245,10 +257,10 @@ export default function AReport() {
                 </p>
                 <p>
                   <strong>Date Of Birth:</strong> 13-07-1998
-            </p>
+                </p>
                 <p>
                   <strong>Gender:</strong> male
-            </p>
+                </p>
               </div>
             </div>
             <hr />
@@ -266,7 +278,7 @@ export default function AReport() {
                 }}
               >
                 Skin Cancer Scan Summary:
-          </p>
+              </p>
 
               <div
                 style={{
@@ -312,7 +324,7 @@ export default function AReport() {
                 }}
               >
                 Plan and Recommendations:
-          </p>
+              </p>
               <ul>
                 <li>
                   <p>Check is advised from classified Doctor.</p>
@@ -323,7 +335,7 @@ export default function AReport() {
                     controlling blood sugar, cholesterol and blood pressure as well
                     the importance of routine follow-up with an ophthalmologist
                     regardless of whether visual symptoms are present or absent.
-              </p>
+                  </p>
                 </li>
                 <li>
                   <p>Report Date: {new Date(Date.now()).toString()}</p>
@@ -344,13 +356,13 @@ export default function AReport() {
                 This screening does not take place of a
                 regular check up for the purpose of assessing the presence of
                 different diseases based on thier symptoms.
-          </p>
+              </p>
             </div>
           </div>
 
           {showResults ?
             <div className="validation">
-          {msg} </div> : <div></div>}
+              {msg} </div> : <div></div>}
 
 
           {/* <Button

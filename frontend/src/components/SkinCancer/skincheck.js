@@ -126,7 +126,7 @@ function SkinCheck() {
             });
     }
     const validate = () => {
-        return cancer.length > 0;
+        // return cancer.length > 0;
     }
 
     return (
@@ -213,7 +213,7 @@ function SkinCheck() {
                             <Button
                                 type='submit'
                                 variant="warning"
-                                disabled={!validate()}
+                               // disabled={!validate()}
                                 onClick={mySubmitHandler}
                                 style={{
                                     marginTop:"4%",
