@@ -21,7 +21,7 @@ export default function Delete() {
       setUser(location.state.user);
       setToken(location.state.token)
     } else {
-      history.push('/reports/view/delete')
+      history.push('/users/reports/view/delete')
     }
   }, [location, history])
 
@@ -40,7 +40,7 @@ export default function Delete() {
       console.log(res)
       if (res.status === 200) {
         history.push({
-          pathname: '/signup',
+          pathname: '/users/reports/view/delete',
           state: {
             user: user,
             token: token
@@ -77,7 +77,7 @@ export default function Delete() {
           >
           <form onSubmit={handleSubmit}>
             <h5 style={{ colr: "red" }}>
-              Are you sure to delete your account??
+              Are you sure to delete this report??
             </h5>
 
             <div

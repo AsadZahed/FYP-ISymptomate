@@ -131,7 +131,7 @@ function Driver() {
         <Route path="/reports/aviewreports" exact component={AReports} />
         <Route path="/reports/analysis" exact component={Analysis} />
         <Route path="/reports/view" exact component={ViewReports} />
-        <Route path="/reports/view/delete" exact component={DeleteReports} />
+        <Route path="/users/reports/view/delete" exact component={DeleteReports} />
 
         {/* Settings */}
         <Route path="/setting/about" exact component={About} />

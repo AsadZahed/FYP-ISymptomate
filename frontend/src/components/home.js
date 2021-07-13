@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 //import { useMediaQuery } from "react-responsive";
 
 //import HomeImage1 from "../components/images/newhome.PNG";
-import HomeImage1 from "../components/images/home-test-image.jpeg";
+import HomeImage1 from "../components/images/home.png";
 
 import ChatbotImg from "../components/images/chatbot-img.PNG";
 import MoreInfoImg from "../components/images/more-info-img.PNG";
@@ -33,7 +33,7 @@ function Home(props) {
       setUser(location.state.user)
       setToken(location.state.token)
     } else {
-      history.push('./login');
+      history.push('./shomepage');
     }
   }, [history, location]);
 

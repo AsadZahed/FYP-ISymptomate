@@ -19,17 +19,11 @@ import { BrowserView, MobileView } from "react-device-detect";
 import "../styles.css";
 import "../components/Symptoms/App.css"
 
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router";
-
 import Header from "./Navbar/sheader";
 
 
 export default function Slider() {
-    const [user, setUser] = React.useState(null);
-    const [token, setToken] = React.useState(null)
-    var history = useHistory();
-    var location = useLocation();
+   
     const data = [
         "Enter your symptoms",
         "Answer some simple questions",
@@ -44,30 +38,14 @@ export default function Slider() {
         "Suggested lab tests",
         "Suggested lab tests"
     ];
-
-    const updateData = data.map((number, index) => {
-        return (
-            <li>
-                {index + 1} - {number}
-            </li>
-        );
-    });
-
-    useEffect(() => {
-        if (location.state) {
-            console.log(location)
-            setUser(location.state.user);
-            setToken(location.state.token)
-        } else {
-            history.push('/shomepage')
-        }
-    }, [location, history])
-
+   
     return (
         <div>
-            <div style={{ paddingBottom: "2%" }}><Header token={token} user={user} /></div>
+            <div style={{ paddingBottom: "2%" }}>
+                <Header />
+            </div>
             <div>
-          
+
             </div>
             <AliceCarousel autoPlay autoPlayInterval="2000">
                 <div>
@@ -116,12 +94,9 @@ export default function Slider() {
                         <img src={Image6} alt="imgg" className="sliderimg" />
                     </div>
                 </div>
-                {/* <img src={Image1} className="sliderimg"/>
-      <img src={Image2} className="sliderimg"/>
-      <img src={Image3} className="sliderimg"/> */}
             </AliceCarousel>
-          
-   
+
+
             <div>
                 <div
                     style={{
@@ -132,7 +107,7 @@ export default function Slider() {
 
                     }}
                 >
-                    <Button variant="primary"  style={{backgroundColor:"#0047b3"}}>
+                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
                         <div
                             style={{
                                 padding: "2%",
@@ -151,7 +126,7 @@ export default function Slider() {
                         </div>
                     </Button>
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary" style={{backgroundColor:"#0047b3"}} >
+                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }} >
                         <div
                             style={{
                                 padding: "2%",
@@ -171,7 +146,7 @@ export default function Slider() {
                     </Button>
 
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary" style={{backgroundColor:"#0047b3"}}>
+                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
                         <div
                             style={{
                                 padding: "2%",
@@ -191,7 +166,7 @@ export default function Slider() {
                     </Button>
 
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary"  style={{backgroundColor:"#0047b3"}}>
+                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
                         <div
                             style={{
                                 padding: "2%",
@@ -210,42 +185,38 @@ export default function Slider() {
                         </div>
                     </Button>
                 </div>
-                
 
-            <div>
-                <div
-                    style={{
-                        paddingLeft: "12%",
-                        paddingRight: "12%",
-                        paddingTop: "5%",
-                    }}
-                >
+
+                <div>
                     <div
-                        className="float-container"
                         style={{
-                            border: "1px solid #DCDCDC",
-                            backgroundColor: "#fff",
-                            paddingTop: "4%",
-                            borderRadius: "5px",
-                            paddingLeft:"37%",
-                            backgroundColor:"#0047b3"
+                            paddingLeft: "12%",
+                            paddingRight: "12%",
+                            paddingTop: "5%",
                         }}
                     >
-                    
-                        <div className="number" >
-                            <CountUp duration={10} className="counter button" end={1571} />
+                        <div
+                            className="float-container"
+                            style={{
+                                border: "1px solid #DCDCDC",
+                                backgroundColor: "#fff",
+                                paddingTop: "4%",
+                                borderRadius: "5px",
+                                paddingLeft: "37%",
+                                backgroundColor: "#0047b3"
+                            }}
+                        >
+
+                            <div className="number" >
+                                <CountUp duration={10} className="counter button" end={121571} />
+                            </div>
+
                         </div>
-                        
+                        <h3 style={{ paddingLeft: "32%", }}>Patients visted this website</h3>
+
                     </div>
-                    <h3 style={{paddingLeft:"32%",}}>Patients visted this website</h3>
-            
+
                 </div>
-                    
-            </div>
-
-
-
-
 
                 <div style={{ paddingBottom: "1%" }}></div>
             </div>
@@ -335,29 +306,6 @@ export default function Slider() {
 
                                 </div>
 
-                                {/* <div className="float-container">
-                <div className="float-child">
-                </div>
-                <div style={{ paddingLeft: "10px" }} className="float-child">
-                  <p>Possible causes of your symptoms</p>
-                </div>
-              </div>
-
-              <div className="float-container">
-                <div className="float-child">
-                </div>{" "}
-                <div className="float-child">
-                  <p>Options for next steps</p>
-                </div>
-              </div>
-              <div className="float-container">
-                <div className="float-child">
-                </div>{" "}
-                <div className="float-child">
-                  <p>Suggested lab tests</p>
-                </div>
-              </div> */}
-                                {/* <Checkmark size="medium" /> */}
 
                             </div>
                             <div>
@@ -370,7 +318,7 @@ export default function Slider() {
                     </BrowserView>
                 </div>
 
-                <MobileView>
+                {/* <MobileView>
                     <div style={{ border: "1px solid #DCDCDC", backgroundColor: "#fff" }}>
                         <div className="float-container-mobile">
                             <div className="float-child">
@@ -382,7 +330,6 @@ export default function Slider() {
                                 >
                                     Symptomate provides you with a fast and accurate health
                                     assessment
-                                    {/* <img src={Number} alt="number" /> */}
                                 </h1>
                                 <h4 style={{ paddingLeft: "5%", paddingBottom: "5%" }}>
                                     <ul className="shome-styles">
@@ -392,7 +339,6 @@ export default function Slider() {
 
                                 <div className="float-container">
                                     <div className="float-child">
-                                        {/* <Checkmark size="medium" /> */}
                                     </div>{" "}
                                     <div style={{ paddingLeft: "0px" }} className="float-child">
                                         <p>Possible causes of your symptoms</p>
@@ -401,7 +347,6 @@ export default function Slider() {
 
                                 <div className="float-container">
                                     <div className="float-child  check-padding">
-                                        {/* <Checkmark size="medium" /> */}
                                     </div>{" "}
                                     <div className="float-child">
                                         <p>Options for next steps</p>
@@ -409,7 +354,7 @@ export default function Slider() {
                                 </div>
                                 <div className="float-container">
                                     <div className="float-child check-padding">
-                                        {/* <Checkmark size="medium" /> */}
+                                        <Checkmark size="medium" />
                                     </div>{" "}
                                     <div className="float-child check-padding">
                                         <p>Suggested lab tests</p>
@@ -426,7 +371,7 @@ export default function Slider() {
                         </div>
                     </div>
                 </MobileView>
-
+ */}
             </div>
         </div >
     );

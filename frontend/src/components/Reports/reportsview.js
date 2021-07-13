@@ -18,41 +18,47 @@ export default function View() {
     const [token, setToken] = React.useState(null)
     const [user, setUser] = React.useState(null);
     const [cancer, setCancer] = React.useState("Cancer");
-
+    const [userId, setUSerID] = React.useState("")
     var history = useHistory();
     var location = useLocation();
 
     useEffect(() => {
         if (location.state) {
-            console.log(location)
+            const id = location.state.user._id
+            console.log("user is ", id)
             setUser(location.state.user);
             setToken(location.state.token);
             setCancer(cancer);
+            setUSerID(id)
+            console.log("user is is s ", id)
 
-        } else {
-            history.push('/skin/skincheck')
-        }
-    }, [location, history])
-
-
-    useEffect(() => {
-
-
-        axios.get("http://localhost:9000/users/reports/view")
-            .then((res, i) => {
+            axios.get('http://localhost:9000/users/reports/view/'+id)
+            .then(res => {
                 const Report = res.data;
+                console.log("Reports are                     ", res.data)
                 viewReports(Report)
                 setName(reports.name)
                 setpatientID(reports.p_id)
                 setReportID(reports.reportID)
                 setDate(reports.time)
+                console.log(res.data);
             });
 
+        } else {
+            history.push('/reports/view')
+        }
+    }, [location, history])
 
-    })
+
+    // useEffect(() => {
+      
+
+
+
+    // })
 
     return <div> <div style={{ backgroundColor: "#F8F8F8" }}>
-        <Header />
+        <Header token={token} user={user} />
         <div
             style={{
                 paddingLeft: "12%",
@@ -70,52 +76,66 @@ export default function View() {
             >
                 <h1>View Reports</h1>
                 <ul>
-                    {reports.map(person =>
-                        <li className="shome-styles" style={{fontSize:"20px"}}>
-                            Report of {person.name} and taken at {person.time} and you've {person.cancer}
-                            <div style={{paddingTop:"2%",paddingBottom:"2%"}}>
-                            <Button variant="success">
-                                <Link
-                                    to={{
-                                        pathname: "/reports/aviewreports",
-                                        state: {
-                                            token: token,
-                                            user: user,
-                                            name: person.name,
-                                            age: age,
-                                            date: person.time,
-                                            patientid: person.p_id,
-                                            reportid: person.reportID,
-                                            gender: gender,
-                                            cancer: cancer,
-                                        },
-                                    }}
+                    {
+                        reports.map(person =>
+                            <li className="shome-styles" style={{ fontSize: "20px" }}>
+                                Report of {person.name} and taken at {person.time} and you've {person.cancer}
+                                <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+                                    <Button variant="success">
+                                        <Link
+                                            to={{
+                                                pathname: "/reports/aviewreports",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                    name: person.name,
+                                                    age: age,
+                                                    date: person.time,
+                                                    patientid: person.p_id,
+                                                    reportid: person.reportID,
+                                                    gender: gender,
+                                                    cancer: cancer,
+                                                },
+                                            }}
+                                            style={{
+                                                //marginTop:"5%",
+                                                //marginBottom:"10%",
+                                                color: "black"
+                                            }}
+                                        >
+                                            View full report
+                                        </Link>
+
+                                    </Button>
+                                </div>
+
+                                <Button variant="danger" style={{ margin: "5px" }}>
+                                    <Link
+                                        style={{ color: "#0c0530" }}
+                                        to={{
+                                            pathname: "/users/reports/view/delete",
+                                            state: {
+                                                token: token,
+                                                user: user,
+                                            },
+                                        }}
+                                    >
+                                        Delete account
+                                    </Link>
+                                </Button>
+                                <div
                                     style={{
-                                        //marginTop:"5%",
-                                        //marginBottom:"10%",
-                                        color: "black"
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        textAlign: "left"
                                     }}
                                 >
-                                    View full report
-                                </Link>
 
-                            </Button>
-                            </div>
+                                </div>
 
-                            <Button variant="danger" href="/reports/view/delete">Delete</Button>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    textAlign: "left"
-                                }}
-                            >
+                            </li>
 
-                            </div>
-
-                        </li>
-
-                    )}
+                        )}
 
                 </ul>
 

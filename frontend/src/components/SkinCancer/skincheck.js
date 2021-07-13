@@ -223,7 +223,7 @@ function SkinCheck() {
                             >
                                 <Link
                                     to={{
-                                        pathname: "/reports/aviewreports",
+                                        pathname: "/reports/viewreports",
                                         state: {
                                             token: token,
                                             user: user,

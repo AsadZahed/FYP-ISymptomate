@@ -109,7 +109,7 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
 //VIEW USERS BY ADMIN
 
 router.get('/admin/viewusers', function (req, res, next) {
-  Admin.find({}).exec(function (error, results) {
+  Admin.find({ }).exec(function (error, results) {
     if (error) {
       return next(error);
     }
@@ -117,16 +117,30 @@ router.get('/admin/viewusers', function (req, res, next) {
     res.json(results);
   });
 });
-router.get('/reports/view', function (req, res, next) {
-  Report.find({}).sort('name')
-  .exec(function (err, data) {
-      if (err) {
-          return next(err)
-      }
-      res.json(data)
-  })
+// router.get('/reports/view', function (req, res, next) {
+//   Report.find({}).sort('name')
+//   .exec(function (err, data) {
+//       if (err) {
+//           return next(err)
+//       }
+//       res.json(data)
+//   })
+
+// });
+router.get('/reports/view/:id', function (req, res, next) { ///:id
+  console.log(req.params.id)
+  Report.findById(req.params.id)
+  .then((report) => {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json")
+      res.json(report)
+  }, (err) => next(err)
+  ), (err) => next(err)
 
 });
+
+
+
 router.get('/totalPatients', function (req, res, next) {
   Patient.find({}).sort('name')
       .exec(function (err, data, next) {
@@ -165,7 +179,7 @@ router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
   Basic.findOne({ p_id: req.user._id }, (err, user) => {
-    console.log(req.user._id)
+    console.log("user id is",req.user._id)
     if (err)
       res.json({
         success: false,
@@ -313,7 +327,7 @@ router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) =>
 router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
-  Report.findOne({ _id: req.user._id }, (err, user) => {
+  Report.findOne({ _id: req.user.p_id }, (err, user) => {
     console.log(req.user._id)
     if (err)
       res.json({
