@@ -7,6 +7,8 @@ import Image3 from "../components/images/slider-3.jpeg";
 import Image4 from "../components/images/slider-4.jpg";
 import Image5 from "../components/images/slider-5.jpg";
 import Image6 from "../components/images/slider-6.jpg";
+import { BiArrowFromLeft } from "react-icons/bi";
+import { BiCheck } from "react-icons/bi";
 
 import CountUp from "react-countup";
 
@@ -23,7 +25,7 @@ import Header from "./Navbar/sheader";
 
 
 export default function Slider() {
-   
+
     const data = [
         "Enter your symptoms",
         "Answer some simple questions",
@@ -38,7 +40,7 @@ export default function Slider() {
         "Suggested lab tests",
         "Suggested lab tests"
     ];
-   
+
     return (
         <div>
             <div style={{ paddingBottom: "2%" }}>
@@ -225,7 +227,8 @@ export default function Slider() {
                     style={{
                         paddingLeft: "12%",
                         paddingRight: "12%",
-                        paddingTop: "5%"
+                        paddingTop: "5%",
+                        paddingBottom: "4%"
                     }}
                 >
                     <BrowserView>
@@ -237,6 +240,7 @@ export default function Slider() {
                                 padding: "7%",
                                 paddingTop: "4%",
                                 borderRadius: "5px",
+                                paddingBottom: "4%"
                             }}
                         >
                             <div className="float-child">
@@ -250,60 +254,38 @@ export default function Slider() {
                                     {/* <img src={Number} alt="number" /> */}
                                 </h2>
 
-                                <h4 className="shome-styles">
-                                    <ul>
-                                        {data[0]}
-                                    </ul>
+                                <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    {data[0]}
                                 </h4>
-                                <h4 className="shome-styles">
-                                    <ul>
-                                        {data[1]}
-                                    </ul>
+                                <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    {data[1]}
                                 </h4>
-                                <h4 className="shome-styles">
-                                    <ul>
-                                        {data[2]}
-                                    </ul>
+                                <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    {data[2]}
                                 </h4>
 
                                 <div style={{ paddingLeft: "15%", paddingTop: "3%" }}>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[0]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[1]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[2]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[3]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[4]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[5]}
-                                        </ul>
-                                    </h5>
-                                    <h5 className="shome-styles">
-                                        <ul>
-                                            {data1[6]}
-                                        </ul>
-                                    </h5>
+                                    <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }} >
+                                        < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
+                                        {data1[0]}
 
-
+                                    </h5>
+                                    <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                        < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
+                                        {data1[1]}
+                                    </h5>
+                                    <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                        < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
+                                        {data1[2]}
+                                    </h5 >
+                                    <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
+                                        < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
+                                        {data1[3]}
+                                    </h5 >
+                                  
                                 </div>
 
 

@@ -63,6 +63,39 @@ router.get('/', authenticate.verifyUser, function (req, res, next) {
     .catch((err) => next(err));
 });
 router.post('/signup', (req, res, next) => {
+  res.statusCode=200;
+  Patient.register(new Patient({ username: req.body.username }),
+    req.body.password, (err, user) => {
+      if (err) {
+        res.statusCode = 500;
+        console.log(err.name)
+        res.json({ err: err });
+        
+      } else {
+        if (req.body.name)
+          user.name = req.body.name;
+          user.isAdmin=req.body.isAdmin
+          console.log(user.name)
+          console.log(user.isAdmin)
+          console.log(user.name)
+        user.save((err) => {
+          if (err) {
+            res.statusCode = 500;
+            console.log(err.name)
+            res.json({ err: err });
+           
+            return;
+          }
+          passport.authenticate('local')(req, res, () => {
+            res.statusCode = 200;
+            res.json({ success: true, status: 'Registration Successful!' });
+          });
+        });
+      }
+    }).catch((res) => console.log(res.error))
+});
+
+router.post('/admin/signup', (req, res, next) => {
   Patient.register(new Patient({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {
@@ -72,7 +105,9 @@ router.post('/signup', (req, res, next) => {
       } else {
         if (req.body.name)
           user.name = req.body.name;
+          user.isAdmin=req.body.isAdmin
           console.log(user.name)
+          console.log(user.isAdmin)
         user.save((err) => {
           if (err) {
             res.statusCode = 500;
@@ -89,6 +124,7 @@ router.post('/signup', (req, res, next) => {
       }
     });
 });
+
 
 //PATIENT LOGIN
 router.post('/login', passport.authenticate('local'), (req, res, err) => {
@@ -127,18 +163,25 @@ router.get('/admin/viewusers', function (req, res, next) {
 //   })
 
 // });
-router.get('/reports/view/:id', function (req, res, next) { ///:id
-  console.log(req.params.id)
-  Report.findById(req.params.id)
-  .then((report) => {
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json")
-      res.json(report)
-  }, (err) => next(err)
-  ), (err) => next(err)
+// router.get('/reports/view/:id', function (req, res, next) { ///:id
+//   console.log(req.params.id)
+//   Report.findById(req.params.id)
+//   .then((report) => {
+//       res.statusCode = 200;
+//       res.setHeader("Content-Type", "application/json")
+//       res.json(report)
+//   }, (err) => next(err)
+//   ), (err) => next(err)
 
-});
+// });
 
+router.get('/reports/view', authenticate.verifyUser, (req, res) => {
+  Report.find({ p_id: req.user._id }, (err, reps) => {
+      if (err) res.json({ success: false, message: err.name })
+      else if (reps.length > 0) res.json({ success: true, reports: reps })
+      else res.json({ success: false, message: 'No Reports' })
+  })
+})
 
 
 router.get('/totalPatients', function (req, res, next) {

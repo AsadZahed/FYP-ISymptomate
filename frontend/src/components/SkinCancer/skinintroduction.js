@@ -58,7 +58,7 @@ function SIntroduction() {
             >
               <div className="float-child">
                 {" "}
-                <h3>Welcome! {user?user.name:""}</h3>
+                <h3>Welcome {user?user.name:" "} !</h3>
               <p>
                 You’re about to use a short (3 min), safe and anonymous health
                 checkup. 

@@ -57,6 +57,7 @@ import Account from "../components/Settings/accounts";
 import Feedback from "../components/Settings/feedback";
 import Notifications from "../components/Settings/notifications";
 
+
 import ALogin from "../components/AdminManagement/adminlogin";
 import Privlages from "../components/AdminManagement/privilages";
 import VUser from "../components/AdminManagement/viewusers";
@@ -141,7 +142,7 @@ function Driver() {
 
         {/* Admin */}
         <Route path="/admin/signup" exact component={ASignup} />
-        <Route path="/admin/login" exact component={ALogin} />
+        <Route path="/login" exact component={Login} />
         <Route path="/admin/privlages" exact component={Privlages} />
         <Route path="/users/admin/viewusers" exact component={VUser} />
 

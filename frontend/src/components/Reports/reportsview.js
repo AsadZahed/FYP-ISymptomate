@@ -22,40 +22,24 @@ export default function View() {
     var history = useHistory();
     var location = useLocation();
 
+
     useEffect(() => {
         if (location.state) {
-            const id = location.state.user._id
-            console.log("user is ", id)
-            setUser(location.state.user);
-            setToken(location.state.token);
-            setCancer(cancer);
-            setUSerID(id)
-            console.log("user is is s ", id)
-
-            axios.get('http://localhost:9000/users/reports/view/'+id)
+          setUser(location.state.user);
+          setToken(location.state.token);
+          axios.get('http://localhost:9000/users/reports/view', {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+              'Authorization': `Bearer ${location.state.token}`
+            }
+          })
             .then(res => {
-                const Report = res.data;
-                console.log("Reports are                     ", res.data)
-                viewReports(Report)
-                setName(reports.name)
-                setpatientID(reports.p_id)
-                setReportID(reports.reportID)
-                setDate(reports.time)
-                console.log(res.data);
-            });
-
-        } else {
-            history.push('/reports/view')
+              console.log(res.data)
+              viewReports(res.data.reports)
+            })
         }
-    }, [location, history])
-
-
-    // useEffect(() => {
-      
-
-
-
-    // })
+      }, [location, token, user]);
 
     return <div> <div style={{ backgroundColor: "#F8F8F8" }}>
         <Header token={token} user={user} />

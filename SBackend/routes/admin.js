@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
       .catch((err) => next(err));
   });
 
-  router.post('/admin/signup', (req, res, next) => {
+  router.post('/signup', (req, res, next) => {
     Admin.register(new Admin({ username: req.body.username }),
       req.body.password, (err, user) => {
         if (err) {

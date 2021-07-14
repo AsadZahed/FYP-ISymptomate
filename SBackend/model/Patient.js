@@ -6,6 +6,10 @@ var Patient = new Schema({
         type: String,
         default: ''
     },
+    isAdmin:{
+        type:Boolean,
+        default: ''
+    }
 });
 
 Patient.plugin(passportLocalMongoose);

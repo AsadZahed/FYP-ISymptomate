@@ -32,6 +32,7 @@ export default function Signup() {
       name: fname,
       username: email,
       password: password,
+      isAdmin:false
     };
 
     const googleData = {
@@ -46,11 +47,28 @@ export default function Signup() {
       }
     })
       .then((res) => {
-        if (res.data.success) {
-          history.push("/login");
-        }
+        // if (res.data.success) {
+        //   history.push("/login");
+        // }
+        if (res.data.user.isAdmin)
+        history.push({
+            pathname: "/admin/privlages",
+            state: {
+                user: res.data.user,
+                token: res.data.token
+            }
+        })
+    else
+        history.push({
+            pathname: "/",
+            state: {
+                user: res.data.user,
+                token: res.data.token
+            }
+        })
 
-      }).catch((res) => setError("Sign up error"))
+      }).catch (err=> console.log(err))
+      // .catch((res) => setError("Sign up error"))
 
       axios.post('http://localhost:9000/users/signup', googleData, {
         headers: {
