@@ -63,36 +63,27 @@ router.get('/', authenticate.verifyUser, function (req, res, next) {
     .catch((err) => next(err));
 });
 router.post('/signup', (req, res, next) => {
-  res.statusCode=200;
   Patient.register(new Patient({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {
-        res.statusCode = 500;
-        console.log(err.name)
+        console.log('First: ' + err.name)
         res.json({ err: err });
-        
       } else {
         if (req.body.name)
           user.name = req.body.name;
-          user.isAdmin=req.body.isAdmin
-          console.log(user.name)
-          console.log(user.isAdmin)
-          console.log(user.name)
+        user.isAdmin = req.body.isAdmin
         user.save((err) => {
           if (err) {
-            res.statusCode = 500;
-            console.log(err.name)
+            console.log('Second: ' + err.name)
             res.json({ err: err });
-           
-            return;
           }
-          passport.authenticate('local')(req, res, () => {
-            res.statusCode = 200;
-            res.json({ success: true, status: 'Registration Successful!' });
-          });
+          else
+            passport.authenticate('local')(req, res, () => {
+              res.json({ success: true, status: 'Registration Successful!', user: user });
+            });
         });
       }
-    }).catch((res) => console.log(res.error))
+    })
 });
 
 router.post('/admin/signup', (req, res, next) => {
@@ -105,9 +96,9 @@ router.post('/admin/signup', (req, res, next) => {
       } else {
         if (req.body.name)
           user.name = req.body.name;
-          user.isAdmin=req.body.isAdmin
-          console.log(user.name)
-          console.log(user.isAdmin)
+        user.isAdmin = req.body.isAdmin
+        console.log(user.name)
+        console.log(user.isAdmin)
         user.save((err) => {
           if (err) {
             res.statusCode = 500;
@@ -145,7 +136,7 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
 //VIEW USERS BY ADMIN
 
 router.get('/admin/viewusers', function (req, res, next) {
-  Admin.find({ }).exec(function (error, results) {
+  Admin.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }
@@ -177,21 +168,21 @@ router.get('/admin/viewusers', function (req, res, next) {
 
 router.get('/reports/view', authenticate.verifyUser, (req, res) => {
   Report.find({ p_id: req.user._id }, (err, reps) => {
-      if (err) res.json({ success: false, message: err.name })
-      else if (reps.length > 0) res.json({ success: true, reports: reps })
-      else res.json({ success: false, message: 'No Reports' })
+    if (err) res.json({ success: false, message: err.name })
+    else if (reps.length > 0) res.json({ success: true, reports: reps })
+    else res.json({ success: false, message: 'No Reports' })
   })
 })
 
 
 router.get('/totalPatients', function (req, res, next) {
   Patient.find({}).sort('name')
-      .exec(function (err, data, next) {
-          if (err) {
-              return next(err)
-          }
-          res.json(data)
-      })
+    .exec(function (err, data, next) {
+      if (err) {
+        return next(err)
+      }
+      res.json(data)
+    })
 
 });
 
@@ -222,7 +213,7 @@ router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
   Basic.findOne({ p_id: req.user._id }, (err, user) => {
-    console.log("user id is",req.user._id)
+    console.log("user id is", req.user._id)
     if (err)
       res.json({
         success: false,

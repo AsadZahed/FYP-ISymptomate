@@ -17,7 +17,7 @@ export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [msg, setMsg] = React.useState("");
-  const [gdata,setDData]=React.useState("");
+  const [gdata, setDData] = React.useState("");
 
   const history = useHistory();
   function handleSubmit(event) {
@@ -35,8 +35,15 @@ export default function Login() {
       }
     })
       .then((res) => {
-        if (res.data.success) {
-          console.log(res.data)
+        if (res.data.user.isAdmin)
+          history.push({
+            pathname: "/admin/privlages",
+            state: {
+              user: res.data.user,
+              token: res.data.token
+            }
+          })
+        else
           history.push({
             pathname: "/",
             state: {
@@ -44,13 +51,9 @@ export default function Login() {
               token: res.data.token
             }
           })
-          onClick()
-        }
-      }
-      ).catch(function (res) {
-        setMsg("Login error")
-        onClick()
-      })
+
+      }).catch((res) => setMsg("Login error"))
+
 
   }
   function validateForm() {
@@ -69,7 +72,7 @@ export default function Login() {
         token: res.data.token
       }
     })
-  
+
     setShowloginButton(false);
     setShowlogoutButton(true);
   };
@@ -86,11 +89,11 @@ export default function Login() {
   };
 
 
-  
+
   const [showResults, setShowResults] = React.useState(false)
 
   const onClick = () => setShowResults(true)
-    
+
   return (
     <div>
       <Header />
@@ -124,8 +127,8 @@ export default function Login() {
                   //paddingTop:"5%",
                   backgroundColor: "white",
                   paddingRight: "50%",
-                  paddingTop:"10%",
-                  paddingBottom:"10%"
+                  paddingTop: "10%",
+                  paddingBottom: "10%"
                 }}>
                 <h1>Login</h1>
 
@@ -180,23 +183,23 @@ export default function Login() {
                         Admin Login
                       </Button>
                     </div>  */}
-                       <div>
-                      <Link
-                      to={{
-                        pathname: "/",
-                      }}
-                    >
-                    
-                        {showloginButton ?
-                          <GoogleLogin
-                            clientId={clientId}
-                            buttonText="Sign In"
-                            onSuccess={onLoginSuccess}
-                            onFailure={onLoginFailure}
-                            cookiePolicy={'single_host_origin'}
-                            isSignedIn={true}
-                          /> : null}
-                       </Link>
+                      <div>
+                        <Link
+                          to={{
+                            pathname: "/",
+                          }}
+                        >
+
+                          {showloginButton ?
+                            <GoogleLogin
+                              clientId={clientId}
+                              buttonText="Sign In"
+                              onSuccess={onLoginSuccess}
+                              onFailure={onLoginFailure}
+                              cookiePolicy={'single_host_origin'}
+                              isSignedIn={true}
+                            /> : null}
+                        </Link>
 
 
                         {showlogoutButton ?

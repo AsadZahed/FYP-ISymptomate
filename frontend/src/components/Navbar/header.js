@@ -181,6 +181,35 @@ function Header(props) {
               </NavDropdown.Item>
             </NavDropdown>
 
+            <NavDropdown title="Reports" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
+          
+
+          <NavDropdown.Item href="/reports/view">
+            <Link to={{
+              pathname: '/reports/view',
+              state: {
+                token: props.token,
+                user: props.user
+              }
+            }}>
+              View
+            </Link>
+          </NavDropdown.Item>
+
+
+          <NavDropdown.Item href="/reports/analysis">
+            <Link to={{
+              pathname: '/reports/analysis',
+              state: {
+                token: props.token,
+                user: props.user
+              }
+            }}>
+              Analysis
+            </Link>
+          </NavDropdown.Item>
+          </NavDropdown>
+
             <NavDropdown title="Settings" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
               <NavDropdown.Item href="/setting/about">
                 <Link
@@ -198,7 +227,7 @@ function Header(props) {
               </NavDropdown.Item>
 
               {/* dummy */}
-              <NavDropdown.Item href="/shomepage">
+              {/* <NavDropdown.Item href="/shomepage">
                 <Link
                   to={{
                     pathname: "/shomepage",
@@ -211,7 +240,7 @@ function Header(props) {
                   Homes
                 </Link>
 
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
 
               {/* /--------------
              */}
@@ -249,30 +278,6 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="/reports/view">
-                <Link to={{
-                  pathname: '/reports/view',
-                  state: {
-                    token: props.token,
-                    user: props.user
-                  }
-                }}>
-                  View
-                </Link>
-              </NavDropdown.Item>
-
-
-              <NavDropdown.Item href="/reports/analysis">
-                <Link to={{
-                  pathname: '/reports/analysis',
-                  state: {
-                    token: props.token,
-                    user: props.user
-                  }
-                }}>
-                  Analysis
-                </Link>
-              </NavDropdown.Item>
 
                            
             </NavDropdown>
@@ -293,6 +298,8 @@ function Header(props) {
               </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        
+       
       </Navbar>
     </div>
   );

@@ -7,7 +7,7 @@ import { useLocation } from "react-router";
 
 import Header from "../Navbar/Aheader"
 
-export default function View() {
+export default function ViewName() {
 
   const [patients, setPatients] = React.useState([]);
   const [user, setUser] = React.useState(null);
@@ -21,7 +21,7 @@ export default function View() {
       setUser(location.state.user);
       setToken(location.state.token)
     } else {
-      history.push('/users/admin/viewusers')
+      history.push('/users/admin/viewusersname')
     }
   }, [location, history])
 
@@ -58,7 +58,7 @@ export default function View() {
       >
         <h1>View Users</h1>
         <ul>
-          {patients.map(person => <li>{person.username}</li>)}
+          {patients.map(person => <li>{person.name}</li>)}
         </ul>
         <div
           style={{

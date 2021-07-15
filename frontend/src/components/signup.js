@@ -23,8 +23,8 @@ export default function Signup() {
   const [cpassword, setCPassword] = React.useState("");
   const [error, setError] = React.useState("");
   var history = useHistory();
-  
-  const [gdata,setDData]=React.useState("");
+
+  const [gdata, setDData] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -32,14 +32,15 @@ export default function Signup() {
       name: fname,
       username: email,
       password: password,
-      isAdmin:false
+      isAdmin: false
     };
 
-    const googleData = {
-      name: fname,
-      username: email,
-    }
 
+    // const googleData = {
+    //   name: fname,
+    //   username: email,
+    // }
+    console.log(data)
     axios.post('http://localhost:9000/users/signup', data, {
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -51,37 +52,37 @@ export default function Signup() {
         //   history.push("/login");
         // }
         if (res.data.user.isAdmin)
-        history.push({
-            pathname: "/admin/privlages",
+          history.push({
+            pathname: "/login",
             state: {
-                user: res.data.user,
-                token: res.data.token
+              user: res.data.user,
+              token: res.data.token
             }
-        })
-    else
-        history.push({
-            pathname: "/",
+          })
+        else
+          history.push({
+            pathname: "/login",
             state: {
-                user: res.data.user,
-                token: res.data.token
+              user: res.data.user,
+              token: res.data.token
             }
-        })
+          })
 
-      }).catch (err=> console.log(err))
-      // .catch((res) => setError("Sign up error"))
+      }).catch(err => console.log(err))
+    // .catch((res) => setError("Sign up error"))
 
-      axios.post('http://localhost:9000/users/signup', googleData, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        }
-      })
-        .then((res) => {
-          if (res.data.success) {
-            history.push("/login");
-          }
-  
-        }).catch((res) => setError("Sign up error"))
+    // axios.post('http://localhost:9000/users/signup', googleData, {
+    //   headers: {
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //   }
+    // })
+    //   .then((res) => {
+    //     if (res.data.success) {
+    //       history.push("/login");
+    //     }
+
+    //   }).catch((res) => setError("Sign up error"))
 
     // axios.post('http://localhost:9000/users/auth/google/', data, {
     //   headers: {
@@ -108,7 +109,7 @@ export default function Signup() {
     setFname(res.profileObj.name)
     setEmail(res.profileObj.email)
     setPassword("1234")
-    console.log(fname+"       "+email)
+    console.log(fname + "       " + email)
 
     // setEmail(res.profileObj.email)
     // history.push({
@@ -248,7 +249,7 @@ export default function Signup() {
                       </div>
 
                       <div>
-                      <Button variant="light" size="md" type="submit" href="/login">
+                        <Button variant="light" size="md" type="submit" href="/login">
 
                           {showloginButton ?
                             <GoogleLogin
@@ -282,7 +283,6 @@ export default function Signup() {
           </a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-body">
           <a class="btn btn-block  btn-social btn-facebook" href="/auth/google" role="button">

@@ -7,8 +7,7 @@ var Patient = new Schema({
         default: ''
     },
     isAdmin:{
-        type:Boolean,
-        default: ''
+        type:Boolean
     }
 });
 

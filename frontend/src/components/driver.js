@@ -58,9 +58,10 @@ import Feedback from "../components/Settings/feedback";
 import Notifications from "../components/Settings/notifications";
 
 
-import ALogin from "../components/AdminManagement/adminlogin";
 import Privlages from "../components/AdminManagement/privilages";
 import VUser from "../components/AdminManagement/viewusers";
+import VUserName from "../components/AdminManagement/viewusername";
+import VAReports from "../components/AdminManagement/viewAllReports";
 import ASignup from "../components/AdminManagement/asignup";
 
 
@@ -142,9 +143,10 @@ function Driver() {
 
         {/* Admin */}
         <Route path="/admin/signup" exact component={ASignup} />
-        <Route path="/login" exact component={Login} />
         <Route path="/admin/privlages" exact component={Privlages} />
-        <Route path="/users/admin/viewusers" exact component={VUser} />
+        <Route path="/users/admin/viewusers" exact component={VUser} />   
+        <Route path="/users/admin/viewusersname" exact component={VUserName} />
+        <Route path="/users/admin/viewallreports" exact component={VAReports} />
 
       </Switch>
       <Footer />

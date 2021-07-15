@@ -2,7 +2,7 @@ import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Nav, Navbar} from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Header(props) {
@@ -30,7 +30,22 @@ function Header(props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
           <Nav.Link href="/admin/signup">Admin Signup</Nav.Link>
-          <Nav.Link href="/admin/login">Admin Login</Nav.Link>
+          <Nav.Link href="/login">Patient Login</Nav.Link>
+          <NavDropdown title="Account" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/editprofile",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  Edit account
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
          </Nav>
         </Navbar.Collapse>
       </Navbar>
