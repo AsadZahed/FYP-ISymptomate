@@ -11,7 +11,6 @@ import Image from "../images/logo2.jpeg";
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-import { Link } from "react-router-dom";
 
 const clientId = "117443239646-ni8sjfvdadef3m2h6iju1hkgoeu3vqbs.apps.googleusercontent.com";
 
@@ -24,7 +23,6 @@ export default function ASignup() {
   const [error, setError] = React.useState("");
   var history = useHistory();
 
-  const [gdata, setDData] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -48,10 +46,7 @@ export default function ASignup() {
       }
     })
       .then((res) => {
-        // if (res.data.success) {
-        //   history.push("/login");
-        // }
-        if (res.data.user.isAdmin)
+       if (res.data.user.isAdmin)
           history.push({
             pathname: "/login",
             state: {

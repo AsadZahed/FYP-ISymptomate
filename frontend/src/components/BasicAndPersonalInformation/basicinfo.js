@@ -13,7 +13,7 @@ export default function BasicInfo() {
 
   const [gender, setgender] = React.useState("");
   const [age, setage] = React.useState("");
-
+  const [ages, setages] = React.useState("");
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(null)
   var history = useHistory();
@@ -34,7 +34,7 @@ export default function BasicInfo() {
     event.preventDefault();
     const data = {
       age: age,
-      gender: "male"
+      gender: gender
     };
 
     axios.post('http://localhost:9000/addinfo/basicinfo', data, {
@@ -59,11 +59,33 @@ export default function BasicInfo() {
       }).catch(res => setMSG(res.message));
   }
 
+  useEffect(() => {
+    if (location.state) {
+      setUser(location.state.user);
+      setToken(location.state.token);
+      axios.get('http://localhost:9000/users/getBAsicInfo', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Authorization': `Bearer ${location.state.token}`
+        }
+      })
+        .then(res => {
+          console.log(res.data)
+          setages(res.data.age[0].age)
+          console.log("i am in front end", res.data.age[0].age)
+
+        })
+    }
+  }, [location, token, user]);
+
   function validateForm() {
     return age.length > 0 && age > 0 && age < 123;
   }
-  const [showResults, setShowResults] = React.useState(false)
+  const [showResults, setShowResults] = React.useState(false);
 
+  const options = ["male", "female"];
+  
   const onClick = () => setShowResults(true)
   return (
     <div>
@@ -100,49 +122,54 @@ export default function BasicInfo() {
                 <form onSubmit={handleSubmit}>
                   <label className="f-label" for="age">
                     Your age
-                </label>
+                  </label>
 
                   <input
                     type="number"
                     className="fname"
                     name="age"
                     onChange={(e) => setage(e.target.value)}
+                    placeholder={ages}
                   />
 
                   <label className="f-label" for="gender">
                     Gender
-                </label>
+                  </label>
 
-                  <select className="fname" id="country" name="gender">
+                  <select  onChange={(e) => setgender(e.target.value)} className="fname" id="country" name="gender">
                     <option
-                      onChange={(e) => setgender(e.target.value)}
+                      onChange={(e) => setgender("gender is ","male")}
                       value="male"
                     >
                       Male
-                  </option>
+                    </option>
                     <option
-                      onChange={(e) => setgender(e.target.value)}
+                      onChange={(e) => setgender("female")}
                       value="female"
                     >
                       Female
-                  </option>
+                    </option>
+                   
                   </select>
+              
+
                   {showResults ?
                     <div className="validation ">
-                   {msg} </div> : <div></div>}
+                      {msg} </div> : <div></div>}
+
 
 
                   <Button
                     onClick={onClick}
                     block
                     size="lg"
-                    style = {{color: "#0c0530"}}
+                    style={{ color: "#0c0530" }}
                     variant="warning"
                     type="submit"
                     disabled={!validateForm()}
                   >
                     Add
-                </Button>
+                  </Button>
                 </form>
               </div>
             </div>
@@ -179,7 +206,7 @@ export default function BasicInfo() {
 
                   <label className="f-label" for="age">
                     Date of Birth
-                </label>
+                  </label>
 
                   <input
                     type="date"
@@ -190,7 +217,7 @@ export default function BasicInfo() {
 
                   <label className="f-label" for="gender">
                     Gender
-                </label>
+                  </label>
 
                   <select className="fname" id="country" name="gender">
                     <option
@@ -198,13 +225,13 @@ export default function BasicInfo() {
                       value="male"
                     >
                       Male
-                  </option>
+                    </option>
                     <option
                       onChange={(e) => setgender(e.target.value)}
                       value="female"
                     >
                       Female
-                  </option>
+                    </option>
                   </select>
 
 
@@ -215,7 +242,7 @@ export default function BasicInfo() {
                     disabled={!validateForm()}
                   >
                     Add
-                </Button>
+                  </Button>
                 </form>
               </div>
             </div>

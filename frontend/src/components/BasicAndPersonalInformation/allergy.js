@@ -72,11 +72,41 @@ function Question() {
           });
         }
 
-      })  .catch(res => setMSG(res.message));
+      })  .catch(res => setMSG("Please Select all options to proceed"));
   }
   const [showResults, setShowResults] = React.useState(false)
 
   const onClick = () => setShowResults(true)
+
+  const twoOnChange=(e)=>{
+    setChecked1(!checked1)
+    setq1(e.target.value)
+
+  }
+  
+  const twoOnChange1=(e)=>{
+    setChecked2(!checked2)
+    setq2(e.target.value)
+
+  }
+  
+  const twoOnChange2=(e)=>{
+    setChecked3(!checked3)
+    setq3(e.target.value)
+
+  }
+  
+  const twoOnChange3=(e)=>{
+    setChecked4(!checked4)
+    setq4(e.target.value)
+
+  }
+  
+  const twoOnChange4=(e)=>{
+    setChecked5(!checked5)
+    setq5(e.target.value)
+
+  }
   return (
     <div>
     <Header user={user} token={token} />
@@ -127,8 +157,7 @@ function Question() {
                     type="radio"
                     value="Yes"
                     name="answer"
-                    onChange={() => setChecked1(!checked1)}
-                    onChange={(e) => setq1(e.target.value)}
+                    onChange={(e) => twoOnChange(e)}
                   />
                 Yes
                 <input
@@ -136,8 +165,7 @@ function Question() {
                     type="radio"
                     value="No"
                     name="answer"
-                    onChange={() => setChecked1(!checked1)}
-                    onChange={(e) => setq1(e.target.value)}
+                    onChange={(e) => twoOnChange(e)}
                   />
                 No
                 <input
@@ -145,8 +173,7 @@ function Question() {
                     type="radio"
                     value="DN"
                     name="answer"
-                    onChange={() => setChecked1(!checked1)}
-                    onChange={(e) => setq1(e.target.value)}
+                    onChange={(e) => twoOnChange(e)}
                   />
                 Don't know
               </div>
@@ -167,8 +194,7 @@ function Question() {
                     type="radio"
                     value="Yes1"
                     name="answer1"
-                    onChange={() => setChecked2(!checked2)}
-                    onChange={(e) => setq2(e.target.value)}
+                    onChange={(e) => twoOnChange1(e)}
                   />
                 Yes
                 <input
@@ -176,8 +202,7 @@ function Question() {
                     type="radio"
                     value="No1"
                     name="answer1"
-                    onChange={() => setChecked2(!checked2)}
-                    onChange={(e) => setq2(e.target.value)}
+                    onChange={(e) => twoOnChange1(e)}
                   />
                 No
                 <input
@@ -185,8 +210,7 @@ function Question() {
                     type="radio"
                     value="DN1"
                     name="answer1"
-                    onChange={() => setChecked2(!checked2)}
-                    onChange={(e) => setq2(e.target.value)}
+                    onChange={(e) => twoOnChange1(e)}
                   />{" "}
                 Don't know
               </div>
@@ -206,27 +230,24 @@ function Question() {
                     type="radio"
                     value="Yes2"
                     name="answer2"
-                    onChange={() => setChecked3(!checked3)}
-                    onChange={(e) => setq3(e.target.value)}
-                  />{" "}
+                    onChange={(e) => twoOnChange2(e)}
+                  />
                 Yes
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="No2"
                     name="answer2"
-                    onChange={() => setChecked3(!checked3)}
-                    onChange={(e) => setq3(e.target.value)}
-                  />{" "}
+                    onChange={(e) => twoOnChange2(e)}
+                  />
                 No
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="DN2"
                     name="answer2"
-                    onChange={() => setChecked3(!checked3)}
-                    onChange={(e) => setq3(e.target.value)}
-                  />{" "}
+                    onChange={(e) => twoOnChange2(e)}
+                  />
                 Don't know
               </div>
                 {/* 4 */}
@@ -244,17 +265,15 @@ function Question() {
                     type="radio"
                     value="Yes3"
                     name="answer3"
-                    onChange={() => setChecked4(!checked4)}
-                    onChange={(e) => setq4(e.target.value)}
-                  />{" "}
+                    onChange={(e) => twoOnChange3(e)}
+                  />
                 Yes
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="No3"
                     name="answer3"
-                    onChange={() => setChecked4(!checked4)}
-                    onChange={(e) => setq4(e.target.value)}
+                    onChange={(e) => twoOnChange3(e)}
                   />{" "}
                 No
                 <input
@@ -262,8 +281,7 @@ function Question() {
                     type="radio"
                     value="DN3"
                     name="answer3"
-                    onChange={() => setChecked4(!checked4)}
-                    onChange={(e) => setq4(e.target.value)}
+                    onChange={(e) => twoOnChange3(e)}
                   />{" "}
                 Don't know
               </div>
@@ -283,8 +301,7 @@ function Question() {
                     type="radio"
                     value="Yes4"
                     name="answer4"
-                    onChange={() => setChecked5(!checked5)}
-                    onChange={(e) => setq5(e.target.value)}
+                    onChange={(e) => twoOnChange4(e)}
                   />{" "}
                 Yes
                 <input
@@ -292,8 +309,7 @@ function Question() {
                     type="radio"
                     value="No4"
                     name="answer4"
-                    onChange={() => setChecked5(!checked5)}
-                    onChange={(e) => setq5(e.target.value)}
+                    onChange={(e) => twoOnChange4(e)}
                   />{" "}
                 No
                 <input
@@ -301,8 +317,7 @@ function Question() {
                     type="radio"
                     value="DN4"
                     name="answer4"
-                    onChange={() => setChecked5(!checked5)}
-                    onChange={(e) => setq5(e.target.value)}
+                    onChange={(e) => twoOnChange4(e)}
                   />{" "}
                 Don't know
               </div>
@@ -406,8 +421,7 @@ function Question() {
                       type="radio"
                       value="Yes"
                       name="answer"
-                      onChange={() => setChecked1(!checked1)}
-                      onChange={(e) => setq1(e.target.value)}
+                      onChange={(e) => twoOnChange(e)}
 
                     />{" "}
                   Yes
@@ -416,8 +430,7 @@ function Question() {
                       type="radio"
                       value="No"
                       name="answer"
-                      onChange={() => setChecked1(!checked1)}
-                      onChange={(e) => setq1(e.target.value)}
+                      onChange={(e) => twoOnChange(e)}
 
                     />{" "}
                   No
@@ -426,8 +439,7 @@ function Question() {
                       type="radio"
                       value="DN"
                       name="answer"
-                      onChange={() => setChecked1(!checked1)}
-                      onChange={(e) => setq1(e.target.value)}
+                      onChange={(e) => twoOnChange(e)}
 
                     />{" "}
                   Don't know
@@ -455,8 +467,7 @@ function Question() {
                       type="radio"
                       value="Yes1"
                       name="answer1"
-                      onChange={() => setChecked2(!checked2)}
-                      onChange={(e) => setq2(e.target.value)}
+                      onChange={(e) => twoOnChange1(e)}
 
                     />{" "}
                   Yes
@@ -465,8 +476,7 @@ function Question() {
                       type="radio"
                       value="No1"
                       name="answer1"
-                      onChange={() => setChecked2(!checked2)}
-                      onChange={(e) => setq2(e.target.value)}
+                      onChange={(e) => twoOnChange1(e)}
                     />{" "}
                   No
                   <input
@@ -474,8 +484,7 @@ function Question() {
                       type="radio"
                       value="DN1"
                       name="answer1"
-                      onChange={() => setChecked2(!checked2)}
-                      onChange={(e) => setq2(e.target.value)}
+                      onChange={(e) => twoOnChange1(e)}
                     />{" "}
                   Don't know
                 </div>
@@ -502,8 +511,7 @@ function Question() {
                       type="radio"
                       value="Yes2"
                       name="answer2"
-                      onChange={() => setChecked3(!checked3)}
-                      onChange={(e) => setq3(e.target.value)}
+                      onChange={(e) => twoOnChange2(e)}
          
 
                     />{" "}
@@ -513,8 +521,7 @@ function Question() {
                       type="radio"
                       value="No2"
                       name="answer2"
-                      onChange={() => setChecked3(!checked3)}
-                   onChange={(e) => setq3(e.target.value)}
+                      onChange={(e) => twoOnChange2(e)}
            />{" "}
                   No
                   <input
@@ -522,8 +529,7 @@ function Question() {
                       type="radio"
                       value="DN2"
                       name="answer2"
-                      onChange={() => setChecked3(!checked3)}
-                      onChange={(e) => setq3(e.target.value)}
+                      onChange={(e) => twoOnChange2(e)}
           />{" "}
                   Don't know
                 </div>
@@ -549,8 +555,7 @@ function Question() {
                       type="radio"
                       value="Yes3"
                       name="answer3"
-                      onChange={() => setChecked4(!checked4)}
-                      onChange={(e) => setq4(e.target.value)}
+                      onChange={(e) => twoOnChange3(e)}
          />{" "}
                   Yes
                   <input
@@ -558,8 +563,7 @@ function Question() {
                       type="radio"
                       value="No3"
                       name="answer3"
-                      onChange={() => setChecked4(!checked4)}
-                      onChange={(e) => setq4(e.target.value)}
+                      onChange={(e) => twoOnChange3(e)}
              />{" "}
                   No
                   <input
@@ -567,8 +571,7 @@ function Question() {
                       type="radio"
                       value="DN3"
                       name="answer3"
-                      onChange={() => setChecked4(!checked4)}
-                      onChange={(e) => setq4(e.target.value)}
+                      onChange={(e) => twoOnChange3(e)}
              />{" "}
                   Don't know
                 </div>
@@ -595,8 +598,7 @@ function Question() {
                       type="radio"
                       value="Yes4"
                       name="answer4"
-                      onChange={() => setChecked5(!checked5)}
-                      onChange={(e) => setq5(e.target.value)}
+                      onChange={(e) => twoOnChange4(e)}
               />{" "}
                   Yes
                   <input
@@ -604,8 +606,7 @@ function Question() {
                       type="radio"
                       value="No4"
                       name="answer4"
-                      onChange={() => setChecked5(!checked5)}
-                      onChange={(e) => setq5(e.target.value)}
+                      onChange={(e) => twoOnChange4(e)}
          
                     />{" "}
                   No
@@ -614,8 +615,7 @@ function Question() {
                       type="radio"
                       value="DN4"
                       name="answer4"
-                      onChange={() => setChecked5(!checked5)}
-                      onChange={(e) => setq5(e.target.value)}
+                      onChange={(e) => twoOnChange4(e)}
          
                     />{" "}
                   Don't know

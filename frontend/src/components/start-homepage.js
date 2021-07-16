@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import Image1 from "../components/images/slider-1.jpeg";
@@ -16,7 +16,7 @@ import CountUp from "react-countup";
 import { Button } from "react-bootstrap";
 import HomeImage2 from "../components/images/homeimg.PNG";
 import { Link } from "react-router-dom";
-import { BrowserView, MobileView } from "react-device-detect";
+import { BrowserView} from "react-device-detect";
 
 import "../styles.css";
 import "../components/Symptoms/App.css"

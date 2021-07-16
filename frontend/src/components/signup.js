@@ -11,8 +11,6 @@ import Image from "../components/images/logo2.jpeg";
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-import { Link } from "react-router-dom";
-
 const clientId = "117443239646-ni8sjfvdadef3m2h6iju1hkgoeu3vqbs.apps.googleusercontent.com";
 
 
@@ -24,8 +22,7 @@ export default function Signup() {
   const [error, setError] = React.useState("");
   var history = useHistory();
 
-  const [gdata, setDData] = React.useState("");
-
+ 
   function handleSubmit(event) {
     event.preventDefault();
     const data = {

@@ -4,12 +4,10 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { BrowserView, MobileView } from "react-device-detect";
 import medicine from "./medicine";
-import { Progress } from "antd";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import Header from "../Navbar/header"
 
-import medicineList from "./medicine.js";
 
 
 export default function AddMedication() {
@@ -77,13 +75,13 @@ export default function AddMedication() {
       })
       .catch(res => setMSG(res.message));
   }
-  const added = () =>  {
-    return (
-      <div>
-       {message}
-      </div>
-    );
-  }
+  // const added = () =>  {
+  //   return (
+  //     <div>
+  //      {message}
+  //     </div>
+  //   );
+  // }
   function validateForm() {
     return items.length > 0;
   }
@@ -115,7 +113,7 @@ const onTextChange = (e) => {
 
 function selectedText(value) {
     if(items.find(function(element){
-      return value == element
+      return value === element
     })){ 
       console.log("Item already in list")
     }
@@ -163,13 +161,9 @@ const renderSuggestions = () => {
   );
 };
 
-const { text, suggestions } = state;
+const { text } = state;
 
-
-
-
-
-  return (
+return (
     <div>
       <Header user={user} token={token} />
 

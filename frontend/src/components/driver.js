@@ -43,6 +43,8 @@ import Addbasicinfo from "../components/BasicAndPersonalInformation/basicinfo";
 import AddPersonalInfo from "../components/BasicAndPersonalInformation/personalinfo";
 import Addmedication from "../components/BasicAndPersonalInformation/addmedication";
 import Allergy from "../components/BasicAndPersonalInformation/allergy";
+
+import ViewProfile from "../components/BasicAndPersonalInformation/viewprofile";
 import Library from "../components/BasicAndPersonalInformation/conditionLibrary";
 
 import Reports from "../components/Reports/viewreports";
@@ -125,6 +127,7 @@ function Driver() {
         <Route path="/addinfo/addmedication" exact component={Addmedication} />
         <Route path="/addinfo/allergy" exact component={Allergy} />
         <Route path="/addinfo/background" exact component={Allergy} />
+        <Route path="/addinfo/viewprofile" exact component={ViewProfile} />
         <Route path="/addinfo/conditionlibrary" exact component={Library} />
 
 

@@ -2,22 +2,21 @@ import React, { useEffect } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
-import { Button } from "react-bootstrap";
 
 
 //import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function AReport() {
 
-  const [age, setAge] = React.useState("12");
+  //const [age, setAge] = React.useState("12");
   const [date, setDate] = React.useState();
   const [patientid, setpatientID] = React.useState();
-  const [reportid, setReportID] = React.useState();
-  const [gender, setgender] = React.useState("male");
+ // const [reportid, setReportID] = React.useState();
+  // const [gender, setgender] = React.useState("male");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
 
   const [name, setName] = React.useState("anonymous");
-  const [id, setID] = React.useState("1234");
+  // const [id, setID] = React.useState("1234");
   const [cancer, sets] = React.useState("");
   const [i, setI] = React.useState("")
   const [msg, setMSG] = React.useState(null);
@@ -45,9 +44,9 @@ export default function AReport() {
         setDate(location.state.date)
         setpatientID(location.state.patientid)
         console.log("my name is",patientid)
-        setReportID(location.state.reportID)
+       // setReportID(location.state.reportID)
         setName(location.state.name)
-        setID(location.state.user._id)
+        // setID(location.state.user._id)
         sets(location.state.cancer)
         setI(location.state.img)
         console.log(date)
@@ -67,37 +66,37 @@ export default function AReport() {
 
   const checkdiseases = () => {
     var w = " ";
-    if (cancer == "Melanoma") {
+    if (cancer === "Melanoma") {
 
       w = dlist[0]
 
     }
-    else if (cancer == 'Basal cell carcinoma') {
+    else if (cancer === 'Basal cell carcinoma') {
 
       w = dlist[1]
 
     }
-    else if (cancer == "Benign keratosis-like lesions") {
+    else if (cancer === "Benign keratosis-like lesions") {
 
       w = dlist[3]
 
     }
-    else if (cancer == "Dermatofibroma") {
+    else if (cancer === "Dermatofibroma") {
 
       w = dlist[6]
 
     }
-    else if (cancer == "Melanocytic nevi") {
+    else if (cancer === "Melanocytic nevi") {
 
       w = dlist[2]
 
     }
-    else if (cancer == "Actinic keratoses") {
+    else if (cancer === "Actinic keratoses") {
 
       w = dlist[4]
 
     }
-    else if (cancer == "Vascular lesions") {
+    else if (cancer === "Vascular lesions") {
 
       w = dlist[4]
 
@@ -185,7 +184,7 @@ export default function AReport() {
 
   const [showResults, setShowResults] = React.useState(false)
 
-  const onClick = () => setShowResults(true)
+  //const onClick = () => setShowResults(true)
 
 
   return (
@@ -296,7 +295,7 @@ export default function AReport() {
                 </p>
                 <img
                   src={i}
-                  alt="No image Available"
+                  alt="Noimage Available"
                   style={{
                     width: "128px",
                     height: "128px",

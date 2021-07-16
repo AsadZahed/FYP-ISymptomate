@@ -51,7 +51,20 @@ function Header(props) {
             </NavDropdown>
 
             <NavDropdown title="Profile" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
-             
+           
+            <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/addinfo/viewprofile",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  View Profile
+                </Link>
+              </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link
                   to={{

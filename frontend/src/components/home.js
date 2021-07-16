@@ -115,7 +115,7 @@ function Home(props) {
             paddingLeft: "12%",
             paddingRight: "12%",
             paddingTop: "5%",
-           
+
           }}
         >
           <BrowserView>
@@ -125,7 +125,7 @@ function Home(props) {
                 backgroundColor: "#fff",
                 padding: "7%",
                 borderRadius: "5px",
-                paddingBottom:"0%"
+                paddingBottom: "0%"
               }}
             >
               <div className="float-container">
@@ -136,15 +136,19 @@ function Home(props) {
                     literature and statistical data culled from thousands of
                     patient cases.
                   </p>
-                  <Button href="/moreinfo" className="homeButton" variant="link">
+                  <Button href="/addinfo/conditionlibrary" className="homeButton" variant="link">
                     <Link
                       to={{
-                        pathname: "/moreinfo",
+                        pathname: "/addinfo/conditionlibrary",
+                        state: {
+                          token: props.token,
+                          user: props.user,
+                        },
                       }}
                     >
                       More info
                     </Link> <BsArrowRight />
-                  </Button>{" "}
+                  </Button>
                 </div>
                 <div className="float-child">
                   <img
@@ -216,8 +220,8 @@ function Home(props) {
           style={{
             paddingLeft: "12%",
             paddingRight: "12%",
-            paddingTop: "5%", 
-            paddingBottom: "5%", 
+            paddingTop: "5%",
+            paddingBottom: "5%",
           }}
         >
           <BrowserView>
@@ -228,7 +232,7 @@ function Home(props) {
                 backgroundColor: "#fff",
                 padding: "7%",
                 borderRadius: "5px",
-                paddingBottom:"4%"
+                paddingBottom: "4%"
               }}
             >
               <h2>Write Chat bot</h2>
@@ -282,7 +286,7 @@ function Home(props) {
         </div>
 
         {/* 5th part */}
-      
+
         {/* FOOTER */}
       </div>
     </div>

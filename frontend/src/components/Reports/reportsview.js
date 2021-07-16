@@ -9,16 +9,16 @@ import { useLocation } from "react-router";
 export default function View() {
 
     const [reports, viewReports] = React.useState([]);
-    const [name, setName] = React.useState();
+    //const [name, setName] = React.useState();
     const [age, setAge] = React.useState("12");
-    const [date, setDate] = React.useState();
-    const [patientid, setpatientID] = React.useState();
-    const [reportid, setReportID] = React.useState();
+   // const [date, setDate] = React.useState();
+   // const [patientid, setpatientID] = React.useState();
+   // const [reportid, setReportID] = React.useState();
     const [gender, setgender] = React.useState("male");
     const [token, setToken] = React.useState(null)
     const [user, setUser] = React.useState(null);
     const [cancer, setCancer] = React.useState("Cancer");
-    const [userId, setUSerID] = React.useState("")
+   // const [userId, setUSerID] = React.useState("")
     var history = useHistory();
     var location = useLocation();
 
@@ -37,6 +37,7 @@ export default function View() {
             .then(res => {
               console.log(res.data)
               viewReports(res.data.reports)
+              setAge(12);
             })
         }
       }, [location, token, user]);

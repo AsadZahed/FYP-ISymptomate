@@ -175,16 +175,13 @@ router.get('/reports/view', authenticate.verifyUser, (req, res) => {
 })
 
 
-router.get('/totalPatients', function (req, res, next) {
-  Patient.find({}).sort('name')
-    .exec(function (err, data, next) {
-      if (err) {
-        return next(err)
-      }
-      res.json(data)
-    })
-
-});
+router.get('/getBAsicInfo', authenticate.verifyUser, (req, res) => {
+  Basic.find({ p_id: req.user._id }, (err, reps) => {
+    if (err) res.json({ success: false, message: err.name })
+    else if (reps.length > 0) res.json({ success: true, age: reps })
+    else res.json({ success: false, message: 'No age found' })
+  })
+})
 
 router.get('/reports/getage', function (req, res, next) {
   Basic.find({}).exec(function (error, results) {
