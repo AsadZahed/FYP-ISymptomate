@@ -246,7 +246,7 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        <Button variant="light" size="md" type="submit" href="/login">
+                        {/* <Button variant="light" size="md" type="submit" href="/login">
 
                           {showloginButton ?
                             <GoogleLogin
@@ -268,7 +268,7 @@ export default function Signup() {
                             onLogoutSuccess={onSignoutSuccess}
                           >
                           </GoogleLogout> : null
-                        }
+                        } */}
                       </div>
 
                       {/* <div class="col-sm-4">

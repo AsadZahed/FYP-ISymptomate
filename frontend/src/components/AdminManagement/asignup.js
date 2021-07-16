@@ -243,7 +243,7 @@ export default function ASignup() {
                         </Button>
                       </div>
 
-                      <div>
+                      {/* <div>
                         <Button variant="light" size="md" type="submit" href="/login">
 
                           {showloginButton ?
@@ -267,7 +267,7 @@ export default function ASignup() {
                           >
                           </GoogleLogout> : null
                         }
-                      </div>
+                      </div> */}
 
                       {/* <div class="col-sm-4">
       <div class="card">
