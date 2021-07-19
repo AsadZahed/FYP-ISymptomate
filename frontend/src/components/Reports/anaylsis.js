@@ -12,15 +12,18 @@ import Header from "../Navbar/header";
 import TableView from "./table-template";
 import AnalysisTemplate from "./analysis-template";
 import "../../styles.css";
-
+import Map from "./map";
 import { Table } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import ReactTooltip from "react-tooltip";
 
 export default function Analysis() {
   const [user, setUser] = React.useState(null);
-  const [token, setToken] = React.useState(null)
+  const [token, setToken] = React.useState(null);
+  const [content, setContent] = React.useState("");
+
   
   var history = useHistory();
   var location = useLocation();
@@ -449,6 +452,8 @@ export default function Analysis() {
 
         <TableView name={country}/>
 
+        <Map setTooltipContent={setContent} />
+      <ReactTooltip>{content}</ReactTooltip>
 
       
       <div
