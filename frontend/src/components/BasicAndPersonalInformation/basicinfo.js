@@ -12,8 +12,8 @@ import Header from "../Navbar/header"
 export default function BasicInfo() {
 
   const [gender, setgender] = React.useState("");
-  const [age, setage] = React.useState("");
-  const [ages, setages] = React.useState("");
+  const [age, setage] = React.useState(0);
+  const [ages, setages] = React.useState(0);
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(null)
   var history = useHistory();
@@ -72,9 +72,13 @@ export default function BasicInfo() {
       })
         .then(res => {
           console.log(res.data)
+          if(res.data.success===false){
+            setages(0)
+          }
+          else{
           setages(res.data.age[0].age)
           console.log("i am in front end", res.data.age[0].age)
-
+}
         })
     }
   }, [location, token, user]);

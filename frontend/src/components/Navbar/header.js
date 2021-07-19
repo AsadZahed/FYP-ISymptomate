@@ -197,7 +197,7 @@ function Header(props) {
             <NavDropdown title="Reports" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
           
 
-          <NavDropdown.Item href="/reports/view">
+          <NavDropdown.Item>
             <Link to={{
               pathname: '/reports/view',
               state: {
@@ -208,9 +208,10 @@ function Header(props) {
               View
             </Link>
           </NavDropdown.Item>
+          
 
 
-          <NavDropdown.Item href="/reports/analysis">
+          <NavDropdown.Item>
             <Link to={{
               pathname: '/reports/analysis',
               state: {
