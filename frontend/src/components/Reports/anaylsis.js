@@ -15,7 +15,26 @@ import "../../styles.css";
 
 import { Table } from "react-bootstrap";
 
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
+
 export default function Analysis() {
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(null)
+  
+  var history = useHistory();
+  var location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location)
+      setUser(location.state.user);
+      setToken(location.state.token)
+    } else {
+      history.push('/reports/analysis')
+    }
+  }, [location, history])
+
 
   const countryList = [
     "Afghanistan",
@@ -420,15 +439,9 @@ export default function Analysis() {
   const type = "line";
   const [country, setCountry] = React.useState('');
 
-  function printList(){
-    for(var i=0;i<countryList.length;i++){
-      <td>countryList[i]</td>
-    }
-  }
-
   return (
     <div style={{ backgroundColor: "#F8F8F8" }}>
-      <Header />
+      <Header token={token} user={user} />
       <div
         style={{
           paddingLeft: "12%",
@@ -694,67 +707,60 @@ export default function Analysis() {
             </tr>
           </thead>
           <tbody>
+            {countryList.map((name, index) => {
             <tr>
-              <td>1</td>
-              <td>{printList()}</td>
-              <td>Otto</td>
+              <td>{index + 1}</td>
+              <td>{name}</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-            
-            </tr>
+          })}
+
           </tbody>
+           
         </Table>
-        <div
-          style={{
-            border: "1px solid #DCDCDC",
-            backgroundColor: "#fff",
-            padding: "7%"
-          }}
-        >
+      <div
+        style={{
+          border: "1px solid #DCDCDC",
+          backgroundColor: "#fff",
+          padding: "7%"
+        }}
+      >
 
-          <div id="chart">
-            {/* <ReactApexChart
+        <div id="chart">
+          {/* <ReactApexChart
               options={options}
               series={series}
               type="line"
               height="300"
             /> */}
-            <AnalysisTemplate
-              options={options}
-              series={series}
-              type={type}
-            />
-          </div>
-
-          <div id="chart" style={{ boderTop: "1px solid black" }}>
-            {/* <ReactApexChart
-              options={options}
-              series={series}
-              type="line"
-              height="300"
-            /> */}
-            <AnalysisTemplate
-              options={options}
-              series={series}
-              type="bar"
-            />
-          </div>
-          <h2>Skin cancer Categories + {country}</h2>
+          <AnalysisTemplate
+            options={options}
+            series={series}
+            type={type}
+          />
         </div>
 
-        {/* <ul>
+        <div id="chart" style={{ boderTop: "1px solid black" }}>
+          {/* <ReactApexChart
+              options={options}
+              series={series}
+              type="line"
+              height="300"
+            /> */}
+          <AnalysisTemplate
+            options={options}
+            series={series}
+            type="bar"
+          />
+        </div>
+        <h2>Skin cancer Categories + {country}</h2>
+      </div>
+
+      {/* <ul>
         {patients.map(person => i++)}
         {i}
         </ul> */}
-      </div>
     </div>
+    </div >
 
 
   );
