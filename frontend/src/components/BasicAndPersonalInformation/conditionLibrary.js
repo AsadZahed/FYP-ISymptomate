@@ -37,8 +37,8 @@ export default function Library() {
         <li key={po.name} align="start" className="shome-styles">
           <div>
             <h3>{po.name}</h3>
-            <p>{po.text}</p>
-            <b><h5>Description: </h5></b><Link href={po.wiki}>{po.wiki}</Link>
+            {/* <p>{po.text}</p>
+            <b><h5>Description: </h5></b><Link href={po.wiki}>{po.wiki}</Link> */}
           </div>
         </li>
 
@@ -93,7 +93,7 @@ export default function Library() {
                   <li key={posti.name} align="start"  className="shome-styles">
                     <div>
                       <h3>{posti.name}</h3>
-                      <b><h5>Link: </h5></b><Link href={posti.link}>{posti.link}</Link>
+                      {/* <b><h5>Link: </h5></b><Link href={posti.link}>{posti.link}</Link> */}
                     </div>
                   </li>
                 </a>
