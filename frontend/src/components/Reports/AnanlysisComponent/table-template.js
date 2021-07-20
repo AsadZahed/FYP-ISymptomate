@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../../Navbar/header";
 import "../../../styles.css";
 import { Table } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
 export default function TableView(props) {
   //   const [isHidden, setIsHidden] = React.useState(true);
   //   const handel = name => {
@@ -517,10 +517,22 @@ export default function TableView(props) {
     { "code": "AX", "code3": "ALA", "name": "Åland Islands", "number": "248" }
   ];
 
-
+  const dummy = countryListAllIsoData.slice(0, 10);
+  const dummy1 = countryListAllIsoData.slice(11, countryListAllIsoData.length)
+  const [check, setCheck] = React.useState(false)
+  
+  function show() {
+    console.log(dummy1)
+    setCheck(true);
+  }
+   
+  function hide() {
+    console.log(dummy1)
+    setCheck(false);
+  }
   return (
 
-    
+
     <div>
 
       <Table striped bordered hover>
@@ -532,19 +544,35 @@ export default function TableView(props) {
           </tr>
         </thead>
         <tbody>
-           {countryListAllIsoData.map((name, index) => {
+          {dummy.map((name, index) => {
             return (
               <tr>
                 <td>{index + 1}</td>
                 <td>{name.name}</td>
-                <td>{name.number}% </td>
+
+                <td>{((name.number/100))+10}% </td>
               </tr>
             )
           })}
 
+          
+          {check && dummy1.map((name, index = 10) => {
+            return (
+              <tr>
+                <td>{index + 11}</td>
+                <td>{name.name}</td>
+                <td>{name.number}% </td>    
+              </tr>
+            )
+          })
+          }
+
 
 
         </tbody>
+        {check &&  <Button  variant="link" onClick={hide}>Hide</Button>}
+
+        {check !== true && <Button variant="link" onClick={show}>More</Button>}
 
       </Table>
 
