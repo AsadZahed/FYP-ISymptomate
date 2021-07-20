@@ -12,11 +12,11 @@ const geoUrl =
 
 const rounded = num => {
   if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
+    return Math.round(num / 100000000) / 100 + "%";
   } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
+    return Math.round(num / 100000) / 100 + "%";
   } else {
-    return Math.round(num / 100) / 10 + "K";
+    return Math.round(num / 100) / 100 + "%";
   }
 };
 
@@ -37,9 +37,10 @@ const MapChart = ({ setTooltipContent }) => {
     setPosition(position);
   }
 
+  
   return (
     <>
-      <div style={{ border: "1px solid #DCDCDC" , paddingTop:"3%", paddingBottom:"3%"}}>
+      <div style={{ border: "1px solid #DCDCDC", paddingTop: "3%", paddingBottom: "3%" }}>
 
         <div className="controls">
           <button onClick={handleZoomIn}>

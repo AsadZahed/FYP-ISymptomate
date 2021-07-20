@@ -206,8 +206,9 @@ export default function Analysis() {
       >
         {/* OPTIONS */}
         <div style={{ border: "1px solid #DCDCDC", paddingTop: "3%", paddingBottom: "3%" }}>
-          <select id="soflow" id="country" name="country" onChange={(e) => setCountry(e.target.value)}>
-            <option>select country</option>
+        <div style={{paddingBottom:"3%"}}>
+          <select className="selectStyles" id="country" name="country" onChange={(e) => setCountry(e.target.value)}>
+            <option>Select country</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Aland Islands">Aland Islands</option>
             <option value="Albania">Albania</option>
@@ -450,7 +451,7 @@ export default function Analysis() {
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
           </select>
-
+        </div>
           {country === "" ? <TableView /> : <TableSearchView name={country} />}
         </div>
         <div style={{ paddingTop: "3%", paddingBottom: "3%" }}>

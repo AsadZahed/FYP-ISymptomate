@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "../../Navbar/header";
 import "../../../styles.css";
-
 import { Table } from "react-bootstrap";
 
 export default function TableView(props) {
@@ -273,7 +272,7 @@ export default function TableView(props) {
     { "code": "AS", "code3": "ASM", "name": "American Samoa", "number": "016" },
     { "code": "AD", "code3": "AND", "name": "Andorra", "number": "020" },
     { "code": "AO", "code3": "AGO", "name": "Angola", "number": "024" },
-    { "code": "AI", "code3": "AIA", "name": "Anguilla", "number": "660" },
+    { "code": "AI", "code3": "AIA", "name": "Anguilla", "number": "006" },
     { "code": "AQ", "code3": "ATA", "name": "Antarctica", "number": "010" },
     { "code": "AG", "code3": "ATG", "name": "Antigua and Barbuda", "number": "028" },
     { "code": "AR", "code3": "ARG", "name": "Argentina", "number": "032" },
@@ -519,10 +518,9 @@ export default function TableView(props) {
   ];
 
 
-
-
-
   return (
+
+    
     <div>
 
       <Table striped bordered hover>
