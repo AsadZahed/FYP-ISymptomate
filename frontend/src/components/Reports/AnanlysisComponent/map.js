@@ -26,21 +26,24 @@ const MapChart = ({ setTooltipContent }) => {
         <ZoomableGroup>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
-              geographies.map(geo => (
+              geographies.map((geo, i) => (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
                   onMouseEnter={() => {
                     const { NAME, POP_EST } = geo.properties;
+                    console.log(geo.properties)
                     setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
                   }}
                   onMouseLeave={() => {
                     setTooltipContent("");
                   }}
+                  fill={"rgba(${(i * 40) % 255}, ${(i * 30) % 255}, ${(i * 20) % 255})"}
+
                   style={{
                     default: {
                       fill: "#D6D6DA",
-                      outline: "none"
+                      outline: "black"
                     },
                     hover: {
                       fill: "#F53",

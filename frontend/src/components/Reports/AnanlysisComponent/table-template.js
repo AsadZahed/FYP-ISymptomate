@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Header from "../Navbar/header";
-import "../../styles.css";
+import Header from "../../Navbar/header";
+import "../../../styles.css";
 
 import { Table } from "react-bootstrap";
 

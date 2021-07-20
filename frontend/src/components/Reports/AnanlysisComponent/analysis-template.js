@@ -8,10 +8,10 @@
 
 import React,{useEffect} from "react";
 import axios from 'axios';
-import Header from "../Navbar/header";
+import Header from "../../Navbar/header";
 import ReactApexChart from "react-apexcharts";
 
-import "../../styles.css";
+import "../../../styles.css";
 
 export default function AnalysisTemplate(props) {
   return (

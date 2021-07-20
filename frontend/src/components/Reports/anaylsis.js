@@ -9,10 +9,10 @@
 import React, { useEffect } from "react";
 import axios from 'axios';
 import Header from "../Navbar/header";
-import TableView from "./table-template";
-import AnalysisTemplate from "./analysis-template";
+import TableView from "./AnanlysisComponent/table-template";
+import AnalysisTemplate from "./AnanlysisComponent/analysis-template";
 import "../../styles.css";
-import Map from "./map";
+import Map from "./AnanlysisComponent/map";
 import { Table } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
@@ -37,9 +37,7 @@ export default function Analysis() {
       history.push('/reports/analysis')
     }
   }, [location, history])
-
-
-  
+ 
 
   const options = {
     plotOptions: {
