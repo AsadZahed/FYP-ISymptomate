@@ -366,10 +366,12 @@ router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) =>
 })
 
 router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
-  console.log(req.user._id)
-  console.log(req.body)
-  Report.findOne({ _id: req.user.p_id }, (err, user) => {
-    console.log(req.user._id)
+  console.log("user is ",req.user._id)
+  console.log("pid is ",req.body.p_id)
+  
+  console.log("req.body",req.body)
+  Report.findOne({p_id: req.user._id }, (err, user) => {
+    console.log(req.user.p_id)
     if (err)
       res.json({
         success: false,
@@ -398,6 +400,7 @@ router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
     }
   })
 })
+
 //ED
 
 // router.delete('/admin/deleteusers/:pid', function(req, res, next) {

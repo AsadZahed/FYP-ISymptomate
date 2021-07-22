@@ -33,14 +33,14 @@ export default function Delete() {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${location.state.token}`
       }
     })
     .then((res) => {
       console.log(res)
       if (res.status === 200) {
         history.push({
-          pathname: '/users/reports/view/delete',
+          pathname: '/reports/view',
           state: {
             user: user,
             token: token

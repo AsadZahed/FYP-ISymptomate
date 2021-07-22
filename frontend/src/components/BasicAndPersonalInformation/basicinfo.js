@@ -88,8 +88,6 @@ export default function BasicInfo() {
   }
   const [showResults, setShowResults] = React.useState(false);
 
-  const options = ["male", "female"];
-  
   const onClick = () => setShowResults(true)
   return (
     <div>
