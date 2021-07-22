@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import { Table } from "react-bootstrap";
+
 
 import Header from "../Navbar/Aheader"
 
@@ -56,19 +58,33 @@ export default function ViewName() {
           padding: "7%"
         }}
       >
-        <h1>View Users</h1>
-        <ul>
-          {patients.map(person => <li>{person.name}</li>)}
-        </ul>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "left"
-          }}
-        >
+        <h1>View Users by name</h1>
+        <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {patients.map((name, index) => {
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{name.name}</td>
+                    </tr>
+                  )
+                })}
 
-        </div>
+
+
+
+              </tbody>
+              {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
+
+              {check !== true && <Button variant="link" onClick={show}>More</Button>} */}
+
+            </Table>
       </div>
     </div>
   </div>

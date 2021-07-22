@@ -6,7 +6,7 @@ import "../Login.css";
 // import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import Header from "../Navbar/Aheader";
+import Header from "../Navbar/LSheader";
 import Image from "../images/logo2.jpeg";
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';

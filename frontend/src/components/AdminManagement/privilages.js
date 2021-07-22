@@ -7,8 +7,12 @@ import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
+import { AiOutlineMail } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
+import { HiOutlineDocumentSearch } from "react-icons/hi";
+
 export default function Privilages() {
-  
+
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(null)
   var history = useHistory();
@@ -24,7 +28,7 @@ export default function Privilages() {
     }
   }, [location, history])
   return <div> <div style={{ backgroundColor: "#F8F8F8" }}>
-  <Header token={token} user={user} />
+    <Header token={token} user={user} />
     <div
       style={{
         paddingLeft: "12%",
@@ -40,61 +44,71 @@ export default function Privilages() {
           padding: "7%"
         }}
       >
-        <h1>Privilages</h1>
+        <h1>View Users by email, name and view Reports</h1>
 
         <div
           style={{
-            // display: "flex",
-            // flexDirection: "column",
+            display: "flex",
             textAlign: "left"
           }}
         >
-              <Button variant="warning"  style = {{margin: "5px"}}>
-                <Link
-                style = {{color: "#0c0530"}}
-                  to={{
-                    pathname: "/users/admin/viewusers",
-                    state: {
-                      token: token,
-                      user: user,
-                    },
-                  }}
-                >
-                  View Users by email
-                </Link>
-                
+          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
+            <Button variant="link">
+              <Link
+                style={{ color: "#0c0530" }}
+                to={{
+                  pathname: "/users/admin/viewusers",
+                  state: {
+                    token: token,
+                    user: user,
+                  },
+                }}
+              >
+                <AiOutlineMail size="40%" color="#0047b3" />
+
+              </Link>
             </Button>
 
-            <Button variant="warning"  style = {{margin: "5px"}}>
-                <Link
-                style = {{color: "#0c0530"}}
-                  to={{
-                    pathname: "/users/admin/viewusersname",
-                    state: {
-                      token: token,
-                      user: user,
-                    },
-                  }}
-                >
-                  View Users by name
-                </Link>
+          </div>
+          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
+         
 
-                
+            <Button variant="link" style={{ margin: "5px" }}>
+              <Link
+                style={{ color: "#0c0530" }}
+                to={{
+                  pathname: "/users/admin/viewusersname",
+                  state: {
+                    token: token,
+                    user: user,
+                  },
+                }}
+              >
+                <BiUser size="40%" color="#0047b3" />
+              </Link>
+
+
+
+
             </Button>
-            <Button variant="warning"  style = {{margin: "5px"}}>
-                <Link
-                style = {{color: "#0c0530"}}
-                  to={{
-                    pathname: "/users/admin/viewallreports",
-                    state: {
-                      token: token,
-                      user: user,
-                    },
-                  }}
-                >
-                  View Reports
-                </Link>
+
+          </div>
+          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
+            <Button variant="link" style={{ margin: "5px" }}>
+              <Link
+                style={{ color: "#0c0530" }}
+                to={{
+                  pathname: "/users/admin/viewallreports",
+                  state: {
+                    token: token,
+                    user: user,
+                  },
+                }}
+              >
+                <HiOutlineDocumentSearch size="40%" color="#0047b3" /> 
+              </Link>
             </Button>
+          </div>
         </div>
       </div>
     </div>

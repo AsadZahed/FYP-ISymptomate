@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import Header from "../Navbar/Aheader";
+import { Table } from "react-bootstrap";
 
 export default function ViewAllReports() {
 
@@ -65,9 +66,40 @@ export default function ViewAllReports() {
                 textAlign: "left"
               }}
             >
-              {patients.map(person =>
+
+<Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Time</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                {patients.map((name, index) => {
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{name.name}</td>
+                      <td>{name.time}</td>
+                      <td>{name.cancer}</td>
+                    </tr>
+                  )
+                })}
+
+
+
+
+              </tbody>
+              {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
+
+              {check !== true && <Button variant="link" onClick={show}>More</Button>} */}
+
+            </Table>
+              {/* {patients.map(person =>
                 <li className="shome-styles" style={{ fontSize: "20px" }}>
-                  Report of {person.name} and taken at {person.time} and you've {person.cancer} </li>)}
+                  Report of {person.name} and taken at {person.time} and you've {person.cancer} </li>)} */}
 
 
 

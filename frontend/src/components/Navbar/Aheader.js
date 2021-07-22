@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import Button from "react-bootstrap/Button";
 function Header(props) {
   return (
     <div>
@@ -29,9 +30,9 @@ function Header(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-          <Nav.Link href="/admin/signup">Admin Signup</Nav.Link>
-          <Nav.Link href="/login">Patient Login</Nav.Link>
-          <NavDropdown title="Account" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+          <Nav.Link style={{ paddingTop: "4%"}} href="/login">Patient Login</Nav.Link>
+          
+          <NavDropdown title="Account" id="basic-nav-dropdown" style={{ paddingTop: "1.5%",color: "#0c0530"}}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -46,6 +47,22 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link href="/login" >
+            <Button variant="warning">
+              <Link
+              style = {{color: "#0c0530" , fontFamily: "Arial, Helvetica, sans-serif"}}
+              to={{
+                  pathname: '/login',
+                  state: {
+                    token: props.token,
+                    user: props.user
+                  }
+                }}>
+                  Logout
+                </Link>
+                </Button>
+              </Nav.Link>
+
          </Nav>
         </Navbar.Collapse>
       </Navbar>

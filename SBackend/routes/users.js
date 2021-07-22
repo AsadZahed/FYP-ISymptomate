@@ -136,7 +136,17 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
 //VIEW USERS BY ADMIN
 
 router.get('/admin/viewusers', function (req, res, next) {
-  Admin.find({}).exec(function (error, results) {
+  Patient.find({}).exec(function (error, results) {
+    if (error) {
+      return next(error);
+    }
+    // Respond with valid data
+    res.json(results);
+  });
+});
+
+router.get('/admin/viewallreports', function (req, res, next) {
+  Report.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }

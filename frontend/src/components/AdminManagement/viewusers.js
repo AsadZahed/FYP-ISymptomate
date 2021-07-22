@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import { Table } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 
 import Header from "../Navbar/Aheader"
 
@@ -39,38 +41,76 @@ export default function View() {
 
   }, [])
 
-  return <div> <div style={{ backgroundColor: "#F8F8F8" }}>
-  <Header token={token} user={user} />
-    <div
-      style={{
-        paddingLeft: "12%",
-        paddingRight: "12%",
-        paddingTop: "5%",
-        paddingBottom: "5%"
-      }}
-    >
-      <div
-        style={{
-          border: "1px solid #DCDCDC",
-          backgroundColor: "#fff",
-          padding: "7%"
-        }}
-      >
-        <h1>View Users</h1>
-        <ul>
-          {patients.map(person => <li>{person.username}</li>)}
-        </ul>
+  const [check, setCheck] = React.useState(false)
+
+  function show() {
+    setCheck(true);
+  }
+
+  function hide() {
+    setCheck(false);
+  }
+
+  return (
+    <div>
+      <div style={{ backgroundColor: "#F8F8F8" }}>
+        <Header token={token} user={user} />
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "left"
+            paddingLeft: "12%",
+            paddingRight: "12%",
+            paddingTop: "5%",
+            paddingBottom: "5%"
           }}
         >
+          <div
+            style={{
+              border: "1px solid #DCDCDC",
+              backgroundColor: "#fff",
+              padding: "7%"
+            }}
+          >
+            <h1>View Users by email</h1>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {patients.map((name, index) => {
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{name.username}</td>
+                    </tr>
+                  )
+                })}
 
+
+
+
+              </tbody>
+              {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
+
+              {check !== true && <Button variant="link" onClick={show}>More</Button>} */}
+
+            </Table>
+
+
+            {/* <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "left"
+              }}
+            >
+
+            </div> */}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>;
+  );
 }
