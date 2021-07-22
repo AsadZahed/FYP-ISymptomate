@@ -142,7 +142,7 @@ export default function Report() {
     const data = {
       name: name,
       cancer: "cancer",
-      age: 12,
+      age: ages,
       time: setDate,
       reportID: "1",
       gender: "male"

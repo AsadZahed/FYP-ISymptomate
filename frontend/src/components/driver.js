@@ -66,6 +66,8 @@ import VUserName from "../components/AdminManagement/viewusername";
 import VAReports from "../components/AdminManagement/viewAllReports";
 import ASignup from "../components/AdminManagement/asignup";
 
+import Help from "../components/Help and guide/help";
+
 
 function Driver() {
   return (
@@ -150,6 +152,9 @@ function Driver() {
         <Route path="/users/admin/viewusers" exact component={VUser} />   
         <Route path="/users/admin/viewusersname" exact component={VUserName} />
         <Route path="/users/admin/viewallreports" exact component={VAReports} />
+
+        {/* help guide tutoiral */}
+        <Route path="/help" exact component={Help} />
 
       </Switch>
       <Footer />

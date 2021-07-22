@@ -42,7 +42,7 @@ export default function ViewAllReports() {
   return (
     <div>
       <div style={{ backgroundColor: "#F8F8F8" }}>
-      <Header token={token} user={user} />
+        <Header token={token} user={user} />
         <div
           style={{
             paddingLeft: "12%",
@@ -67,36 +67,36 @@ export default function ViewAllReports() {
               }}
             >
 
-<Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Time</th>
-                  <th>Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {patients.map((name, index) => {
-                  return (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{name.name}</td>
-                      <td>{name.time}</td>
-                      <td>{name.cancer}</td>
-                    </tr>
-                  )
-                })}
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {patients.map((name, index) => {
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{name.name}</td>
+                        <td>{name.time}</td>
+                        <td>{name.cancer}</td>
+                      </tr>
+                    )
+                  })}
 
 
 
 
-              </tbody>
-              {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
+                </tbody>
+                {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
 
               {check !== true && <Button variant="link" onClick={show}>More</Button>} */}
 
-            </Table>
+              </Table>
               {/* {patients.map(person =>
                 <li className="shome-styles" style={{ fontSize: "20px" }}>
                   Report of {person.name} and taken at {person.time} and you've {person.cancer} </li>)} */}

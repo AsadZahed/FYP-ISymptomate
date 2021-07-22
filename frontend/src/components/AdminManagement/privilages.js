@@ -52,8 +52,8 @@ export default function Privilages() {
             textAlign: "left"
           }}
         >
-          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
-            <Button variant="link">
+          <div style={{ justifyContent: "space-between", flexDirection: "column" }}>
+            <Button variant="link" style={{ textDecoration: "none" }}>
               <Link
                 style={{ color: "#0c0530" }}
                 to={{
@@ -64,16 +64,18 @@ export default function Privilages() {
                   },
                 }}
               >
-                <AiOutlineMail size="40%" color="#0047b3" />
+                <AiOutlineMail size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                <br />
+                <h5 style={{ color: "#0047b3" }}>View users by name</h5>
 
               </Link>
             </Button>
 
           </div>
-          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
-         
+          <div style={{ justifyContent: "space-between", flexDirection: "column" }}>
 
-            <Button variant="link" style={{ margin: "5px" }}>
+
+            <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
               <Link
                 style={{ color: "#0c0530" }}
                 to={{
@@ -85,16 +87,15 @@ export default function Privilages() {
                 }}
               >
                 <BiUser size="40%" color="#0047b3" />
+                <br />
+                <h5 style={{ color: "#0047b3" }}>View users by email</h5>
               </Link>
-
-
-
 
             </Button>
 
           </div>
-          <div style={{justifyContent: "space-between",flexDirection: "column"}}>
-            <Button variant="link" style={{ margin: "5px" }}>
+          <div style={{ justifyContent: "space-between", flexDirection: "column" }}>
+            <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
               <Link
                 style={{ color: "#0c0530" }}
                 to={{
@@ -105,7 +106,9 @@ export default function Privilages() {
                   },
                 }}
               >
-                <HiOutlineDocumentSearch size="40%" color="#0047b3" /> 
+                <HiOutlineDocumentSearch size="40%" color="#0047b3" />
+                <br />
+                <h5 style={{ color: "#0047b3" }}>View all Reports</h5>
               </Link>
             </Button>
           </div>

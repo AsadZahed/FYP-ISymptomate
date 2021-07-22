@@ -292,9 +292,52 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
 
-
-                           
             </NavDropdown>
+
+            <NavDropdown title="Help and guide" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/help",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  Help 
+                </Link>
+              </NavDropdown.Item>
+
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/guide",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  Guide 
+                </Link>
+              </NavDropdown.Item>
+
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/tutoiral",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                  Tutoiral 
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
+                           
             <Nav.Link href="/login" >
             <Button variant="warning">
               <Link

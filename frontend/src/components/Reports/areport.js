@@ -14,7 +14,7 @@ export default function AReport() {
   // const [gender, setgender] = React.useState("male");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
-
+  const[ages,setages] = React.useState('');
   const [name, setName] = React.useState("anonymous");
   // const [id, setID] = React.useState("1234");
   const [cancer, sets] = React.useState("");
@@ -62,6 +62,25 @@ export default function AReport() {
     }
   }, [location, history])
 
+  useEffect(() => {
+    if (location.state) {
+      setUser(location.state.user);
+      setToken(location.state.token);
+      axios.get('http://localhost:9000/users/getBAsicInfo', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Authorization': `Bearer ${location.state.token}`
+        }
+      })
+        .then(res => {
+          console.log(res.data)
+          setages(res.data.age[0].age)
+          console.log("i am in front end", res.data.age[0].age)
+        
+        })
+    }
+  }, [location, token, user]);
 
 
   const checkdiseases = () => {
@@ -255,7 +274,7 @@ export default function AReport() {
                   <strong>Patient Name:</strong> {name}
                 </p>
                 <p>
-                  <strong>Date Of Birth:</strong> 13-07-1998
+                  <strong>Age:</strong> {ages}
                 </p>
                 <p>
                   <strong>Gender:</strong> male
