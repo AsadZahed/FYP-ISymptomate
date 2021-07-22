@@ -7,8 +7,12 @@ import Image3 from "../components/images/slider-3.jpeg";
 import Image4 from "../components/images/slider-4.jpg";
 import Image5 from "../components/images/slider-5.jpg";
 import Image6 from "../components/images/slider-6.jpg";
-import { BiArrowFromLeft } from "react-icons/bi";
-import { BiCheck } from "react-icons/bi";
+
+import { BiArrowFromLeft, BiCheck } from "react-icons/bi";
+import { RiLoginBoxLine } from "react-icons/ri";
+import { AiFillSecurityScan, AiOutlineScan } from "react-icons/ai";
+import { HiOutlineDocumentSearch} from "react-icons/hi";
+
 
 import CountUp from "react-countup";
 
@@ -16,7 +20,7 @@ import CountUp from "react-countup";
 import { Button } from "react-bootstrap";
 import HomeImage2 from "../components/images/homeimg.PNG";
 import { Link } from "react-router-dom";
-import { BrowserView} from "react-device-detect";
+import { BrowserView } from "react-device-detect";
 
 import "../styles.css";
 import "../components/Symptoms/App.css"
@@ -42,7 +46,7 @@ export default function Slider() {
     ];
 
     return (
-        <div>
+        <div style={{ backgroundColor: "#F8F8F8" }}>
             <div style={{ paddingBottom: "2%" }}>
                 <Header />
             </div>
@@ -53,46 +57,56 @@ export default function Slider() {
                 <div>
                     <div
                         style={{
-                            paddingLeft: "15%",
-                            paddingRight: "15%",
+                            paddingLeft: "11.5%",
+                            paddingRight: "11.5%",
                             paddingBottom: "0%"
                         }}
                     >
                         <img src={Image1} alt="img1" className="sliderimg" />
                     </div>
                 </div>
-                <div>
-                    <div
-                        style={{ padding: "15%", paddingTop: "0%", paddingBottom: "0%" }}
-                    >
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%"
+                }}>
+                    <div>
                         <img src={Image2} alt="img2" className="sliderimg" />
                     </div>
                 </div>
-                <div>
-                    <div
-                        style={{ padding: "15%", paddingTop: "0%", paddingBottom: "0%" }}
-                    >
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%"
+                }}>
+                    <div>
                         <img src={Image3} alt="imgg" className="sliderimg" />
                     </div>
                 </div>
-                <div>
-                    <div
-                        style={{ padding: "15%", paddingTop: "0%", paddingBottom: "0%" }}
-                    >
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%"
+                }}>
+                    <div>
                         <img src={Image4} alt="imgg" className="sliderimg" />
                     </div>
                 </div>
-                <div>
-                    <div
-                        style={{ padding: "15%", paddingTop: "0%", paddingBottom: "0%" }}
-                    >
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%"
+                }}>
+                    <div>
                         <img src={Image5} alt="imgg" className="sliderimg" />
                     </div>
                 </div>
-                <div>
-                    <div
-                        style={{ padding: "15%", paddingTop: "0%", paddingBottom: "0%" }}
-                    >
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%"
+                }}>
+                    <div>
                         <img src={Image6} alt="imgg" className="sliderimg" />
                     </div>
                 </div>
@@ -106,10 +120,9 @@ export default function Slider() {
                         flexDirection: "row",
                         paddingLeft: "28%",
                         paddingRight: "28%",
-
                     }}
                 >
-                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
+                    <Button variant="link">
                         <div
                             style={{
                                 padding: "2%",
@@ -123,12 +136,15 @@ export default function Slider() {
                                     pathname: "/login",
                                 }}
                             >
-                                Online Reports
+                                <HiOutlineDocumentSearch size="80%" color="#0047b3" />
+                                <br />
+                                <h5 style={{ color: "#0047b3" }}>Online Reports</h5>
+
                             </Link>
                         </div>
                     </Button>
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }} >
+                    <Button variant="link">
                         <div
                             style={{
                                 padding: "2%",
@@ -142,13 +158,15 @@ export default function Slider() {
                                     pathname: "/login",
                                 }}
                             >
-                                Check Skin Cancer
+                                <AiOutlineScan size="80%" color="#0047b3" />
+                                <br />
+                                <h5 style={{ color: "#0047b3" }}>Scan Skin Image</h5>
                             </Link>
                         </div>
                     </Button>
 
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
+                    <Button variant="link">
                         <div
                             style={{
                                 padding: "2%",
@@ -162,13 +180,16 @@ export default function Slider() {
                                     pathname: "/login",
                                 }}
                             >
-                                Check Symptomatic Diseases
+                                <AiFillSecurityScan size="80%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                                <br />
+                                <h5 style={{ color: "#0047b3" }}>Symptomate Disease Detection</h5>
+
                             </Link>
                         </div>
                     </Button>
 
                     <div style={{ padding: "1%" }}></div>
-                    <Button variant="primary" style={{ backgroundColor: "#0047b3" }}>
+                    <Button variant="link">
                         <div
                             style={{
                                 padding: "2%",
@@ -182,7 +203,9 @@ export default function Slider() {
                                     pathname: "/login",
                                 }}
                             >
-                                Login to symptomate
+                                <RiLoginBoxLine size="80%" style={{ paddingTop: "3%", color: "#0047b3" }} />
+                                <br />
+                                <h5 style={{ color: "#0047b3" }}>Login to symptomate</h5>
                             </Link>
                         </div>
                     </Button>
@@ -255,15 +278,15 @@ export default function Slider() {
                                 </h2>
 
                                 <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
-                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                     {data[0]}
                                 </h4>
                                 <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
-                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                     {data[1]}
                                 </h4>
                                 <h4 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
-                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }}/>
+                                    <BiArrowFromLeft size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                     {data[2]}
                                 </h4>
 
@@ -285,7 +308,7 @@ export default function Slider() {
                                         < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                         {data1[3]}
                                     </h5 >
-                                  
+
                                 </div>
 
 

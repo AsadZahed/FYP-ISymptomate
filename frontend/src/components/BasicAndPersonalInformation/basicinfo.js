@@ -77,6 +77,7 @@ export default function BasicInfo() {
           }
           else{
           setages(res.data.age[0].age)
+          setgender(res.data.age[0].gender)
           console.log("i am in front end", res.data.age[0].age)
 }
         })
@@ -131,16 +132,21 @@ export default function BasicInfo() {
                     className="fname"
                     name="age"
                     onChange={(e) => setage(e.target.value)}
-                    placeholder={ages}
+                    placeholder={ages+ " years"}
                   />
 
                   <label className="f-label" for="gender">
                     Gender
                   </label>
 
-                  <select  onChange={(e) => setgender(e.target.value)} className="fname" id="country" name="gender">
+                  <select  onChange={(e) => setgender(e.target.value)} placeholder={gender} className="fname" id="country" name="gender">
+                  <option
+                      value="s"
+                    >
+                      Select
+                    </option>
                     <option
-                      onChange={(e) => setgender("gender is ","male")}
+                      onChange={(e) => setgender("male")}
                       value="male"
                     >
                       Male

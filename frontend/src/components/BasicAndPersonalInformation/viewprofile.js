@@ -9,6 +9,8 @@ export default function Report() {
     const [token, setToken] = React.useState(null)
     const [user, setUser] = React.useState(null);
     const [name, setName] = React.useState("anonymous");
+    const [height, setheight] = React.useState("");
+    const [weight, setWeight] = React.useState("");
     const [ages, setages] = React.useState("");
     const [gender, setgender] = React.useState("");
     const [email, setEmail] = React.useState("");
@@ -57,6 +59,32 @@ export default function Report() {
         }
     }, [location, token, user]);
 
+    useEffect(() => {
+        if (location.state) {
+            setUser(location.state.user);
+            setToken(location.state.token);
+            axios.get('http://localhost:9000/users/getPersonalInfo', {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Authorization': `Bearer ${location.state.token}`
+                }
+            })
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.success === false) {
+                        setheight(0)
+                        setWeight(0)
+                    }
+                    else {
+                        setheight(res.data.personal[0].height)
+                        setWeight(res.data.personal[0].weight)
+                        console.log("i am in front end", res.data.personal[0].height)
+                    }
+                })
+        }
+    }, [location, token, user]);
+
     const [showResults, setShowResults] = React.useState(false)
 
     const onClick = () => setShowResults(true)
@@ -67,7 +95,7 @@ export default function Report() {
             paddingBottom: "5%"
         }}>
             <Header token={token} user={user} />
-         
+
             <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom: "1%" }}>
                 <form >
                     <div
@@ -133,10 +161,10 @@ export default function Report() {
                                     <strong>Email:</strong> {email}
                                 </p>
                                 <p>
-                                    <strong>Age: </strong> {ages}
+                                    <strong>Height: </strong> {height} feet
                                 </p>
                                 <p>
-                                    <strong>Gender:</strong> {gender}
+                                    <strong>Weight:</strong> {weight} kg
                                 </p>
                             </div>
                         </div>

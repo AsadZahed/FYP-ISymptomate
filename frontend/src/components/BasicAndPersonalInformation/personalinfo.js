@@ -58,14 +58,39 @@ export default function AddPersonalInfo() {
 
       });
   }
+  useEffect(() => {
+    if (location.state) {
+      setUser(location.state.user);
+      setToken(location.state.token);
+      axios.get('http://localhost:9000/users/getPersonalInfo', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Authorization': `Bearer ${location.state.token}`
+        }
+      })
+        .then(res => {
+          console.log(res.data)
+          if(res.data.success===false){
+            setheight(0)
+            setWeight(0)
+          }
+          else{
+          setheight(res.data.personal[0].height)
+          setWeight(res.data.personal[0].weight)
+          console.log("i am in front end", res.data.personal[0].height)
+}
+        })
+    }
+  }, [location, token, user]);
 
 
 
   function validateForm() {
     return (
       height.length > 0 &&
-      height > 70 &&
-      height < 300 &&
+      height > 3.0 &&
+      height < 8.0 &&
       weight.length > 0 &&
       weight > 0 &&
       weight < 350
@@ -105,13 +130,14 @@ export default function AddPersonalInfo() {
             >
               <form  onSubmit={handleSubmit}>
                 <label className="f-label" for="gender">
-                  Body height in cm
+                  Body height in feet and inches
                 </label>
 
                 <input
-                  type="Number"
+                  type="Float"
                   className="fname"
-                  name="height"
+                  name="height" 
+                  placeholder={height+ " feet"}
                   onChange={(e) => setheight(e.target.value)}
                 />
 
@@ -120,9 +146,10 @@ export default function AddPersonalInfo() {
                 </label>
 
                 <input
-                  type="Number"
+                  type="Float"
                   className="fname"
                   name="weight"
+                  placeholder={weight+" kg"}
                   onChange={(e) => setWeight(e.target.value)}
                 />
 

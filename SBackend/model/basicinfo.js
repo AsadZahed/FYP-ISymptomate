@@ -5,7 +5,8 @@ var basicSchema = new schema({
 
     age: {
         type: Number,
-        required: true
+        required: true,
+        default:0
     },
     gender: {
         type: String,

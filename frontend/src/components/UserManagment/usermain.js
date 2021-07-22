@@ -99,7 +99,7 @@ export default function UserMain() {
                     },
                   }}
                 >
-                  Change DOB
+                  Change Age
                 </Link>
               </Button>
               <Button variant="warning"  style = {{margin: "5px"}}>

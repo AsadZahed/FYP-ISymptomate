@@ -17,7 +17,8 @@ import Chatbot from "../components/chatbot";
 import MoreInfo from "../components/moreinfo";
 import Skincancerdetecion from "../components/skinCancerDetecion";
 import Symptomatediseasedetection from "../components/symptomateDiseaseDetection";
-import Footer from "../components/Footer/footer";
+
+import Footer from "./Footer/footer";
 
 import Terms from "../components/Symptoms/terms";
 import Introduction from "../components/Symptoms/introduction";

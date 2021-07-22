@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Patient = require('../model/Patient');
 var Basic = require("../model/basicinfo");
+var Personal = require("../model/personalinfo");
 var passport = require('passport');
 var Admin = require('../model/admin');
 var Report = require("../model/report")
@@ -193,6 +194,17 @@ router.get('/getBAsicInfo', authenticate.verifyUser, (req, res) => {
   })
 })
 
+
+
+router.get('/getPersonalInfo', authenticate.verifyUser, (req, res) => {
+  Personal.find({ p_id: req.user._id }, (err, reps) => {
+    if (err) res.json({ success: false, message: err.name })
+    else if (reps.length > 0) res.json({ success: true, personal: reps })
+    else res.json({ success: false, message: 'No age found' })
+  })
+})
+
+
 router.get('/reports/getage', function (req, res, next) {
   Basic.find({}).exec(function (error, results) {
     if (error) {
@@ -250,6 +262,7 @@ router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
     }
   })
 })
+
 //EDIT USERNAME
 
 router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) => {

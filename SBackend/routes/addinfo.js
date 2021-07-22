@@ -7,7 +7,7 @@ var Basic = require('../model/basicinfo');
 var Personal = require('../model/personalinfo');
 var Allergy = require('../model/allergy');
 var Background = require('../model/healthbackground');
-var Report=require("../model/report");
+var Report = require("../model/report");
 
 var passport = require('passport');
 var authenticate = require('../authenticate')
@@ -39,38 +39,15 @@ router.post('/savereports', authenticate.verifyUser, (req, res, next) => {
     console.log(req.body)
     Report.create({
         p_id: req.user._id,
-        name:req.body.name,
-        cancer:req.body.cancer,
-        age:req.body.age,
-        time:req.body.time,
-        reportID:req.body.reportID,
-        gender:req.body.gender
+        name: req.body.name,
+        cancer: req.body.cancer,
+        age: req.body.age,
+        time: req.body.time,
+        reportID: req.body.reportID,
+        gender: req.body.gender
     })
         .then((result) => {
             console.log("Reports has been added", result);
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json")
-            res.json(result)
-            console.log(result)
-        }, (err) => next(err)
-  
-        ).catch((err) => {
-            res.statusCode = 404;
-            res.json({ err: err, success: false })
-        })
-  
-  })
-
-router.post('/basicinfo', authenticate.verifyUser, (req, res, next) => {
-    console.log(req.body)
-    Basic.create({
-        age: req.body.age,
-        gender: req.body.gender,
-        p_id: req.user._id,
-     
-    })
-        .then((result) => {
-            console.log("Info has been added", result);
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json")
             res.json(result)
@@ -84,25 +61,94 @@ router.post('/basicinfo', authenticate.verifyUser, (req, res, next) => {
 
 })
 
+
+router.post('/basicinfo', authenticate.verifyUser, (req, res, next) => {
+    //console.log(req.body)
+    let data = req.user._id;
+    console.log(req.user._id)
+        Basic.updateOne({
+            age: req.body.age,
+            gender: req.body.gender,
+            p_id: req.user._id,
+
+
+        })
+            .then((result) => {
+                console.log("Info has been added", result);
+                if(result.n===0){
+                    Basic.create({
+                        age: req.body.age,
+                        gender: req.body.gender,
+                        p_id: req.user._id,
+            
+            
+                    })
+                        .then((result) => {
+                            console.log("Info has been added", result);
+                            res.statusCode = 200;
+                            res.setHeader("Content-Type", "application/json")
+                            res.json(result)
+                            console.log(result)
+                        }, (err) => next(err)
+            
+                        ).catch((err) => {
+                            res.statusCode = 404;
+                            res.json({ err: err, success: false })
+                        })
+                }
+                else{
+                res.statusCode = 200;
+                res.setHeader("Content-Type", "application/json")
+                res.json(result)
+                console.log(result)
+            }}, (err) => next(err)
+
+            ).catch((err) => {
+                res.statusCode = 404;
+                res.json({ err: err, success: false })
+            })
+
+})
+
 router.post('/personalinfo', authenticate.verifyUser, (req, res, next) => {
-    Personal.create({
+   
+    Personal.updateOne({
         p_id: req.user._id,
         height: req.body.height,
         weight: req.body.weight
     })
         .then((result) => {
             console.log("Personal Info has been added", result);
+            if(result.n === 0){
+                Personal.create({
+                    p_id: req.user._id,
+                    height: req.body.height,
+                    weight: req.body.weight
+                })
+                    .then((result) => {
+                        console.log("Personal Info has been added", result);
+                        res.statusCode = 200;
+                        res.setHeader("Content-Type", "application/json")
+                        res.json(result)
+                        console.log(result)
+                    }, (err) => next(err)
+            
+                    ).catch((err) => {
+                        res.statusCode = 404;
+                        res.json({ err: err, success: false })
+                    })
+            
+            }else{
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json")
             res.json(result)
             console.log(result)
-        }, (err) => next(err)
+        }}, (err) => next(err)
 
         ).catch((err) => {
             res.statusCode = 404;
             res.json({ err: err, success: false })
         })
-
 })
 
 

@@ -183,7 +183,7 @@ export default function Login() {
                         Admin Login
                       </Button>
                     </div>  */}
-                      <div>
+                      {/* <div>
                         <Link
                           to={{
                             pathname: "/",
@@ -211,7 +211,7 @@ export default function Login() {
                           </GoogleLogout> : null
                         }
                       </div>
-
+ */}
 
                     </div>
 
