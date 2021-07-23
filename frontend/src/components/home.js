@@ -8,7 +8,7 @@ import ChatbotImg from "../components/images/chatbot-img.PNG";
 import MoreInfoImg from "../components/images/more-info-img.PNG";
 import Header from "./Navbar/header";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button,Alert } from "react-bootstrap";
 //import { Checkmark } from "react-checkmark";
 import { BsArrowRight } from "react-icons/bs";
 
@@ -26,16 +26,23 @@ function Home(props) {
 
   const [user, setUser] = React.useState();
   const [token, setToken] = React.useState();
+  const [show,setShow] = React.useState(0);
+  const [name,setName] = React.useState('');
 
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user)
+      setName(location.state.user.name)
       setToken(location.state.token)
     } else {
       history.push('./shomepage');
     }
   }, [history, location]);
+
+  setTimeout(()=>{
+    setShow(1)
+  },3000)
 
 
   return (
@@ -49,6 +56,7 @@ function Home(props) {
             paddingTop: "1%",
           }}
         >
+        {show !==1 && <Alert variant="success" style={{fontSize:"20px",textAlign:"center"}}><b>Welcome {name}</b></Alert>}
           <BrowserView>
             <div
               style={{

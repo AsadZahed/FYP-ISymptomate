@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button , Alert } from "react-bootstrap";
 import "./Login.css";
 
 // import { BrowserView, MobileView } from "react-device-detect";
@@ -219,10 +219,7 @@ export default function Signup() {
                         onChange={(e) => setCPassword(e.target.value)}
                       />
                     </Form.Group>
-                    {showResults ?
-                      <div className="validation ">
-
-                        {error} </div> : <div></div>}
+                    {showResults ? <Alert variant="danger">Incoorect username or password</Alert> :<div></div>}
 
                     <div style={{ textAlign: "center", paddingTop: "3%" }}>
                       <div>

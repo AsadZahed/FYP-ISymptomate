@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Alert } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
@@ -92,7 +92,7 @@ export default function Login() {
 
   const [showResults, setShowResults] = React.useState(false)
 
-  //const onClick = () => setShowResults(true)
+  const onClick = () => setShowResults(true)
 
   return (
     <div>
@@ -152,14 +152,12 @@ export default function Login() {
                       />
                     </Form.Group>
 
-                    {showResults ?
-                      <div className="validation">
-                        {msg} </div> : <div></div>}
+                    {showResults ? <Alert variant="danger">Incoorect username or password</Alert> :<div></div>}
 
 
                     <div style={{ textAlign: "center" }}>
                       <div style={{ color: "#ffff" }}>
-                        <Button style={{ color: "#0047b3" }} size="lg" variant="warning" type="submit" disabled={!validateForm()}>
+                        <Button style={{ color: "#0047b3" }} size="lg" variant="warning" type="submit" onClick={onClick} disabled={!validateForm()}>
                           Login
                         </Button>
                       </div>
