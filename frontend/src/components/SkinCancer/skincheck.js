@@ -24,7 +24,7 @@ function SkinCheck() {
     const [img, setImg] = React.useState(null);
     const fileInput = React.createRef();
     const [scan, setScan] = React.useState(null)
-    const [mess,setMess] = React.useState("")
+    const [mess, setMess] = React.useState("")
     const listCancer = [
         ' Actinic keratoses',
         'Basal cell carcinoma',
@@ -107,7 +107,7 @@ function SkinCheck() {
         var t = scan ? `http://localhost:9000/${scan.filename}` : ''
         setImg(t)
         console.log("submit clicked")
-        
+
     }
     const handleChange = event => {
         event.preventDefault();
@@ -177,49 +177,46 @@ function SkinCheck() {
                             <form>
 
                                 <Button type='submit'
-                                style={{
-                                   marginTop:"10%",
-                                   marginBottom:"10%"
-
-                                }}
+                                    style={{
+                                        marginTop: "10%",
+                                        marginBottom: "10%"
+                                    }}
                                     onClick={mySubmitHandler} variant="warning">Get Instant result !</Button>
-
-
                             </form>
                             <div
-              style={{
-                padding: "0px 10px 0px 10px",
-                color: "#282c34",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "500",
-                  textDecoration: "underline",
-                }}
-              >
-                Predicted Result:{mess}
-          </p>
-              <ul>
-                <li>
-                  <h2>{scan ? cancer : ' '}</h2>
-                </li>               
-              </ul>
-            </div>
+                                style={{
+                                    padding: "0px 10px 0px 10px",
+                                    color: "#282c34",
+                                }}
+                            >
+                                <p
+                                    style={{
+                                        fontSize: "30px",
+                                        fontWeight: "500",
+                                        textDecoration: "underline",
+                                    }}
+                                >
+                                    Predicted Result:{mess}
+                                </p>
+                                <ul>
+                                    <li>
+                                        <h2>{scan ? cancer : ' '}</h2>
+                                    </li>
+                                </ul>
+                            </div>
                             {/* <div>
                                 <h1> Predicted Result:  </h1>
                             </div> */}
                             <Button
                                 type='submit'
                                 variant="warning"
-                               // disabled={!validate()}
+                                // disabled={!validate()}
                                 onClick={mySubmitHandler}
                                 style={{
-                                    marginTop:"4%",
+                                    marginTop: "4%",
                                     //marginBottom:"10%",
-                                    color:"black"
-                                 }}
+                                    color: "black"
+                                }}
                             >
                                 <Link
                                     to={{
@@ -232,13 +229,13 @@ function SkinCheck() {
                                         },
                                     }}
                                     style={{
-                                       //marginTop:"5%",
+                                        //marginTop:"5%",
                                         //marginBottom:"10%",
-                                        color:"black"
-                                     }}
+                                        color: "black"
+                                    }}
                                 >
                                     Get report
-                                 </Link>
+                                </Link>
                             </Button>
 
                         </div>

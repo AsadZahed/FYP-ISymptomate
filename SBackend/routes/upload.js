@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('file')
 
-router.post('/skincancer', (req, res) => {
+router.post('/uploadProfilePicture', (req, res) => {
   upload(req, res, (err) => {
     if (err) {
       res.sendStatus(500);
@@ -22,6 +22,5 @@ router.post('/skincancer', (req, res) => {
     res.send(req.file);
   });
 });
-
 
 module.exports = router;

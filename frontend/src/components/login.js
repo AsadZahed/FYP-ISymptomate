@@ -152,7 +152,8 @@ export default function Login() {
                       />
                     </Form.Group>
 
-                    {showResults ? <Alert variant="danger">Incoorect username or password</Alert> :<div></div>}
+                    {showResults ? <Alert variant="danger">Incoorect username or password</Alert> :
+                    ""}
 
 
                     <div style={{ textAlign: "center" }}>

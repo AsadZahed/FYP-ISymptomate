@@ -219,7 +219,10 @@ export default function Signup() {
                         onChange={(e) => setCPassword(e.target.value)}
                       />
                     </Form.Group>
-                    {showResults ? <Alert variant="danger">Incoorect username or password</Alert> :<div></div>}
+                    
+                    {showResults ? <Alert variant="danger">Error while resgistering</Alert> :
+                   <div></div>}
+
 
                     <div style={{ textAlign: "center", paddingTop: "3%" }}>
                       <div>
