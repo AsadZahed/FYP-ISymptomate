@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 import Header from "../Navbar/header"
@@ -15,6 +15,10 @@ export default function ChangePassword() {
   var history = useHistory();
   var location = useLocation();
 
+  const [showResults, setShowResults] = React.useState(false)
+
+  const onClick = () => setShowResults(true)
+
   useEffect(() => {
     if (location.state) {
       console.log(location)
@@ -28,7 +32,7 @@ export default function ChangePassword() {
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
-      name:fname,
+      name: fname,
     };
 
     axios.post('http://localhost:9000/users/editprofile/changeusername', data, {
@@ -58,7 +62,7 @@ export default function ChangePassword() {
 
   function validateForm() {
     return (
-      fname.length>0
+      fname.length > 0
     );
   }
   return (
@@ -81,7 +85,7 @@ export default function ChangePassword() {
                 border: "1px solid #DCDCDC",
                 backgroundColor: "#fff",
                 padding: "7%",
-                textAlign:"center"
+                textAlign: "center"
               }}
             >
               <h5>Change Name</h5>
@@ -104,9 +108,10 @@ export default function ChangePassword() {
                     onChange={(e) => setname(e.target.value)}
                   />
 
-                
-                <Button size="lg"style = {{color: "#0c0530"}}
-                    variant="warning" type="submit"  disabled={!validateForm()}>
+                  {showResults === false ? <div></div> : <Alert variant="danger">Something went wrong</Alert>}
+
+                  <Button size="lg" style={{ color: "#0c0530" }}
+                    variant="warning" type="submit" disabled={!validateForm()} onClick={onClick}>
                     Change
                   </Button>
                 </form>
@@ -146,7 +151,8 @@ export default function ChangePassword() {
                     onChange={(e) => setname(e.target.value)}
                   />
 
-                 
+                  {showResults ? <Alert variant="danger">Error</Alert> : ""}
+
                   <Button
                     href="/editprofile"
                     className="bsubmit"
@@ -154,7 +160,7 @@ export default function ChangePassword() {
                     disabled={!validateForm()}
                   >
                     Submit
-                </Button>
+                  </Button>
                 </form>
               </div>
             </div>

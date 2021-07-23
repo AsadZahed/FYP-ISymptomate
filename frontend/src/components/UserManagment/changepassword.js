@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 import Header from "../Navbar/header"
@@ -16,6 +16,11 @@ export default function ChangePassword() {
   const [msg, setMsg] = React.useState('')
   var history = useHistory();
   var location = useLocation();
+
+  const [showResults, setShowResults] = React.useState(false)
+
+  const onClick = () => setShowResults(true)
+  
 
   useEffect(() => {
     if (location.state) {
@@ -61,7 +66,7 @@ export default function ChangePassword() {
 
   function validateForm() {
     return (
-      oldpassword.length > 0 && newpassword.length > 0 && cpassword.length > 0
+      oldpassword.length > 0 && newpassword.length > 0 && cpassword.length > 0 && newpassword === cpassword
     );
   }
   return (
@@ -121,12 +126,13 @@ export default function ChangePassword() {
                     onChange={(e) => setcpassword(e.target.value)}
                   />
                   <div style={{ alignContent: "center" }}>
-                    <p>{msg}</p>
+                  {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
 
-                    <Button size="lg" type="submit" style = {{color: "#0c0530"}}
-                    variant="warning" disabled={!validateForm()}>
+
+                    <Button size="lg" type="submit" style={{ color: "#0c0530" }}
+                      variant="warning" disabled={!validateForm()} onClick={onClick}>
                       Change
-                   </Button>
+                    </Button>
                   </div>
                 </form>
               </div>
@@ -180,6 +186,8 @@ export default function ChangePassword() {
                     placeholder="Confirm new password.."
                     onChange={(e) => setcpassword(e.target.value)}
                   />
+                  {showResults ? <Alert variant="danger">Incoorect username or password</Alert> : ""}
+
                   <Button
                     href="/editprofile"
                     className="bsubmit"
@@ -187,7 +195,7 @@ export default function ChangePassword() {
                     disabled={!validateForm()}
                   >
                     Submit
-                </Button>
+                  </Button>
                 </form>
               </div>
             </div>

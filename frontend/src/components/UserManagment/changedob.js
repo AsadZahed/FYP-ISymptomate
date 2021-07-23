@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 import Header from "../Navbar/header"
@@ -14,6 +14,11 @@ export default function ChangePassword() {
   const [msg, setMsg] = React.useState('')
   var history = useHistory();
   var location = useLocation();
+  
+
+  const [showResults, setShowResults] = React.useState(false)
+
+  const onClick = () => setShowResults(true)
 
   useEffect(() => {
     if (location.state) {
@@ -104,11 +109,12 @@ export default function ChangePassword() {
                   />
 
                   <div style={{ alignContent: "center" }}>
-                  <p>{msg}</p>
+                  {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
+
 
                   <Button  style = {{color: "#0c0530"}}
                     variant="warning"
-                    size="lg" type="submit" disabled={!validateForm()}>
+                    size="lg" type="submit" disabled={!validateForm()} onClick={onClick}>
                     Change
                   </Button>
                   </div>

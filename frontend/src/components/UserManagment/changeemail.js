@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button ,Alert} from "react-bootstrap";
 
 import { BrowserView, MobileView } from "react-device-detect";
 import Header from "../Navbar/header"
@@ -11,6 +11,10 @@ export default function ChangeEmail() {
 
 
 
+
+  const [showResults, setShowResults] = React.useState(false)
+
+  const onClick = () => setShowResults(true)
 
   function validateForm() {
     return oldEmail.length > 0 && newEmail.length > 0;
@@ -63,6 +67,8 @@ export default function ChangeEmail() {
                   placeholder="Your new email.."
                   onChange={(e) => setnewEmail(e.target.value)}
                 />
+                  {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
+
 
                 <Button
                   href="/editprofile"
