@@ -7,14 +7,20 @@ import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AiFillSecurityScan, AiOutlineScan } from "react-icons/ai";
+import { AiFillSecurityScan, AiOutlineScan, AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
 import { HiOutlineDocumentSearch, HiInformationCircle } from "react-icons/hi";
 
 export default function Help() {
 
     const [user, setUser] = React.useState(null);
-    const [token, setToken] = React.useState(null)
+    const [token, setToken] = React.useState(null);
+    const [check, setCheck] = React.useState(false);
+
+    const [check1, setCheck1] = React.useState(false);
+    const [check2, setCheck2] = React.useState(false);
+    const [check3, setCheck3] = React.useState(false);
+    const [check4, setCheck4] = React.useState(false);
     var history = useHistory();
     var location = useLocation();
 
@@ -27,6 +33,38 @@ export default function Help() {
             history.push('/admin/privlages')
         }
     }, [location, history])
+
+    function status() {
+        setCheck(true);
+    }
+    function hide() {
+        setCheck(false);
+    }
+    function status1() {
+        setCheck1(true);
+    }
+    function hide1() {
+        setCheck1(false);
+    }
+    function status2() {
+        setCheck2(true);
+    }
+    function hide2() {
+        setCheck2(false);
+    }
+    function status3() {
+        setCheck3(true);
+    }
+    function hide3() {
+        setCheck3(false);
+    }
+    function status4() {
+        setCheck4(true);
+    }
+    function hide4() {
+        setCheck4(false);
+    }
+
     return (
         <div>
             <div style={{ backgroundColor: "#F8F8F8" }}>
@@ -51,126 +89,189 @@ export default function Help() {
                         <div
                             style={{
                                 textAlign: "center",
-
+                                border: "1px solid #DCDCDC"
                             }}
                         >
-                        <div style={{ border: "1px solid #DCDCDC", padding: "3%" }}>
-                                <h3>If you wanted to go for <b>SYMPTOMATE DISEASE DIAGNOSER</b>, click below</h3>
-                                <Button variant="link" style={{ textDecoration: "none" }}>
-                                    <Link
-                                        style={{ color: "#0c0530" }}
-                                        to={{
-                                            pathname: "/symptoms/introduction",
-                                            state: {
-                                                token: token,
-                                                user: user,
-                                            },
-                                        }}
-                                    >
-                                        <AiFillSecurityScan size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
-                                        <br />
-                                        <h5 style={{ color: "#0047b3" }}>Symptomate Disease Detection</h5>
+                            <div style={{ padding: "3%" }}>
 
-                                    </Link>
-                                </Button>
+                                {check === false ?
+                                    <Button style={{ color: "#0047b3", textDecoration: "none", }} variant="outline-light" onClick={status}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to go for <b>SYMPTOMATE DISEASE DIAGNOSER</b>,
+                                            <br />
 
+                                        </h5>
+                                    </Button> :
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={hide}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to go for <b>SYMPTOMATE DISEASE DIAGNOSER</b>,
+                                            <br />
 
-                            </div>
-                            <br />
+                                        </h5>
+                                    </Button>
+                                }
+                                <br />
 
-                            <div style={{ border: "1px solid #DCDCDC", padding: "3%" }}>
-                                <h3>If you wanted to go for <b>SKIN CANCER DIAGNOSER</b>, click below</h3>
-
-                                <Button variant="link" style={{ textDecoration: "none" }}>
-
-                                    <Link
-                                        style={{ color: "#0c0530" }}
-                                        to={{
-                                            pathname: "/skin/skinintroduction",
-                                            state: {
-                                                token: token,
-                                                user: user,
-                                            },
-                                        }}
-                                    >
-                                        <AiOutlineScan size="40%" color="#0047b3" />
-                                        <br />
-                                        <h5 style={{ color: "#0047b3" }}>Scan Skin Image</h5>
-
-                                    </Link>
-
-                                </Button>
+                                {check &&
+                                    <Button variant="link" style={{ textDecoration: "none" }}>
+                                        <Link
+                                            style={{ color: "#0c0530" }}
+                                            to={{
+                                                pathname: "/symptoms/introduction",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                },
+                                            }}
+                                        >
+                                            <AiFillSecurityScan size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                                            <br />
+                                        </Link>
+                                    </Button>
+                                }
 
                             </div>
-                            <br />
-                            <div style={{ border: "1px solid #DCDCDC", paddingTop: "1%", padding: "3%" }}>
-                                <h3>If you wanted to see your <b>REPORTS</b>, click below</h3>
 
-                                <Button variant="link" style={{ textDecoration: "none" }}>
-                                    <Link
-                                        style={{ color: "#0c0530" }}
-                                        to={{
-                                            pathname: "/reports/view",
-                                            state: {
-                                                token: token,
-                                                user: user,
-                                            },
-                                        }}
-                                    >
-                                        <HiOutlineDocumentSearch size="40%" color="#0047b3" />
-                                        <br />
-                                        <h5 style={{ color: "#0047b3" }}>View Reports</h5>
-                                    </Link>
-                                </Button>
+                            <div style={{ padding: "3%" }}>
+                                {check1 === false ?
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status1}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to go for <b>SKIN CANCER DIAGNOSER</b>,
+                                        </h5>
+                                    </Button> :
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={hide1}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to go for <b>SKIN CANCER DIAGNOSER</b>,
+                                        </h5>
+                                    </Button>
+                                }
+                                <br />
+                                {check1 &&
+                                    <Button variant="link" style={{ textDecoration: "none" }}>
+
+                                        <Link
+                                            style={{ color: "#0c0530" }}
+                                            to={{
+                                                pathname: "/skin/skinintroduction",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                },
+                                            }}
+                                        >
+                                            <AiOutlineScan size="40%" color="#0047b3" />
+                                            <br />
+                                    
+                                        </Link>
+
+                                    </Button>
+                                }
+
                             </div>
-                            <br />
-                            <div style={{ border: "1px solid #DCDCDC", paddingTop: "1%", padding: "3%" }}>
-                                <h3>If you wanted to see <b>information of all DISEASES</b>, click below</h3>
+                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                                {check2 === false ?
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status2}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to see your <b>REPORTS</b>,
+                                        </h5>
 
-                                <Button variant="link" style={{ textDecoration: "none" }}>
-                                    <Link
-                                        style={{ color: "#0c0530" }}
-                                        to={{
-                                            pathname: "/addinfo/conditionlibrary",
-                                            state: {
-                                                token: token,
-                                                user: user,
-                                            },
-                                        }}
-                                    >
-                                        <HiInformationCircle size="40%" color="#0047b3" text="Scam" />
-                                        <br />
-                                        <h5 style={{ color: "#0047b3" }}>Know about disease</h5>
+                                    </Button> :
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={hide2}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to see your <b>REPORTS</b>,
+                                        </h5>
 
-                                    </Link>
-                                </Button>
+                                    </Button>
+                                }
+                                <br />
+                                {check2 &&
+                                    <Button variant="link" style={{ textDecoration: "none" }} onClick={hide2}>
+                                        <Link
+                                            style={{ color: "#0c0530" }}
+                                            to={{
+                                                pathname: "/reports/view",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                },
+                                            }}
+                                        >
+                                            <HiOutlineDocumentSearch size="40%" color="#0047b3" />
+                                            <br />
+                                        </Link>
+                                    </Button>
+                                }
                             </div>
-                            <br />
-                            <div style={{ border: "1px solid #DCDCDC", paddingTop: "1%", padding: "3%" }}>
-                                <h3>If you wanted to <b>EDIT YOUR PROFILE</b>, click below</h3>
+                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                                {check3 === false ?
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status3}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to see <b>information of all DISEASES</b>,
+                                        </h5>
+                                    </Button> :
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={hide3}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to see <b>information of all DISEASES</b>,
+                                        </h5>
+                                    </Button>
+                                }
+                                <br />
+                                {check3 &&
+                                    <Button variant="link" style={{ textDecoration: "none" }} onClick={hide3}>
+                                        <Link
+                                            style={{ color: "#0c0530" }}
+                                            to={{
+                                                pathname: "/addinfo/conditionlibrary",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                },
+                                            }}
+                                        >
+                                            <HiInformationCircle size="40%" color="#0047b3" text="Scam" />
+                                            <br />
+                                    
+                                        </Link>
 
-                                <Button variant="link" style={{ textDecoration: "none" }}>
-                                    <Link
-                                        style={{ color: "#0c0530" }}
-                                        to={{
-                                            pathname: "/editprofile",
-                                            state: {
-                                                token: token,
-                                                user: user,
-                                            },
-                                        }}
-                                    >
-                                        <FaUserEdit size="40%" color="#0047b3" text="Scam" />
-                                        <br />
-                                        <h5 style={{ color: "#0047b3" }}>Edit profile</h5>
-
-                                    </Link>
-                                </Button>
+                                    </Button>
+                                }
+                            </div>
+                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                                {check4 === false ?
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status4}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to <b>EDIT YOUR PROFILE</b>,
+                                        </h5>
+                                    </Button> :
+                                    <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={hide4}>
+                                        <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
+                                            If you wanted to <b>EDIT YOUR PROFILE</b>,
+                                        </h5>
+                                    </Button>
+                                }
+                                <br />
+                                {check4 &&
+                                    <Button variant="link" style={{ textDecoration: "none" }} onCLick={hide4}>
+                                        <Link
+                                            style={{ color: "#0c0530" }}
+                                            to={{
+                                                pathname: "/editprofile",
+                                                state: {
+                                                    token: token,
+                                                    user: user,
+                                                },
+                                            }}
+                                        >
+                                            <FaUserEdit size="40%" color="#0047b3" text="Scam" />
+                                            <br />
+                                        </Link>
+                                    </Button>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
