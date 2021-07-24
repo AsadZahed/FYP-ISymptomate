@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button , Alert} from "react-bootstrap";
 import axios from 'axios';
 import { BrowserView, MobileView } from "react-device-detect";
 
@@ -18,13 +18,15 @@ export default function BasicInfo() {
   const [token, setToken] = React.useState(null)
   var history = useHistory();
   var location = useLocation();
-  const [msg, setMSG] = React.useState("")
+  const [showResults, setShowResults] = React.useState(false);
 
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token)
+      setages(location.state.user.age)
+      setgender(location.state.user.gender)
     } else {
       history.push('/')
     }
@@ -56,40 +58,14 @@ export default function BasicInfo() {
           });
         }
 
-      }).catch(res => setMSG(res.message));
+      }).catch(res => setShowResults(true));
   }
 
-  useEffect(() => {
-    if (location.state) {
-      setUser(location.state.user);
-      setToken(location.state.token);
-      axios.get('http://localhost:9000/users/getBAsicInfo', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'Authorization': `Bearer ${location.state.token}`
-        }
-      })
-        .then(res => {
-          console.log(res.data)
-          if(res.data.success===false){
-            setages(0)
-          }
-          else{
-          setages(res.data.age[0].age)
-          setgender(res.data.age[0].gender)
-          console.log("i am in front end", res.data.age[0].age)
-}
-        })
-    }
-  }, [location, token, user]);
-
+  
   function validateForm() {
     return age.length > 0 && age > 0 && age < 123;
   }
-  const [showResults, setShowResults] = React.useState(false);
-
-  const onClick = () => setShowResults(true)
+  
   return (
     <div>
       <Header user={user} token={token} />
@@ -158,17 +134,11 @@ export default function BasicInfo() {
                       Female
                     </option>
                    
-                  </select>
-              
+                  </select>            
 
-                  {showResults ?
-                    <div className="validation ">
-                      {msg} </div> : <div></div>}
-
-
+                  {showResults ? <Alert variant="danger">Incoorect username or password</Alert> : ""}
 
                   <Button
-                    onClick={onClick}
                     block
                     size="lg"
                     style={{ color: "#0c0530" }}

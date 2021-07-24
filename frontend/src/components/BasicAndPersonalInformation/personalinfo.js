@@ -1,6 +1,6 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 
@@ -12,8 +12,7 @@ import Header from "../Navbar/header"
 export default function AddPersonalInfo() {
   const [height, setheight] = React.useState("");
   const [weight, setWeight] = React.useState("");
-
-  
+  const [showResults, setShowResults] = React.useState(false);
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(null)
   var history = useHistory();
@@ -34,7 +33,7 @@ export default function AddPersonalInfo() {
     event.preventDefault();
     const data = {
       height: height,
-      weight:weight,
+      weight: weight,
     };
 
     axios.post('http://localhost:9000/addinfo/personalinfo', data, {
@@ -56,7 +55,7 @@ export default function AddPersonalInfo() {
           });
         }
 
-      });
+      }).catch((res)=>setShowResults(true));
   }
   useEffect(() => {
     if (location.state) {
@@ -71,15 +70,15 @@ export default function AddPersonalInfo() {
       })
         .then(res => {
           console.log(res.data)
-          if(res.data.success===false){
+          if (res.data.success === false) {
             setheight(0)
             setWeight(0)
           }
-          else{
-          setheight(res.data.personal[0].height)
-          setWeight(res.data.personal[0].weight)
-          console.log("i am in front end", res.data.personal[0].height)
-}
+          else {
+            setheight(res.data.personal[0].height)
+            setWeight(res.data.personal[0].weight)
+            console.log("i am in front end", res.data.personal[0].height)
+          }
         })
     }
   }, [location, token, user]);
@@ -98,136 +97,139 @@ export default function AddPersonalInfo() {
   }
   return (
     <div>
-    <Header user={user} token={token} />
+      <Header user={user} token={token} />
 
-    <div style={{ backgroundColor: "#F8F8F8" }}>
-      <BrowserView>
-        <div
-          style={{
-            paddingLeft: "12%",
-            paddingRight: "12%",
-            paddingTop: "5%",
-            paddingBottom: "5%",
-            textAlign: "center"
-          }}
-        >
+      <div style={{ backgroundColor: "#F8F8F8" }}>
+        <BrowserView>
           <div
             style={{
-              border: "1px solid #DCDCDC",
-              backgroundColor: "#fff",
-              padding: "7%"
+              paddingLeft: "12%",
+              paddingRight: "12%",
+              paddingTop: "5%",
+              paddingBottom: "5%",
+              textAlign: "center"
             }}
           >
-            <h5>Add personal Information</h5>
-
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                border: "1px solid #DCDCDC",
+                backgroundColor: "#fff",
+                padding: "7%"
+              }}
+            >
+              <h5>Add personal Information</h5>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <form onSubmit={handleSubmit}>
+                  <label className="f-label" for="gender">
+                    Body height in feet and inches
+                  </label>
+
+                  <input
+                    type="Float"
+                    className="fname"
+                    name="height"
+                    placeholder={height + " feet"}
+                    onChange={(e) => setheight(e.target.value)}
+                  />
+
+                  <label className="f-label" for="gender">
+                    Body weight in kg
+                  </label>
+
+                  <input
+                    type="Float"
+                    className="fname"
+                    name="weight"
+                    placeholder={weight + " kg"}
+                    onChange={(e) => setWeight(e.target.value)}
+                  />
+
+                  {showResults ? <Alert variant="danger">Incoorect username or password</Alert> : ""}
+
+
+                  <Button
+                    block
+                    size="lg"
+                    type="submit"
+                    style={{ color: "#0c0530" }}
+                    variant="warning"
+                    disabled={!validateForm()}
+                  >
+                    Add
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </BrowserView>
+        <MobileView>
+          <div
+            style={{
+              paddingTop: "5%",
+              textAlign: "center"
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #DCDCDC",
+                backgroundColor: "#fff",
+                padding: "7%",
                 alignItems: "center"
               }}
             >
-              <form  onSubmit={handleSubmit}>
-                <label className="f-label" for="gender">
-                  Body height in feet and inches
-                </label>
+              <h5>Personal Information</h5>
 
-                <input
-                  type="Float"
-                  className="fname"
-                  name="height" 
-                  placeholder={height+ " feet"}
-                  onChange={(e) => setheight(e.target.value)}
-                />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "5%",
 
-                <label className="f-label" for="gender">
-                  Body weight in kg
-                </label>
-
-                <input
-                  type="Float"
-                  className="fname"
-                  name="weight"
-                  placeholder={weight+" kg"}
-                  onChange={(e) => setWeight(e.target.value)}
-                />
-
-                <Button
-                  block
-                  size="lg"
-                  type="submit"
-                  style = {{color: "#0c0530"}}
-                  variant="warning"
-                  disabled={!validateForm()}
-                >
-                  Add
-                </Button>
-              </form>
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <form onSubmit={handleSubmit}>
+                  <label className="f-label" for="gender">
+                    Body height in cm
+                  </label>
+                  <input
+                    type="Number"
+                    className="fname"
+                    name="height"
+                    onChange={(e) => setheight(e.target.value)}
+                  />
+                  <label className="f-label" for="gender">
+                    Body weight in kg
+                  </label>
+                  <input
+                    type="Number"
+                    className="fname"
+                    name="weight"
+                    onChange={(e) => setWeight(e.target.value)}
+                  />
+                  <Button
+                    block
+                    size="lg"
+                    type="submit"
+                    disabled={!validateForm()}
+                  >
+                    Add
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </BrowserView>
-      <MobileView>
-        <div
-          style={{
-            paddingTop: "5%",
-            textAlign: "center"
-          }}
-        >
-          <div
-            style={{
-              border: "1px solid #DCDCDC",
-              backgroundColor: "#fff",
-              padding: "7%",
-              alignItems: "center"
-            }}
-          >
-            <h5>Personal Information</h5>
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "5%",
-
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <form onSubmit={handleSubmit}>
-                <label className="f-label" for="gender">
-                  Body height in cm
-                </label>
-                <input
-                  type="Number"
-                  className="fname"
-                  name="height"
-                  onChange={(e) => setheight(e.target.value)}
-                />
-                <label className="f-label" for="gender">
-                  Body weight in kg
-                </label>
-                <input
-                  type="Number"
-                  className="fname"
-                  name="weight"
-                  onChange={(e) => setWeight(e.target.value)}
-                />
-                 <Button
-                  block
-                  size="lg"
-                  type="submit"
-                  disabled={!validateForm()}
-                >
-                  Add
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </MobileView>
-    </div>
+        </MobileView>
+      </div>
     </div>
   );
 }

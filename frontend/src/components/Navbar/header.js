@@ -18,7 +18,6 @@ function Header(props) {
           {/* <SiAddthis style={{ width:"10px",height:"10px",paddingRight: "10px", paddingBottom: "9px" }} /> */}
           <Link
           style={{fontFamily: "Arial, Helvetica, sans-serif"}}
-          
             to={{
               pathname: '/',
               state: {

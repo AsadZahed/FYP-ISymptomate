@@ -3,7 +3,7 @@ var router = express.Router();
 var router = express.Router();
 var passport = require('passport');
 var authenticate = require('../authenticate');
-var Patient = require("../model/Patient");
+var UserTemplate = require("../model/user-template");
 router.use(express.json());
 
 
@@ -13,7 +13,7 @@ router.use(express.json());
 router.get("/changeemail/:email",
 authenticate.verifyUser,(req,res,next)=>{
     const email=req.params.email;
-    Patient.findOneAndUpdate({_id:req.user._id},{username:email}, (err,user)=>{
+    UserTemplate.findOneAndUpdate({_id:req.user._id},{username:email}, (err,user)=>{
         if(err){
             res.json("error")
         }res.json("successful")

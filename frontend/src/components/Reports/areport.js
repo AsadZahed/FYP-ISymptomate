@@ -3,11 +3,12 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 
+import Header from "../Navbar/header";
 
 //import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function AReport() {
 
-  //const [age, setAge] = React.useState("12");
+  const [gender, setgender] = React.useState("");
   const [date, setDate] = React.useState();
   const [patientid, setpatientID] = React.useState();
  // const [reportid, setReportID] = React.useState();
@@ -43,7 +44,8 @@ export default function AReport() {
         setName(location.state.name)
         setDate(location.state.date)
         setpatientID(location.state.patientid)
-        console.log("my name is",patientid)
+        setages(location.state.age)
+        setgender(location.state.gender)
        // setReportID(location.state.reportID)
         setName(location.state.name)
         // setID(location.state.user._id)
@@ -62,26 +64,7 @@ export default function AReport() {
     }
   }, [location, history])
 
-  useEffect(() => {
-    if (location.state) {
-      setUser(location.state.user);
-      setToken(location.state.token);
-      axios.get('http://localhost:9000/users/getBAsicInfo', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'Authorization': `Bearer ${location.state.token}`
-        }
-      })
-        .then(res => {
-          console.log(res.data)
-          setages(res.data.age[0].age)
-          console.log("i am in front end", res.data.age[0].age)
-        
-        })
-    }
-  }, [location, token, user]);
-
+ 
 
   const checkdiseases = () => {
     var w = " ";
@@ -208,6 +191,7 @@ export default function AReport() {
 
   return (
     <div>
+    <Header token={token} user={user} />
       <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black" }}>
         <form onSubmit={handleSubmit}>
           <div
@@ -277,7 +261,7 @@ export default function AReport() {
                   <strong>Age:</strong> {ages}
                 </p>
                 <p>
-                  <strong>Gender:</strong> male
+                  <strong>Gender:</strong> {gender}
                 </p>
               </div>
             </div>

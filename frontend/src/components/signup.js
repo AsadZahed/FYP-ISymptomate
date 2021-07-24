@@ -218,7 +218,7 @@ export default function Signup() {
                       />
                     </Form.Group>
                     
-                    {showResults ? <Alert variant="danger">Error while resgistering</Alert> :
+                    {showResults ? <Alert variant="danger">Error while registering</Alert> :
                    <div></div>}
 
 

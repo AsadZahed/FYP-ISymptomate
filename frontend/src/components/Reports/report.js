@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
+import Header from "../Navbar/header";
 // import Print from "./ComponentToPrint"
 // import Example from "./ComponentToPrint";
 
@@ -14,8 +15,8 @@ export default function Report() {
   const [name, setName] = React.useState("anonymous");
   const [id, setID] = React.useState("1234");
   const [cancer, sets] = React.useState("");
-  const [ages,setages]=React.useState("");
-  const [gender,setgender]=React.useState("");
+  const [ages, setages] = React.useState("");
+  const [gender, setgender] = React.useState("");
   const [i, setI] = React.useState("")
   const today = Date.now();
   const [msg, setMSG] = React.useState(null);
@@ -41,6 +42,8 @@ export default function Report() {
         setID(location.state.user._id)
         sets(location.state.cancer)
         setI(location.state.img)
+        setages(location.state.user.age)
+        setgender(location.state.user.gender)
       } else {
         history.push('/skin/skincheck')
       }
@@ -173,26 +176,6 @@ export default function Report() {
       .catch(res => setMSG("This report cannot be saved"));
   }
 
-  useEffect(() => {
-    if (location.state) {
-      setUser(location.state.user);
-      setToken(location.state.token);
-      axios.get('http://localhost:9000/users/getBAsicInfo', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'Authorization': `Bearer ${location.state.token}`
-        }
-      })
-        .then(res => {
-          console.log(res.data)
-          setages(res.data.age[0].age)
-          console.log("i am in front end", res.data.age[0].age)
-          setgender(res.data.age[0].gender)
-
-        })
-    }
-  }, [location, token, user]);
 
   const [showResults, setShowResults] = React.useState(false)
 
@@ -200,9 +183,11 @@ export default function Report() {
 
 
   return (
-    <div style={{
-      paddingBottom:"5%"}}>
-      <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom:"1%" }}>
+    <div style={{ paddingBottom: "5%" }}>
+
+      <Header token={token} user={user} />
+
+      <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom: "1%" }}>
         <form onSubmit={handleSubmit}>
           <div
             style={{
@@ -375,29 +360,29 @@ export default function Report() {
             <div className="validation">
               {msg} </div> : <div></div>}
 
-         <div className="btn-toolbar">
-          <div className="left-group">
-            <Button
+          <div className="btn-toolbar">
+            <div className="left-group">
+              <Button
 
-              block
-              size="lg"
-              type="submit"
-            >
-              Add
-            </Button>
-          </div>
+                block
+                size="lg"
+                type="submit"
+              >
+                Add
+              </Button>
+            </div>
 
-          <div className="right-group">
-            <Button
+            <div className="right-group">
+              <Button
 
-              block
-              size="lg"
-              type="submit"
-            >
-              Print
-            </Button>
-          </div>
-          {/* <Print /> */}
+                block
+                size="lg"
+                type="submit"
+              >
+                Print
+              </Button>
+            </div>
+            {/* <Print /> */}
           </div>
         </form>
 

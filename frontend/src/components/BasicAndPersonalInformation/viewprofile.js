@@ -20,12 +20,20 @@ export default function Report() {
     useEffect(() => {
         try {
             if (location.state) {
+
                 console.log(location)
                 setUser(location.state.user);
                 setToken(location.state.token)
                 setName(location.state.user.name)
                 setEmail(location.state.user.username)
-            } else {
+                setages(location.state.user.age)
+                setgender(location.state.user.gender)
+                setheight(location.state.user.height + " feet")
+                setWeight(location.state.user.weight + " kg")
+
+            }
+
+            else {
                 history.push('/addinfo/viewprofile')
             }
 
@@ -37,53 +45,53 @@ export default function Report() {
     }, [location, history])
 
 
-    useEffect(() => {
-        if (location.state) {
-            setUser(location.state.user);
-            setToken(location.state.token);
-            axios.get('http://localhost:9000/users/getBAsicInfo', {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${location.state.token}`
-                }
-            })
-                .then(res => {
-                    console.log(res.data)
-                    setages(res.data.age[0].age)
+    // useEffect(() => {
+    //     if (location.state) {
+    //         setUser(location.state.user);
+    //         setToken(location.state.token);
+    //         axios.get('http://localhost:9000/users/getBAsicInfo', {
+    //             headers: {
+    //                 'Access-Control-Allow-Origin': '*',
+    //                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //                 'Authorization': `Bearer ${location.state.token}`
+    //             }
+    //         })
+    //             .then(res => {
+    //                 if (res.data.success === false) {
+    //                     setages("Not selected")
+    //                     setgender("Not selected")
+    //                 }
+    //                 else {
+    //                     console.log(res.data)
 
-                    console.log("i am in front end", res.data.age[0].age)
-                    setgender(res.data.age[0].gender)
+    //                 }
+    //             })
+    //     }
+    // }, [location, token, user]);
 
-                })
-        }
-    }, [location, token, user]);
+    // useEffect(() => {
+    //     if (location.state) {
+    //         setUser(location.state.user);
+    //         setToken(location.state.token);
+    //         axios.get('http://localhost:9000/users/getPersonalInfo', {
+    //             headers: {
+    //                 'Access-Control-Allow-Origin': '*',
+    //                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //                 'Authorization': `Bearer ${location.state.token}`
+    //             }
+    //         })
+    //             .then(res => {
+    //                 console.log(res.data)
+    //                 if (res.data.success === false) {
+    //                     setheight("Not selected")
+    //                     setWeight("Not selected")
+    //                 }
+    //                 else {
 
-    useEffect(() => {
-        if (location.state) {
-            setUser(location.state.user);
-            setToken(location.state.token);
-            axios.get('http://localhost:9000/users/getPersonalInfo', {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${location.state.token}`
-                }
-            })
-                .then(res => {
-                    console.log(res.data)
-                    if (res.data.success === false) {
-                        setheight(0)
-                        setWeight(0)
-                    }
-                    else {
-                        setheight(res.data.personal[0].height)
-                        setWeight(res.data.personal[0].weight)
-                        console.log("i am in front end", res.data.personal[0].height)
-                    }
-                })
-        }
-    }, [location, token, user]);
+    //                 }
+    //             })
+    //     }
+    // }, [location, token, user]);
 
     const [showResults, setShowResults] = React.useState(false)
 
@@ -161,10 +169,10 @@ export default function Report() {
                                     <strong>Email:</strong> {email}
                                 </p>
                                 <p>
-                                    <strong>Height: </strong> {height} feet
+                                    <strong>Height: </strong> {height}
                                 </p>
                                 <p>
-                                    <strong>Weight:</strong> {weight} kg
+                                    <strong>Weight:</strong> {weight}
                                 </p>
                             </div>
                         </div>

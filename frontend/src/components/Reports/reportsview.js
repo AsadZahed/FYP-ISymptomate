@@ -29,6 +29,9 @@ export default function View() {
         if (location.state) {
             setUser(location.state.user);
             setToken(location.state.token);
+            setAge(location.state.user.age)
+            setgender(location.state.user.gender)
+
             axios.get('http://localhost:9000/users/reports/view', {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -48,28 +51,6 @@ export default function View() {
                 })
         }
     }, [location, token, user]);
-
-    useEffect(() => {
-        if (location.state) {
-            setUser(location.state.user);
-            setToken(location.state.token);
-            axios.get('http://localhost:9000/users/getBAsicInfo', {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${location.state.token}`
-                }
-            })
-                .then(res => {
-                    console.log(res.data)
-                    setAge(res.data.age[0].age)
-                    console.log("i am in front end", res.data.age[0].age)
-                    setgender(res.data.age[0].gender)
-
-                })
-        }
-    }, [location, token, user]);
-
 
     return (
         <div>

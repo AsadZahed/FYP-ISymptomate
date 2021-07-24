@@ -1,18 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
-var Patient = require('../model/Patient');
-var Basic = require("../model/basicinfo");
-var Personal = require("../model/personalinfo");
+var UserTemplate = require('../model/user-template');
 var passport = require('passport');
-var Admin = require('../model/admin');
 var Report = require("../model/report")
 var authenticate = require('../authenticate');
-const mongoose = require("mongoose")
-const passportlocalmangoose = require('passport-local-mongoose')
+// const mongoose = require("mongoose")
+// const passportlocalmangoose = require('passport-local-mongoose')
 router.use(express.json());
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
-const findOrCreate = require("mongoose-findorcreate")
+// const GoogleStrategy = require('passport-google-oauth2').Strategy;
+//const findOrCreate = require("mongoose-findorcreate")
 // const userSchema = new mongoose.Schema({
 //   email: String,
 //   password: String,
@@ -55,16 +51,16 @@ const findOrCreate = require("mongoose-findorcreate")
 
 //PATIENT SIGNUP
 router.get('/', authenticate.verifyUser, function (req, res, next) {
-  Patient.find({})
-    .then((patient) => {
+  UserTemplate.find({})
+    .then((user) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json(patient);
+      res.json(user);
     }, (err) => next(err))
     .catch((err) => next(err));
 });
 router.post('/signup', (req, res, next) => {
-  Patient.register(new Patient({ username: req.body.username }),
+  UserTemplate.register(new UserTemplate({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {
         console.log('First: ' + err.name)
@@ -88,7 +84,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/admin/signup', (req, res, next) => {
-  Patient.register(new Patient({ username: req.body.username }),
+  UserTemplate.register(new User({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {
         res.statusCode = 500;
@@ -127,17 +123,12 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
   res.setHeader('Content-Type', 'application/json');
   res.json({ success: true, token: token, message: 'You are successfully logged in!', status: 'You are successfully logged in!', user: req.user });
 
-
-  //   } else{
-  //     res.json({ message: "Error in login" })
-
-  // }
 });
 
 //VIEW USERS BY ADMIN
 
 router.get('/admin/viewusers', function (req, res, next) {
-  Patient.find({}).exec(function (error, results) {
+  UserTemplate.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }
@@ -187,7 +178,9 @@ router.get('/reports/view', authenticate.verifyUser, (req, res) => {
 
 
 router.get('/getBAsicInfo', authenticate.verifyUser, (req, res) => {
-  Basic.find({ p_id: req.user._id }, (err, reps) => {
+  console.log(req.user._id)
+  
+  UserTemplate.find({ p_id: req.user._id }, (err, reps) => {
     if (err) res.json({ success: false, message: err.name })
     else if (reps.length > 0) res.json({ success: true, age: reps })
     else res.json({ success: false, message: 'No age found' })
@@ -197,7 +190,7 @@ router.get('/getBAsicInfo', authenticate.verifyUser, (req, res) => {
 
 
 router.get('/getPersonalInfo', authenticate.verifyUser, (req, res) => {
-  Personal.find({ p_id: req.user._id }, (err, reps) => {
+  UserTemplate.find({ p_id: req.user._id }, (err, reps) => {
     if (err) res.json({ success: false, message: err.name })
     else if (reps.length > 0) res.json({ success: true, personal: reps })
     else res.json({ success: false, message: 'No age found' })
@@ -206,7 +199,7 @@ router.get('/getPersonalInfo', authenticate.verifyUser, (req, res) => {
 
 
 router.get('/reports/getage', function (req, res, next) {
-  Basic.find({}).exec(function (error, results) {
+  UserTemplate.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }
@@ -216,7 +209,7 @@ router.get('/reports/getage', function (req, res, next) {
 });
 
 router.get('/profile/viewprofile', function (req, res, next) {
-  Patient.find({}).exec(function (error, results) {
+  UserTemplate.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }
@@ -231,7 +224,7 @@ router.get('/profile/viewprofile', function (req, res, next) {
 router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
-  Basic.findOne({ p_id: req.user._id }, (err, user) => {
+  UserTemplate.findOne({ p_id: req.user._id }, (err, user) => {
     console.log("user id is", req.user._id)
     if (err)
       res.json({
@@ -268,7 +261,7 @@ router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
 router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
-  Patient.findById(req.user._id, (err, user) => {
+  UserTemplate.findById(req.user._id, (err, user) => {
     console.log(req.user._id)
     if (err)
       res.json({
@@ -304,7 +297,7 @@ router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) =
 router.post('/editprofile/changeemail', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
-  Patient.findById(req.user._id, (err, user) => {
+  UserTemplate.findById(req.user._id, (err, user) => {
     console.log(req.user._id)
     if (err)
       res.json({
@@ -340,7 +333,7 @@ router.post('/editprofile/changeemail', authenticate.verifyUser, (req, res) => {
 router.post('/editprofile/changepassword', authenticate.verifyUser, (req, res) => {
   console.log(req.user)
   console.log(req.body)
-  Patient.findById(req.user._id, (err, user) => {
+  UserTemplate.findById(req.user._id, (err, user) => {
     if (err)
       res.json({
         success: false,
@@ -383,7 +376,7 @@ router.post('/editprofile/changepassword', authenticate.verifyUser, (req, res) =
 router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
-  Patient.findOne({ _id: req.user._id }, (err, user) => {
+  UserTemplate.findOne({ _id: req.user._id }, (err, user) => {
     console.log(req.user._id)
     if (err)
       res.json({
@@ -415,11 +408,11 @@ router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) =>
 })
 
 router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
-  console.log("user is ",req.user._id)
-  console.log("pid is ",req.body.p_id)
-  
-  console.log("req.body",req.body)
-  Report.findOne({p_id: req.user._id }, (err, user) => {
+  console.log("user is ", req.user._id)
+  console.log("pid is ", req.body.p_id)
+
+  console.log("req.body", req.body)
+  Report.findOne({ p_id: req.user._id }, (err, user) => {
     console.log(req.user.p_id)
     if (err)
       res.json({
