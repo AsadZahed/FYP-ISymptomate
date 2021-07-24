@@ -20,6 +20,7 @@ export default function Signup() {
   const [password, setPassword] = React.useState("");
   const [cpassword, setCPassword] = React.useState("");
   const [error, setError] = React.useState("");
+  const [showResults, setShowResults] = React.useState(false);
   var history = useHistory();
 
  
@@ -65,7 +66,7 @@ export default function Signup() {
             }
           })
 
-      }).catch(err => console.log(err))
+      }).catch(err =>setShowResults(true))
     // .catch((res) => setError("Sign up error"))
 
     // axios.post('http://localhost:9000/users/signup', googleData, {
@@ -95,10 +96,7 @@ export default function Signup() {
     //   });
   }
 
-  const [showResults, setShowResults] = React.useState(false)
-
-  const onClick = () => setShowResults(true)
-
+  
   const [showloginButton, setShowloginButton] = React.useState(true);
   const [showlogoutButton, setShowlogoutButton] = React.useState(false);
   const onLoginSuccess = (res) => {
@@ -231,7 +229,6 @@ export default function Signup() {
                           onClick={validatePassword}
                           size="lg"
                           type="submit"
-                          onClick={onClick}
                           disabled={!validateForm()}
                         >
                           Register

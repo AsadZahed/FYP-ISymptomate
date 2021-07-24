@@ -16,12 +16,11 @@ const clientId = "117443239646-ni8sjfvdadef3m2h6iju1hkgoeu3vqbs.apps.googleuserc
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [msg, setMsg] = React.useState("");
   const [gdata, setDData] = React.useState("");
-
+  const [showResults, setShowResults] = React.useState(false)
   const history = useHistory();
-  function handleSubmit(event) {
 
+  function handleSubmit(event) {
     event.preventDefault();
     const data = {
       username: email,
@@ -52,7 +51,7 @@ export default function Login() {
             }
           })
 
-      }).catch((res) => setMsg("Login error"))
+      }).catch((res) => setShowResults(true))
 
 
   }
@@ -87,12 +86,6 @@ export default function Login() {
     setShowloginButton(true);
     setShowlogoutButton(false);
   };
-
-
-
-  const [showResults, setShowResults] = React.useState(false)
-
-  const onClick = () => setShowResults(true)
 
   return (
     <div>
@@ -157,7 +150,7 @@ export default function Login() {
 
                     <div style={{ textAlign: "center" }}>
                       <div style={{ color: "#ffff" }}>
-                        <Button style={{ color: "#0047b3" }} size="lg" variant="warning" type="submit" onClick={onClick} disabled={!validateForm()}>
+                        <Button style={{ color: "#0047b3" }} size="lg" variant="warning" type="submit" disabled={!validateForm()}>
                           Login
                         </Button>
                       </div>

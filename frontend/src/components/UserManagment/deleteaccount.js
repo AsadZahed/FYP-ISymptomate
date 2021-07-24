@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "../../styles.css";
-import { Button } from "react-bootstrap";
+import { Button,Alert } from "react-bootstrap";
 
 import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
@@ -14,6 +14,8 @@ export default function DeleteAccount() {
   const [msg, setMsg] = React.useState('')
   var history = useHistory();
   var location = useLocation();
+  const [show,setShow] = React.useState(0);
+  
 
   useEffect(() => {
     if (location.state) {
@@ -50,6 +52,11 @@ export default function DeleteAccount() {
 
     }).catch(res => setMsg(res.message));
 }
+setTimeout(()=>{
+  setShow(1)
+},3000)
+
+
   
 
   return (
@@ -57,6 +64,8 @@ export default function DeleteAccount() {
     <Header/>
     
     <div style={{ backgroundColor: "#F8F8F8" }}>
+    {show !==1 && <Alert variant="danger" style={{fontSize:"20px",textAlign:"center"}}><b>You are about to delete your account</b></Alert>}
+       
       <BrowserView>
         <div
           style={{

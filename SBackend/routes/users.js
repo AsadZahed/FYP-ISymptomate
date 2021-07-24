@@ -300,6 +300,42 @@ router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) =
   })
 })
 
+//Change email
+router.post('/editprofile/changeemail', authenticate.verifyUser, (req, res) => {
+  console.log(req.user._id)
+  console.log(req.body)
+  Patient.findById(req.user._id, (err, user) => {
+    console.log(req.user._id)
+    if (err)
+      res.json({
+        success: false,
+        message: err
+      })
+    else if (user) {
+      user.username = req.body.newEmail;
+      user.save((err) => {
+        if (err) {
+          res.json({
+            success: false,
+            message: err.name
+          })
+        }
+        else {
+          res.json({
+            success: true,
+            message: 'Email Updated Successffully'
+          })
+        }
+      })
+    } else {
+      res.json({
+        success: false,
+        message: 'User not found'
+      }); // Return error, user was not found in db
+    }
+  })
+})
+
 // CHANGE PASSWORD
 router.post('/editprofile/changepassword', authenticate.verifyUser, (req, res) => {
   console.log(req.user)

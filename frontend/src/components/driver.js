@@ -116,7 +116,7 @@ function Driver() {
           exact
           component={ChangePassword}
         />
-        <Route path="/editprofile/changeemail" exact component={ChangeEmail} />
+        <Route path="/users/editprofile/changeemail" exact component={ChangeEmail} />
         <Route path="/users/editprofile/changeDOB" exact component={ChangeDOB} />
         <Route path="/editprofile/signup" exact component={ESignup} />
         <Route

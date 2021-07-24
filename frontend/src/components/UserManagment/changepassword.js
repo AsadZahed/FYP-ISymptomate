@@ -16,11 +16,7 @@ export default function ChangePassword() {
   const [msg, setMsg] = React.useState('')
   var history = useHistory();
   var location = useLocation();
-
-  const [showResults, setShowResults] = React.useState(false)
-
-  const onClick = () => setShowResults(true)
-  
+  const [showResults, setShowResults] = React.useState(false)  
 
   useEffect(() => {
     if (location.state) {
@@ -59,6 +55,8 @@ export default function ChangePassword() {
         }
         else {
           setMsg(res.data.message)
+          showResults(true)
+          setShowResults(true)
         }
 
       });
@@ -128,9 +126,8 @@ export default function ChangePassword() {
                   <div style={{ alignContent: "center" }}>
                   {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
 
-
                     <Button size="lg" type="submit" style={{ color: "#0c0530" }}
-                      variant="warning" disabled={!validateForm()} onClick={onClick}>
+                      variant="warning" disabled={!validateForm()}>
                       Change
                     </Button>
                   </div>

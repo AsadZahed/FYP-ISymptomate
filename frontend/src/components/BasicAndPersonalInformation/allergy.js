@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { Progress } from "antd";
 import "antd/dist/antd.css";
 import { BrowserView, MobileView } from "react-device-detect";
-import { Button } from "react-bootstrap";
+import { Button , Alert} from "react-bootstrap";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
@@ -72,11 +72,9 @@ function Question() {
           });
         }
 
-      })  .catch(res => setMSG("Please Select all options to proceed"));
+      })  .catch(res => showResults(true));
   }
   const [showResults, setShowResults] = React.useState(false)
-
-  const onClick = () => setShowResults(true)
 
   const twoOnChange=(e)=>{
     setChecked1(!checked1)
@@ -106,6 +104,16 @@ function Question() {
     setChecked5(!checked5)
     setq5(e.target.value)
 
+  }
+  
+  function validateForm() {
+    return (
+     q1 !== ""  &&
+     q2 !== ""  &&
+     q3 !== ""  &&
+     q4 !== ""  &&
+     q5 !== "" 
+    );
   }
   return (
     <div>
@@ -157,7 +165,8 @@ function Question() {
                     type="radio"
                     value="Yes"
                     name="answer"
-                    onChange={(e) => twoOnChange(e)}
+                    onChange={() => setChecked1(!checked1)}
+                    onChange={(e) => setq1(e.target.value)}
                   />
                 Yes
                 <input
@@ -165,7 +174,8 @@ function Question() {
                     type="radio"
                     value="No"
                     name="answer"
-                    onChange={(e) => twoOnChange(e)}
+                    onChange={() => setChecked1(!checked1)}
+                    onChange={(e) => setq1(e.target.value)}
                   />
                 No
                 <input
@@ -173,7 +183,8 @@ function Question() {
                     type="radio"
                     value="DN"
                     name="answer"
-                    onChange={(e) => twoOnChange(e)}
+                    onChange={() => setChecked1(!checked1)}
+                    onChange={(e) => setq1(e.target.value)}
                   />
                 Don't know
               </div>
@@ -194,7 +205,8 @@ function Question() {
                     type="radio"
                     value="Yes1"
                     name="answer1"
-                    onChange={(e) => twoOnChange1(e)}
+                    onChange={() => setChecked2(!checked2)}
+                    onChange={(e) => setq2(e.target.value)}
                   />
                 Yes
                 <input
@@ -202,7 +214,8 @@ function Question() {
                     type="radio"
                     value="No1"
                     name="answer1"
-                    onChange={(e) => twoOnChange1(e)}
+                    onChange={() => setChecked2(!checked2)}
+                    onChange={(e) => setq2(e.target.value)}
                   />
                 No
                 <input
@@ -210,7 +223,8 @@ function Question() {
                     type="radio"
                     value="DN1"
                     name="answer1"
-                    onChange={(e) => twoOnChange1(e)}
+                    onChange={() => setChecked2(!checked2)}
+                    onChange={(e) => setq2(e.target.value)}
                   />{" "}
                 Don't know
               </div>
@@ -230,24 +244,27 @@ function Question() {
                     type="radio"
                     value="Yes2"
                     name="answer2"
-                    onChange={(e) => twoOnChange2(e)}
-                  />
+                    onChange={() => setChecked3(!checked3)}
+                    onChange={(e) => setq3(e.target.value)}
+                  />{" "}
                 Yes
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="No2"
                     name="answer2"
-                    onChange={(e) => twoOnChange2(e)}
-                  />
+                    onChange={() => setChecked3(!checked3)}
+                    onChange={(e) => setq3(e.target.value)}
+                  />{" "}
                 No
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="DN2"
                     name="answer2"
-                    onChange={(e) => twoOnChange2(e)}
-                  />
+                    onChange={() => setChecked3(!checked3)}
+                    onChange={(e) => setq3(e.target.value)}
+                  />{" "}
                 Don't know
               </div>
                 {/* 4 */}
@@ -265,15 +282,17 @@ function Question() {
                     type="radio"
                     value="Yes3"
                     name="answer3"
-                    onChange={(e) => twoOnChange3(e)}
-                  />
+                    onChange={() => setChecked4(!checked4)}
+                    onChange={(e) => setq4(e.target.value)}
+                  />{" "}
                 Yes
                 <input
                     style={{ marginLeft: "5%" }}
                     type="radio"
                     value="No3"
                     name="answer3"
-                    onChange={(e) => twoOnChange3(e)}
+                    onChange={() => setChecked4(!checked4)}
+                    onChange={(e) => setq4(e.target.value)}
                   />{" "}
                 No
                 <input
@@ -281,7 +300,8 @@ function Question() {
                     type="radio"
                     value="DN3"
                     name="answer3"
-                    onChange={(e) => twoOnChange3(e)}
+                    onChange={() => setChecked4(!checked4)}
+                    onChange={(e) => setq4(e.target.value)}
                   />{" "}
                 Don't know
               </div>
@@ -301,7 +321,8 @@ function Question() {
                     type="radio"
                     value="Yes4"
                     name="answer4"
-                    onChange={(e) => twoOnChange4(e)}
+                    onChange={() => setChecked5(!checked5)}
+                    onChange={(e) => setq5(e.target.value)}
                   />{" "}
                 Yes
                 <input
@@ -309,7 +330,8 @@ function Question() {
                     type="radio"
                     value="No4"
                     name="answer4"
-                    onChange={(e) => twoOnChange4(e)}
+                    onChange={() => setChecked5(!checked5)}
+                    onChange={(e) => setq5(e.target.value)}
                   />{" "}
                 No
                 <input
@@ -317,7 +339,8 @@ function Question() {
                     type="radio"
                     value="DN4"
                     name="answer4"
-                    onChange={(e) => twoOnChange4(e)}
+                    onChange={() => setChecked5(!checked5)}
+                    onChange={(e) => setq5(e.target.value)}
                   />{" "}
                 Don't know
               </div>
@@ -338,30 +361,24 @@ function Question() {
                       back
                   </Button>
                   </div>
-                  {showResults ?
-                    <div className="validation ">
-                      {msg} </div> : <div></div>}
-
-                  
+                  {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
+                  {q1 === '' || q2 === '' || q3 === '' || q4 === '' || q5 === '' ? <Alert variant="danger">Please Select <b>One</b> option from every question</Alert> : 
                   <div className="right-group">
                     <Button
-                     onClick={onClick}
                       block
                       style = {{color: "#0c0530"}}
                       variant="warning"
                       size="lg"
                       type="submit"
-                      disbaled={
-                        checked1 ||
-                        checked2 ||
-                        checked3 ||
-                        checked4 ||
-                        checked5
-                      }
+                      disbaled={!validateForm}
                     >
                       Add
                 </Button>
                   </div>
+                  }
+
+                  
+                  
                 </div>
               </div>
             </form>

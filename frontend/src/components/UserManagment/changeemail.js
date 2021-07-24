@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../../styles.css";
 import { Button ,Alert} from "react-bootstrap";
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { BrowserView, MobileView } from "react-device-detect";
 import Header from "../Navbar/header"
@@ -8,13 +11,57 @@ import Header from "../Navbar/header"
 export default function ChangeEmail() {
   const [oldEmail, setoldEmail] = React.useState("");
   const [newEmail, setnewEmail] = React.useState("");
-
-
-
-
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  const [msg, setMsg] = React.useState('')
+  var history = useHistory();
+  var location = useLocation();
   const [showResults, setShowResults] = React.useState(false)
 
-  const onClick = () => setShowResults(true)
+  useEffect(() => {
+    if (location.state) {
+      console.log(location)
+      setUser(location.state.user);
+      setToken(location.state.token)
+    } else {
+      history.push('/users/editprofile/changeusername')
+    }
+  }, [location, history])
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = {
+      username: newEmail,
+    };
+
+    axios.post('http://localhost:9000/users/editprofile/changeemail', data, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          history.push({
+            pathname: '/editprofile',
+            state: {
+              user: user,
+              token: token
+            }
+          });
+        }
+        else {
+          showResults(true)
+          setMsg(res.data.message)
+          setShowResults(true)
+        }
+
+      });
+  }
+
+ 
 
   function validateForm() {
     return oldEmail.length > 0 && newEmail.length > 0;
@@ -75,7 +122,7 @@ export default function ChangeEmail() {
                   className="bsubmit"
                   style = {{color: "#0c0530"}}
                   variant="warning"
-                    size="lg"
+                  size="lg"
                   disabled={!validateForm()}
                 >
                   Submit
