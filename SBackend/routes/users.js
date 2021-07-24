@@ -176,38 +176,6 @@ router.get('/reports/view', authenticate.verifyUser, (req, res) => {
   })
 })
 
-
-router.get('/getBAsicInfo', authenticate.verifyUser, (req, res) => {
-  console.log(req.user._id)
-  
-  UserTemplate.find({ p_id: req.user._id }, (err, reps) => {
-    if (err) res.json({ success: false, message: err.name })
-    else if (reps.length > 0) res.json({ success: true, age: reps })
-    else res.json({ success: false, message: 'No age found' })
-  })
-})
-
-
-
-router.get('/getPersonalInfo', authenticate.verifyUser, (req, res) => {
-  UserTemplate.find({ p_id: req.user._id }, (err, reps) => {
-    if (err) res.json({ success: false, message: err.name })
-    else if (reps.length > 0) res.json({ success: true, personal: reps })
-    else res.json({ success: false, message: 'No age found' })
-  })
-})
-
-
-router.get('/reports/getage', function (req, res, next) {
-  UserTemplate.find({}).exec(function (error, results) {
-    if (error) {
-      return next(error);
-    }
-    // Respond with valid data
-    res.json(results);
-  });
-});
-
 router.get('/profile/viewprofile', function (req, res, next) {
   UserTemplate.find({}).exec(function (error, results) {
     if (error) {

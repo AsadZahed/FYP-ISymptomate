@@ -7,26 +7,18 @@ import Image3 from "../components/images/slider-3.jpeg";
 import Image4 from "../components/images/slider-4.jpg";
 import Image5 from "../components/images/slider-5.jpg";
 import Image6 from "../components/images/slider-6.jpg";
-
 import { BiArrowFromLeft, BiCheck } from "react-icons/bi";
 import { RiLoginBoxLine } from "react-icons/ri";
 import { AiFillSecurityScan, AiOutlineScan } from "react-icons/ai";
-import { HiOutlineDocumentSearch} from "react-icons/hi";
-
-
+import { HiOutlineDocumentSearch } from "react-icons/hi";
 import CountUp from "react-countup";
-
-
 import { Button } from "react-bootstrap";
 import HomeImage2 from "../components/images/homeimg.PNG";
 import { Link } from "react-router-dom";
 import { BrowserView } from "react-device-detect";
-
 import "../styles.css";
 import "../components/Symptoms/App.css"
-
 import Header from "./Navbar/sheader";
-
 
 export default function Slider() {
 
@@ -53,7 +45,7 @@ export default function Slider() {
             <div>
 
             </div>
-            <AliceCarousel autoPlay autoPlayInterval="2000">
+            <AliceCarousel autoPlay autoPlayInterval="2000" style={{borderRadius:"10px"}}>
                 <div>
                     <div
                         style={{
@@ -62,7 +54,16 @@ export default function Slider() {
                             paddingBottom: "0%"
                         }}
                     >
-                        <img src={Image1} alt="img1" className="sliderimg" />
+                        <img src={Image1} alt="img1" className="sliderimg"  style={{borderRadius:"10px"}} />
+                    </div>
+                </div>
+                <div style={{
+                    paddingLeft: "11.5%",
+                    paddingRight: "11.5%",
+                    paddingBottom: "0%",
+                }}>
+                    <div>
+                        <img src={Image2} alt="img2" className="sliderimg" style={{borderRadius:"10px"}} />
                     </div>
                 </div>
                 <div style={{
@@ -71,7 +72,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image2} alt="img2" className="sliderimg" />
+                        <img src={Image3} alt="imgg" className="sliderimg"  style={{borderRadius:"10px"}}/>
                     </div>
                 </div>
                 <div style={{
@@ -80,7 +81,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image3} alt="imgg" className="sliderimg" />
+                        <img src={Image4} alt="imgg" className="sliderimg" style={{borderRadius:"10px"}} />
                     </div>
                 </div>
                 <div style={{
@@ -89,7 +90,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image4} alt="imgg" className="sliderimg" />
+                        <img src={Image5} alt="imgg" className="sliderimg" style={{borderRadius:"10px"}} />
                     </div>
                 </div>
                 <div style={{
@@ -98,16 +99,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image5} alt="imgg" className="sliderimg" />
-                    </div>
-                </div>
-                <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
-                    paddingBottom: "0%"
-                }}>
-                    <div>
-                        <img src={Image6} alt="imgg" className="sliderimg" />
+                        <img src={Image6} alt="imgg" className="sliderimg"  style={{borderRadius:"10px"}}/>
                     </div>
                 </div>
             </AliceCarousel>
@@ -120,6 +112,7 @@ export default function Slider() {
                         flexDirection: "row",
                         paddingLeft: "28%",
                         paddingRight: "28%",
+                        borderRadius:"10px"
                     }}
                 >
                     <Button variant="link">
@@ -228,7 +221,8 @@ export default function Slider() {
                                 paddingTop: "4%",
                                 borderRadius: "5px",
                                 paddingLeft: "37%",
-                                backgroundColor: "#0047b3"
+                                backgroundColor: "#0047b3",
+                                borderRadius:"10px"
                             }}
                         >
 
@@ -251,7 +245,8 @@ export default function Slider() {
                         paddingLeft: "12%",
                         paddingRight: "12%",
                         paddingTop: "5%",
-                        paddingBottom: "4%"
+                        paddingBottom: "4%",
+                        
                     }}
                 >
                     <BrowserView>
@@ -263,7 +258,8 @@ export default function Slider() {
                                 padding: "7%",
                                 paddingTop: "4%",
                                 borderRadius: "5px",
-                                paddingBottom: "4%"
+                                paddingBottom: "4%",
+                                borderRadius:"10px"
                             }}
                         >
                             <div className="float-child">

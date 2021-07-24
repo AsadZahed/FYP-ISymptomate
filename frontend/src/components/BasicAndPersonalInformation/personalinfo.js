@@ -23,6 +23,8 @@ export default function AddPersonalInfo() {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token)
+      setheight(location.state.user.height+" feet")
+      setWeight(location.state.user.weight+" kg")
     } else {
       history.push('/')
     }
@@ -55,36 +57,8 @@ export default function AddPersonalInfo() {
           });
         }
 
-      }).catch((res)=>setShowResults(true));
+      }).catch((res) => setShowResults(true));
   }
-  useEffect(() => {
-    if (location.state) {
-      setUser(location.state.user);
-      setToken(location.state.token);
-      axios.get('http://localhost:9000/users/getPersonalInfo', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'Authorization': `Bearer ${location.state.token}`
-        }
-      })
-        .then(res => {
-          console.log(res.data)
-          if (res.data.success === false) {
-            setheight(0)
-            setWeight(0)
-          }
-          else {
-            setheight(res.data.personal[0].height)
-            setWeight(res.data.personal[0].weight)
-            console.log("i am in front end", res.data.personal[0].height)
-          }
-        })
-    }
-  }, [location, token, user]);
-
-
-
   function validateForm() {
     return (
       height.length > 0 &&
@@ -129,14 +103,14 @@ export default function AddPersonalInfo() {
               >
                 <form onSubmit={handleSubmit}>
                   <label className="f-label" for="gender">
-                    Body height in feet and inches
+                    Body height in feet
                   </label>
 
                   <input
                     type="Float"
                     className="fname"
                     name="height"
-                    placeholder={height + " feet"}
+                    placeholder={height}
                     onChange={(e) => setheight(e.target.value)}
                   />
 
@@ -148,7 +122,7 @@ export default function AddPersonalInfo() {
                     type="Float"
                     className="fname"
                     name="weight"
-                    placeholder={weight + " kg"}
+                    placeholder={weight}
                     onChange={(e) => setWeight(e.target.value)}
                   />
 

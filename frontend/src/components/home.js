@@ -132,7 +132,7 @@ function Home(props) {
                 border: "1px solid #DCDCDC",
                 backgroundColor: "#fff",
                 padding: "7%",
-                borderRadius: "5px",
+                borderRadius: "10px",
                 paddingBottom: "0%"
               }}
             >
@@ -175,7 +175,8 @@ function Home(props) {
             style={{
               border: "1px solid #DCDCDC",
               backgroundColor: "#fff",
-              padding: "7%"
+              padding: "7%",
+            
             }}
           >
             <div className="float-container-mobile">
@@ -239,7 +240,7 @@ function Home(props) {
                 border: "1px solid #DCDCDC",
                 backgroundColor: "#fff",
                 padding: "7%",
-                borderRadius: "5px",
+                borderRadius: "10px",
                 paddingBottom: "4%"
               }}
             >

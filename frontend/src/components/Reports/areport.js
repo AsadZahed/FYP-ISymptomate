@@ -11,16 +11,18 @@ export default function AReport() {
   const [gender, setgender] = React.useState("");
   const [date, setDate] = React.useState();
   const [patientid, setpatientID] = React.useState();
- // const [reportid, setReportID] = React.useState();
+  // const [reportid, setReportID] = React.useState();
   // const [gender, setgender] = React.useState("male");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
-  const[ages,setages] = React.useState('');
+  const [ages, setages] = React.useState('');
   const [name, setName] = React.useState("anonymous");
   // const [id, setID] = React.useState("1234");
   const [cancer, sets] = React.useState("");
   const [i, setI] = React.useState("")
   const [msg, setMSG] = React.useState(null);
+  const [showResults, setShowResults] = React.useState(false)
+
   const dlist = [
     "Melanoma, also redundantly known as malignant melanoma, is a type of skin cancer that develops from the pigment-producing cells known as melanocytes. Melanomas typically occur in the skin but may rarely occur in the mouth, intestines or eye (uveal melanoma)",
     "Basal cell carcinoma Basal cell carcinoma is a type of skin cancer. Basal cell carcinoma begins in the basal cells — a type of cell within the skin that produces new skin cells as old ones die off. Basal cell carcinoma often appears as a slightly transparent bump on the skin, though it can take other forms.",
@@ -37,8 +39,6 @@ export default function AReport() {
     try {
       if (location.state) {
         console.log(location)
-        // {user?user.name:""}
-        console.log("my name is",patientid)
         setUser(location.state.user);
         setToken(location.state.token)
         setName(location.state.name)
@@ -46,13 +46,11 @@ export default function AReport() {
         setpatientID(location.state.patientid)
         setages(location.state.age)
         setgender(location.state.gender)
-       // setReportID(location.state.reportID)
         setName(location.state.name)
-        // setID(location.state.user._id)
         sets(location.state.cancer)
         setI(location.state.img)
         console.log(date)
-        
+
       } else {
         history.push('/skin/skincheck')
       }
@@ -64,7 +62,7 @@ export default function AReport() {
     }
   }, [location, history])
 
- 
+
 
   const checkdiseases = () => {
     var w = " ";
@@ -135,25 +133,15 @@ export default function AReport() {
 
         </ul>
       </div>
-
-      // <div>
-      //   <p style={{border:"2px solid black"}}>
-      //       {w}
-      //   </p>
-      // </div>
-
     );
   };
-
-  
-
 
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
       name: name,
       cancer: "cancer",
-      age: 12,
+      age: ages,
       time: date,
       reportID: "1",
       gender: "male"
@@ -178,20 +166,14 @@ export default function AReport() {
             },
           });
         }
-
-
       })
       .catch(res => setMSG("This report cannot be saved"));
   }
 
-  const [showResults, setShowResults] = React.useState(false)
-
-  //const onClick = () => setShowResults(true)
-
 
   return (
     <div>
-    <Header token={token} user={user} />
+      <Header token={token} user={user} />
       <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black" }}>
         <form onSubmit={handleSubmit}>
           <div
@@ -247,7 +229,7 @@ export default function AReport() {
                   <strong>Patient ID:</strong> {patientid}
                 </p>
                 <p>
-                  <strong>Report ID:</strong> {patientid+1}
+                  <strong>Report ID:</strong> {patientid + 1}
                 </p>
                 <p>
                   <strong>Submission Date:</strong>{date}

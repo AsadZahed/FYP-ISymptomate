@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import Header from "../Navbar/header"
-//import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function Report() {
 
     const [token, setToken] = React.useState(null)
@@ -20,7 +18,6 @@ export default function Report() {
     useEffect(() => {
         try {
             if (location.state) {
-
                 console.log(location)
                 setUser(location.state.user);
                 setToken(location.state.token)
@@ -30,73 +27,15 @@ export default function Report() {
                 setgender(location.state.user.gender)
                 setheight(location.state.user.height + " feet")
                 setWeight(location.state.user.weight + " kg")
-
             }
-
             else {
                 history.push('/addinfo/viewprofile')
             }
-
         }
         catch (res) {
             console.log(res.error)
-
         }
     }, [location, history])
-
-
-    // useEffect(() => {
-    //     if (location.state) {
-    //         setUser(location.state.user);
-    //         setToken(location.state.token);
-    //         axios.get('http://localhost:9000/users/getBAsicInfo', {
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    //                 'Authorization': `Bearer ${location.state.token}`
-    //             }
-    //         })
-    //             .then(res => {
-    //                 if (res.data.success === false) {
-    //                     setages("Not selected")
-    //                     setgender("Not selected")
-    //                 }
-    //                 else {
-    //                     console.log(res.data)
-
-    //                 }
-    //             })
-    //     }
-    // }, [location, token, user]);
-
-    // useEffect(() => {
-    //     if (location.state) {
-    //         setUser(location.state.user);
-    //         setToken(location.state.token);
-    //         axios.get('http://localhost:9000/users/getPersonalInfo', {
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    //                 'Authorization': `Bearer ${location.state.token}`
-    //             }
-    //         })
-    //             .then(res => {
-    //                 console.log(res.data)
-    //                 if (res.data.success === false) {
-    //                     setheight("Not selected")
-    //                     setWeight("Not selected")
-    //                 }
-    //                 else {
-
-    //                 }
-    //             })
-    //     }
-    // }, [location, token, user]);
-
-    const [showResults, setShowResults] = React.useState(false)
-
-    const onClick = () => setShowResults(true)
-
 
     return (
         <div style={{

@@ -62,15 +62,12 @@ router.post('/basicinfo', authenticate.verifyUser, (req, res, next) => {
   console.log(req.body)
   UserTemplate.findById(req.user._id, (err, user) => {
     console.log(req.user._id)
-    console.log("----------------finded-----------------------------")
     if (err)
       res.json({
         success: false,
         message: err
       })
     else if (user) {
-        console.log("----------------adding data-----------------------------")
- 
       user.age = req.body.age;
       user.gender = req.body.gender;
       user.save((err) => {
