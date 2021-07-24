@@ -34,11 +34,9 @@ export default function View() {
     axios.get("http://localhost:9000/users/admin/viewusers")
       .then((res, i) => {
         const patient = res.data;
+        console.log(patient)
         setPatients(patient)
-
       });
-
-
   }, [])
 
   const [check, setCheck] = React.useState(false)
@@ -75,7 +73,7 @@ export default function View() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
+                  <th>Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,9 +85,6 @@ export default function View() {
                     </tr>
                   )
                 })}
-
-
-
 
               </tbody>
               {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}

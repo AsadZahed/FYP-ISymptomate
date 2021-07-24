@@ -66,7 +66,7 @@ export default function Privilages() {
               >
                 <AiOutlineMail size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
                 <br />
-                <h5 style={{ color: "#0047b3" }}>View users by name</h5>
+                <h5 style={{ color: "#0047b3" }}>View users by Email</h5>
 
               </Link>
             </Button>
@@ -88,7 +88,7 @@ export default function Privilages() {
               >
                 <BiUser size="40%" color="#0047b3" />
                 <br />
-                <h5 style={{ color: "#0047b3" }}>View users by email</h5>
+                <h5 style={{ color: "#0047b3" }}>View users by name</h5>
               </Link>
 
             </Button>

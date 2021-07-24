@@ -12,7 +12,6 @@ var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin');
 var editprofileRouter = require('./routes/editprofile');
 var infoRouter = require('./routes/addinfo');
 var skinUpload = require('./routes/skin');
@@ -44,7 +43,6 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/editprofile', editprofileRouter);
-app.use('/admin', adminRouter);
 app.use('/addinfo', infoRouter);
 app.use('/skin', skinUpload);
 

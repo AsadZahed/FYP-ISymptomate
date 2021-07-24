@@ -83,6 +83,7 @@ router.post('/signup', (req, res, next) => {
     })
 });
 
+//ADMIN SIGNUP
 router.post('/admin/signup', (req, res, next) => {
   UserTemplate.register(new User({ username: req.body.username }),
     req.body.password, (err, user) => {
@@ -116,7 +117,6 @@ router.post('/admin/signup', (req, res, next) => {
 
 //PATIENT LOGIN
 router.post('/login', passport.authenticate('local'), (req, res, err) => {
-  // if (res.success) {
   console.log("Login")
   var token = authenticate.getToken({ _id: req.user._id });
   res.statusCode = 200;
@@ -126,17 +126,24 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
 });
 
 //VIEW USERS BY ADMIN
-
 router.get('/admin/viewusers', function (req, res, next) {
   UserTemplate.find({}).exec(function (error, results) {
     if (error) {
       return next(error);
     }
     // Respond with valid data
-    res.json(results);
+    var notAdmin=[];
+    for(var i=0;i<results.length;i++){
+      if(!results[i].isAdmin){
+       notAdmin.push(results[i]);
+      }
+    }
+    res.json(notAdmin)
+    
   });
 });
 
+//VIEW ALL REPORTS
 router.get('/admin/viewallreports', function (req, res, next) {
   Report.find({}).exec(function (error, results) {
     if (error) {
@@ -146,28 +153,8 @@ router.get('/admin/viewallreports', function (req, res, next) {
     res.json(results);
   });
 });
-// router.get('/reports/view', function (req, res, next) {
-//   Report.find({}).sort('name')
-//   .exec(function (err, data) {
-//       if (err) {
-//           return next(err)
-//       }
-//       res.json(data)
-//   })
 
-// });
-// router.get('/reports/view/:id', function (req, res, next) { ///:id
-//   console.log(req.params.id)
-//   Report.findById(req.params.id)
-//   .then((report) => {
-//       res.statusCode = 200;
-//       res.setHeader("Content-Type", "application/json")
-//       res.json(report)
-//   }, (err) => next(err)
-//   ), (err) => next(err)
-
-// });
-
+//VIEW SPECIFIC REPORTS
 router.get('/reports/view', authenticate.verifyUser, (req, res) => {
   Report.find({ p_id: req.user._id }, (err, reps) => {
     if (err) res.json({ success: false, message: err.name })
@@ -175,7 +162,7 @@ router.get('/reports/view', authenticate.verifyUser, (req, res) => {
     else res.json({ success: false, message: 'No Reports' })
   })
 })
-
+//VIEW PROFILE
 router.get('/profile/viewprofile', function (req, res, next) {
   UserTemplate.find({}).exec(function (error, results) {
     if (error) {
@@ -188,7 +175,6 @@ router.get('/profile/viewprofile', function (req, res, next) {
 
 
 //EDIT AGE
-
 router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
@@ -225,7 +211,6 @@ router.post('/editprofile/changeDOB', authenticate.verifyUser, (req, res) => {
 })
 
 //EDIT USERNAME
-
 router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
@@ -249,42 +234,6 @@ router.post('/editprofile/changeusername', authenticate.verifyUser, (req, res) =
           res.json({
             success: true,
             message: 'Name Updated Successffully'
-          })
-        }
-      })
-    } else {
-      res.json({
-        success: false,
-        message: 'User not found'
-      }); // Return error, user was not found in db
-    }
-  })
-})
-
-//Change email
-router.post('/editprofile/changeemail', authenticate.verifyUser, (req, res) => {
-  console.log(req.user._id)
-  console.log(req.body)
-  UserTemplate.findById(req.user._id, (err, user) => {
-    console.log(req.user._id)
-    if (err)
-      res.json({
-        success: false,
-        message: err
-      })
-    else if (user) {
-      user.username = req.body.newEmail;
-      user.save((err) => {
-        if (err) {
-          res.json({
-            success: false,
-            message: err.name
-          })
-        }
-        else {
-          res.json({
-            success: true,
-            message: 'Email Updated Successffully'
           })
         }
       })
@@ -338,9 +287,7 @@ router.post('/editprofile/changepassword', authenticate.verifyUser, (req, res) =
   })
 })
 
-
-
-//delete user
+//DELETE USER
 router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) => {
   console.log(req.user._id)
   console.log(req.body)
@@ -375,6 +322,7 @@ router.delete('/editprofile/deleteusers', authenticate.verifyUser, (req, res) =>
   })
 })
 
+//DELETE REPORTS
 router.delete('/reports/view/delete', authenticate.verifyUser, (req, res) => {
   console.log("user is ", req.user._id)
   console.log("pid is ", req.body.p_id)
