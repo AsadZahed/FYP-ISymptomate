@@ -60,9 +60,7 @@ export default function Report() {
                         <p style={{ fontSize: "20px", fontWeight: "500" }}>
                             I-Symptomate | An intelligent
                         </p>
-                        <p style={{ alignSelf: "center" }}>
-                            View Profile
-                        </p>
+                       
                     </div>
                     <div style={{ backgroundColor: "#ffff", padding: "10px" }}>
                         <div
@@ -74,9 +72,10 @@ export default function Report() {
                         >
                             <p
                                 style={{
-                                    fontSize: "20px",
+                                    fontSize: "24px",
                                     fontWeight: "500",
                                     textDecoration: "underline",
+                                    
                                 }}
                             >
                                 Patient Information:
@@ -88,8 +87,9 @@ export default function Report() {
                                 flexDirection: "row",
                                 justifyContent: "space-around",
                                 color: "#282c34",
-                                textDecoration: "underline",
+                                textDecoration: "none",
                                 padding: "10px",
+                                fontSize:"20px"
                             }}
                         >
                             <div style={{ marginRight: "-10%" }}>

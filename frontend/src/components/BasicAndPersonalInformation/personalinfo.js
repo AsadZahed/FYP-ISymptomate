@@ -23,8 +23,8 @@ export default function AddPersonalInfo() {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token)
-      setheight(location.state.user.height+" feet")
-      setWeight(location.state.user.weight+" kg")
+      setheight(location.state.user.height + " feet")
+      setWeight(location.state.user.weight + " kg")
     } else {
       history.push('/')
     }
@@ -61,12 +61,8 @@ export default function AddPersonalInfo() {
   }
   function validateForm() {
     return (
-      height.length > 0 &&
-      height > 3.0 &&
-      height < 8.0 &&
-      weight.length > 0 &&
-      weight > 0 &&
-      weight < 350
+      height.length > 0 && height > 3.0 && height < 8.0 ||
+      weight.length > 0 && weight > 0 && weight < 350
     );
   }
   return (

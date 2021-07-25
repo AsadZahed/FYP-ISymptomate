@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 
 import "../../styles.css";
 import SymptomsIntroImg from "../../components/images/symptoms-intro-img.PNG";
@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 
 
 function SIntroduction() {
-  
+
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
   var history = useHistory();
@@ -33,7 +33,7 @@ function SIntroduction() {
 
   return (
     <div>
-   <Header token={token} user={user} />
+      <Header token={token} user={user} />
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>
           <div
@@ -57,25 +57,28 @@ function SIntroduction() {
               }}
             >
               <div className="float-child">
-                {" "}
-                <h3>Welcome {user?user.name:" "} !</h3>
-              <p>
-                You’re about to use a short (3 min), safe and anonymous health
-                checkup. 
-              </p>
-              <p>
-              Your answers will be carefully analyzed and you’ll
-              learn about possible Skin disease out of your provided Skin Images.
-              </p>
-              <p><b>Step-1:</b>
-              Upload the image of Affected part of your skin.
-              </p>
-              <p><b>Step-2:</b>
-               Get instant result by clicking on Button!
-              </p>
-              <p><b>Step-3:</b>
-               Get report of your disease!
-              </p>
+
+                <h3>Welcome {user ? user.name : " "} !</h3>
+                <p style={{ fontSize: "16px" }}>
+                  You’re about to use a short (3 min), safe and anonymous health
+                  checkup.
+                </p>
+                <p style={{ fontSize: "16px" }}>
+                  Your answers will be carefully analyzed and you’ll
+                  learn about possible Skin disease out of your provided Skin Images.
+                </p>
+                <p style={{ fontSize: "16px" }}>
+                  <b>Step-1:</b>
+                  Upload the image of Affected part of your skin.
+                </p>
+                <p style={{ fontSize: "16px" }}>
+                  <b>Step-2:</b>
+                  Get instant result by clicking on Button!
+                </p>
+                <p style={{ fontSize: "16px" }}>
+                  <b>Step-3:</b>
+                  Get report of your disease!
+                </p>
               </div>
               <div className="float-child">
                 <img src={SymptomsIntroImg} alt="introimage" />
@@ -90,7 +93,7 @@ function SIntroduction() {
               }}
             >
               <Button variant="warning">
-              <Link
+                <Link
                   to={{
                     pathname: "/skin/skinterms",
                     state: {
@@ -99,10 +102,10 @@ function SIntroduction() {
                     },
                   }}
                 >
-                   Next
+                  Next
                 </Link>
-               
-            </Button>{" "}
+
+              </Button>{" "}
             </div>
           </div>
         </BrowserView>
@@ -131,7 +134,7 @@ function SIntroduction() {
                   You’re about to use a short (3 min), safe and anonymous health
                   checkup. Your answers will be carefully analyzed and you’ll
                   learn about possible causes of your symptoms.
-              </p>
+                </p>
               </div>
               <div className="float-child">
                 <img
@@ -151,12 +154,12 @@ function SIntroduction() {
             >
               <Button href="/skin/skinterms" variant="warning">
                 Next
-            </Button>{" "}
+              </Button>{" "}
             </div>
           </div>
         </MobileView>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 export default SIntroduction;

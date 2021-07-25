@@ -1,4 +1,8 @@
 import React from "react";
+import "../styles.css";
+import "../components/Symptoms/App.css"
+import Header from "./Navbar/sheader";
+
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import Image1 from "../components/images/slider-1.jpeg";
@@ -7,19 +11,17 @@ import Image3 from "../components/images/slider-3.jpeg";
 import Image4 from "../components/images/slider-4.jpg";
 import Image5 from "../components/images/slider-5.jpg";
 import Image6 from "../components/images/slider-6.jpg";
+import HomeImage2 from "../components/images/homeimg.PNG";
+
 import { BiArrowFromLeft, BiCheck } from "react-icons/bi";
 import { RiLoginBoxLine } from "react-icons/ri";
 import { AiFillSecurityScan, AiOutlineScan } from "react-icons/ai";
 import { HiOutlineDocumentSearch } from "react-icons/hi";
+
 import CountUp from "react-countup";
 import { Button } from "react-bootstrap";
-import HomeImage2 from "../components/images/homeimg.PNG";
 import { Link } from "react-router-dom";
 import { BrowserView } from "react-device-detect";
-import "../styles.css";
-import "../components/Symptoms/App.css"
-import Header from "./Navbar/sheader";
-
 export default function Slider() {
 
     const data = [
@@ -45,7 +47,7 @@ export default function Slider() {
             <div>
 
             </div>
-            <AliceCarousel autoPlay autoPlayInterval="2000" style={{borderRadius:"10px"}}>
+            <AliceCarousel autoPlay autoPlayInterval="2000" style={{ borderRadius: "10px" }}>
                 <div>
                     <div
                         style={{
@@ -54,7 +56,7 @@ export default function Slider() {
                             paddingBottom: "0%"
                         }}
                     >
-                        <img src={Image1} alt="img1" className="sliderimg"  style={{borderRadius:"10px"}} />
+                        <img src={Image1} alt="img1" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
                 <div style={{
@@ -63,7 +65,7 @@ export default function Slider() {
                     paddingBottom: "0%",
                 }}>
                     <div>
-                        <img src={Image2} alt="img2" className="sliderimg" style={{borderRadius:"10px"}} />
+                        <img src={Image2} alt="img2" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
                 <div style={{
@@ -72,7 +74,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image3} alt="imgg" className="sliderimg"  style={{borderRadius:"10px"}}/>
+                        <img src={Image3} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
                 <div style={{
@@ -81,7 +83,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image4} alt="imgg" className="sliderimg" style={{borderRadius:"10px"}} />
+                        <img src={Image4} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
                 <div style={{
@@ -90,7 +92,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image5} alt="imgg" className="sliderimg" style={{borderRadius:"10px"}} />
+                        <img src={Image5} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
                 <div style={{
@@ -99,7 +101,7 @@ export default function Slider() {
                     paddingBottom: "0%"
                 }}>
                     <div>
-                        <img src={Image6} alt="imgg" className="sliderimg"  style={{borderRadius:"10px"}}/>
+                        <img src={Image6} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
                     </div>
                 </div>
             </AliceCarousel>
@@ -112,7 +114,7 @@ export default function Slider() {
                         flexDirection: "row",
                         paddingLeft: "28%",
                         paddingRight: "28%",
-                        borderRadius:"10px"
+                        borderRadius: "10px"
                     }}
                 >
                     <Button variant="link">
@@ -222,7 +224,7 @@ export default function Slider() {
                                 borderRadius: "5px",
                                 paddingLeft: "37%",
                                 backgroundColor: "#0047b3",
-                                borderRadius:"10px"
+                                borderRadius: "10px"
                             }}
                         >
 
@@ -231,7 +233,7 @@ export default function Slider() {
                             </div>
 
                         </div>
-                        <h3 style={{ paddingLeft: "32%", }}>Patients visted this website</h3>
+                        <h3 style={{ paddingLeft: "32%", fontWeight: "bold", }}>Patients visited this website</h3>
 
                     </div>
 
@@ -246,7 +248,7 @@ export default function Slider() {
                         paddingRight: "12%",
                         paddingTop: "5%",
                         paddingBottom: "4%",
-                        
+
                     }}
                 >
                     <BrowserView>
@@ -259,17 +261,12 @@ export default function Slider() {
                                 paddingTop: "4%",
                                 borderRadius: "5px",
                                 paddingBottom: "4%",
-                                borderRadius:"10px"
+                                borderRadius: "10px"
                             }}
                         >
                             <div className="float-child">
-                                <h2
-                                    style={{
-                                        textAlign: "left"
-                                    }}
-                                >
-                                    Symptomate provides you with a fast and accurate health
-                                    assessment
+                                <h2 style={{ textAlign: "left" }}>
+                                    Symptomate provides you with a fast and accurate health assessment
                                     {/* <img src={Number} alt="number" /> */}
                                 </h2>
 
@@ -290,7 +287,6 @@ export default function Slider() {
                                     <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }} >
                                         < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                         {data1[0]}
-
                                     </h5>
                                     <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
                                         < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
@@ -300,20 +296,10 @@ export default function Slider() {
                                         < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
                                         {data1[2]}
                                     </h5 >
-                                    <h5 style={{ border: "2px solid  #DCDCDC", padding: "3%" }}>
-                                        < BiCheck size="3rem" style={{ color: "#0047b3", paddingBottom: "2%" }} />
-                                        {data1[3]}
-                                    </h5 >
-
                                 </div>
-
-
                             </div>
                             <div>
-                                <img
-                                    src={HomeImage2}
-                                    alt="HomeImage2"
-                                />
+                                <img src={HomeImage2} alt="HomeImage2" />
                             </div>
                         </div>
                     </BrowserView>

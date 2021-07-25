@@ -55,7 +55,8 @@ function Question() {
             style={{
               border: "1px solid #DCDCDC",
               backgroundColor: "#fff",
-              padding: "7%"
+              padding: "7%",
+              fontSize:"16px"
             }}
           >
             <h3 style={{ textAlign: "center" }}>

@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Alert } from "react-bootstrap";
 import "../Login.css";
 
 // import { BrowserView, MobileView } from "react-device-detect";
@@ -20,6 +20,7 @@ export default function ASignup() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [cpassword, setCPassword] = React.useState("");
+  const [showResults, setShowResults] = React.useState(false);
   const [error, setError] = React.useState("");
   var history = useHistory();
 
@@ -46,7 +47,7 @@ export default function ASignup() {
       }
     })
       .then((res) => {
-       if (res.data.user.isAdmin)
+        if (res.data.user.isAdmin)
           history.push({
             pathname: "/login",
             state: {
@@ -63,7 +64,7 @@ export default function ASignup() {
             }
           })
 
-      }).catch(err => console.log(err))
+      }).catch(err => setShowResults(true))
     // .catch((res) => setError("Sign up error"))
 
     // axios.post('http://localhost:9000/users/signup', googleData, {
@@ -92,10 +93,6 @@ export default function ASignup() {
 
     //   });
   }
-
-  const [showResults, setShowResults] = React.useState(false)
-
-  const onClick = () => setShowResults(true)
 
   const [showloginButton, setShowloginButton] = React.useState(true);
   const [showlogoutButton, setShowlogoutButton] = React.useState(false);
@@ -217,10 +214,7 @@ export default function ASignup() {
                         onChange={(e) => setCPassword(e.target.value)}
                       />
                     </Form.Group>
-                    {showResults ?
-                      <div className="validation ">
-
-                        {error} </div> : <div></div>}
+                    {showResults ? <Alert variant="danger">Error while registering</Alert> : <div></div>}
 
                     <div style={{ textAlign: "center", paddingTop: "3%" }}>
                       <div>
@@ -229,7 +223,6 @@ export default function ASignup() {
                           onClick={validatePassword}
                           size="lg"
                           type="submit"
-                          onClick={onClick}
                           disabled={!validateForm()}
                         >
                           Register

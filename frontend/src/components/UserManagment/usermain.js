@@ -5,6 +5,12 @@ import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { BiUserCheck } from "react-icons/bi";
+import { FcManager } from "react-icons/fc";
+import { MdDateRange } from "react-icons/md";
+import { GiBodyHeight } from "react-icons/gi";
+import { AiFillDelete } from "react-icons/ai";
 
 export default function UserMain() {
   var history = useHistory();
@@ -46,15 +52,15 @@ export default function UserMain() {
 
             <div
               style={{
-                // display: "flex",
-                // flexDirection: "column",
+                display: "flex",
+                flexDirection: "row",
                 textAlign: "center",
-                color:"#ffff"
+                color: "#ffff"
               }}
             >
-              <Button variant="warning" style = {{margin: "5px"}}>
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
                 <Link
-                style = {{color: "#0c0530"}}
+                  style={{ color: "#0c0530" }}
                   to={{
                     pathname: "/users/editprofile/changeusername",
                     state: {
@@ -63,6 +69,8 @@ export default function UserMain() {
                     },
                   }}
                 >
+                  <FcManager size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
                   Change username
                 </Link>
               </Button>
@@ -73,10 +81,12 @@ export default function UserMain() {
                     </Button>
                     </div>
                     </div> */}
-                      
-              <Button variant="warning"  style = {{margin: "5px"}}>
+
+
+
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
                 <Link
-                style = {{color: "#0c0530"}}
+                  style={{ color: "#0c0530" }}
                   to={{
                     pathname: "/users/editprofile/changepassword",
                     state: {
@@ -85,27 +95,49 @@ export default function UserMain() {
                     },
                   }}
                 >
+                  <RiLockPasswordFill size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
                   Change password
                 </Link>
               </Button>
-              <Button variant="warning"  style = {{margin: "5px"}}>
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
                 <Link
-                style = {{color: "#0c0530"}}
+                  style={{ color: "#0c0530" }}
                   to={{
-                    pathname: "/users/editprofile/changeDOB",
+                    pathname: "/addinfo/basicinfo",
                     state: {
                       token: token,
                       user: user,
                     },
                   }}
                 >
-                  Change Age
+                  <MdDateRange size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
+                  Change Age and gender
                 </Link>
               </Button>
-              
-              <Button variant="warning"  style = {{margin: "5px"}}>
+
+
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
                 <Link
-                style = {{color: "#0c0530"}}
+                  style={{ color: "#0c0530" }}
+                  to={{
+                    pathname: "/addinfo/personalinfo",
+                    state: {
+                      token: token,
+                      user: user,
+                    },
+                  }}
+                >
+                  <GiBodyHeight size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
+                  Change height and weight
+                </Link>
+              </Button>
+
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
+                <Link
+                  style={{ color: "#0c0530" }}
                   to={{
                     pathname: "/users/editprofile/deleteuser",
                     state: {
@@ -114,6 +146,8 @@ export default function UserMain() {
                     },
                   }}
                 >
+                  <AiFillDelete size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
                   Delete account
                 </Link>
               </Button>

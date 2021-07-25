@@ -57,7 +57,7 @@ export default function STerms() {
                 padding: "3%"
               }}
             >
-              <div className="float-child">
+              <div className="float-child" style={{fontSize:"16px"}}>
                 <h3>Terms of Service</h3>
                 <p>
                   Before using the checkup, please read Terms of Service. Remember

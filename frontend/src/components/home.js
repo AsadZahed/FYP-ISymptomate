@@ -18,8 +18,6 @@ import "../styles.css";
 //import uselocation
 import { useHistory, useLocation } from "react-router";
 
-
-
 function Home(props) {
   const location = useLocation();
   const history = useHistory();
@@ -138,12 +136,12 @@ function Home(props) {
             >
               <div className="float-container">
                 <div className="float-child">
-                  <h2>Intelligent technology you can trust</h2>
-                  <p>
+                  <h2 style={{fontWeight:"bold"}}>Intelligent technology you can trust</h2>
+                  <h5>
                     Symptomate AI uses our doctors’ knowledge, scientific
                     literature and statistical data culled from thousands of
                     patient cases.
-                  </p>
+                  </h5>
                   <Button href="/addinfo/conditionlibrary" className="homeButton" variant="link">
                     <Link
                       to={{
@@ -161,7 +159,7 @@ function Home(props) {
                 <div className="float-child">
                   <img
                     className="more-info-img-styles"
-                    style={{ paddingLeft: "20%" }}
+                    style={{ marginLeft: "20%" }}
                     src={MoreInfoImg}
                     alt="moreinfoimage"
                   />
@@ -175,8 +173,7 @@ function Home(props) {
             style={{
               border: "1px solid #DCDCDC",
               backgroundColor: "#fff",
-              padding: "7%",
-            
+              padding: "7%",          
             }}
           >
             <div className="float-container-mobile">
@@ -244,17 +241,17 @@ function Home(props) {
                 paddingBottom: "4%"
               }}
             >
-              <h2>Write Chat bot</h2>
-              <p>
+              <h2 style={{fontWeight:"bold"}}>Write Chat bot</h2>
+              <h5>
                 Symptomate can also conduct interviews via fast and friendly chat
                 conversations*.
-              </p>
+              </h5>
               <div href="/chatbot">
-                <h9>
+                <h5>
                   <Button href="/chatbot" className="homeButton" variant="link">
                     Begin Chat <BsArrowRight />
-                  </Button>{" "}
-                </h9>
+                  </Button>
+                </h5>
                 <p style={{ color: "#dcdcdc" }}>*English only</p>
                 <div className="chatbot-img-styles">
                   <img src={ChatbotImg} alt="ChatbotImage" />
