@@ -3,6 +3,8 @@ import Header from "../../Navbar/header";
 import "../../../styles.css";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 export default function TableView(props) {
   //   const [isHidden, setIsHidden] = React.useState(true);
   //   const handel = name => {
@@ -12,6 +14,22 @@ export default function TableView(props) {
   //       }
   //     }
   // }
+
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location)
+      setUser(location.state.user);
+      setToken(location.state.token)
+    } else {
+      history.push('/reports/analysis')
+    }
+  }, [location, history])
+
 
   const countryList = [
     "Afghanistan",
@@ -520,12 +538,12 @@ export default function TableView(props) {
   const dummy = countryListAllIsoData.slice(0, 10);
   const dummy1 = countryListAllIsoData.slice(11, countryListAllIsoData.length)
   const [check, setCheck] = React.useState(false)
-  
+
   function show() {
     console.log(dummy1)
     setCheck(true);
   }
-   
+
   function hide() {
     console.log(dummy1)
     setCheck(false);
@@ -546,33 +564,33 @@ export default function TableView(props) {
         <tbody>
           {dummy.map((name, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{name.name}</td>
 
-                <td>{((name.number/100))+10}% </td>
+                <td>{((name.number / 100)) + 10}% </td>
               </tr>
             )
           })}
 
-          
+
           {check && dummy1.map((name, index = 10) => {
             return (
               <tr>
                 <td>{index + 11}</td>
                 <td>{name.name}</td>
-                <td>{name.number}% </td>    
+                <td>{name.number}% </td>
               </tr>
             )
           })
           }
 
+          {check && <Button variant="link" onClick={hide}>Hide</Button>}
 
+          {check !== true && <Button variant="link" onClick={show}>More</Button>}
 
         </tbody>
-        {check &&  <Button  variant="link" onClick={hide}>Hide</Button>}
 
-        {check !== true && <Button variant="link" onClick={show}>More</Button>}
 
       </Table>
 

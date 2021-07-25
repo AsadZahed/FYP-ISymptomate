@@ -208,14 +208,13 @@ function Header(props) {
             </Link>
           </NavDropdown.Item>
           
-
-
           <NavDropdown.Item>
             <Link to={{
               pathname: '/reports/analysis',
               state: {
                 token: props.token,
-                user: props.user
+                user: props.user,
+                data:"FAHEEM"
               }
             }}>
               Analysis

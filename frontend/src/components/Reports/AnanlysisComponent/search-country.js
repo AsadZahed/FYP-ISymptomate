@@ -1,11 +1,27 @@
 import React, { useEffect } from "react";
 import Header from "../../Navbar/header";
 import "../../../styles.css";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { Table } from "react-bootstrap";
 
 export default function TableSearchView(props) {
-  
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location)
+      setUser(location.state.user);
+      setToken(location.state.token)
+    } else {
+      history.push('/reports/analysis')
+    }
+  }, [location, history])
+
   const [country,setCountry]=React.useState(props.country)
   const countryListAllIsoData = [
     { "code": "AF", "code3": "AFG", "name": "Afghanistan", "number": "004" },

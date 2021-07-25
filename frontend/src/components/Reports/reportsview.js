@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
 import Header from "../Navbar/header";
 import axios from 'axios';
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { Button, Table } from "react-bootstrap";
+import { useHistory, Link } from "react-router-dom";
 import { useLocation } from "react-router";
-import { Table } from "react-bootstrap";
 
 export default function View() {
 
     const [reports, viewReports] = React.useState([]);
-    //const [name, setName] = React.useState();
     const [age, setAge] = React.useState("12");
     // const [data, setData] = React.useState();
     // const [patientid, setpatientID] = React.useState();
@@ -18,11 +15,22 @@ export default function View() {
     const [gender, setgender] = React.useState("male");
     const [token, setToken] = React.useState(null)
     const [user, setUser] = React.useState(null);
-    const [check,setCheck] = React.useState(false);
+    const [check, setCheck] = React.useState(false);
     const [cancer, setCancer] = React.useState("Cancer");
     // const [userId, setUSerID] = React.useState("")
     var history = useHistory();
     var location = useLocation();
+
+
+    useEffect(() => {
+        if (location.state) {
+            console.log(location)
+            setUser(location.state.user);
+            setToken(location.state.token);
+        } else {
+            history.push('/reports/view')
+        }
+    }, [location, history])
 
 
     useEffect(() => {
@@ -85,110 +93,82 @@ export default function View() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {check !== true ? 
-                                <tr>
-                                    <td>No data to show</td>
-                                    <td>No data to show</td>
-                                    <td>No data to show</td>
-                                    <td>No data to show</td>
-                                    <td>No data to show</td>
-                                   
-                                </tr>
-                                 :
-                                 reports.map((person, index) => {
-                                    console.log("person is ", person)
-                                    return (
-                                        
-                                        <tr>
-                                            <td>{index + 1}</td>
-                                            {/* <td>{person.name}</td> */}
-                                            <td>{person.time}</td>
-                                            <td>{person.cancer}</td>
-                                            <td>
-                                                <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-                                                    <Button variant="success">
+                                {check !== true ?
+                                    <tr>
+                                        <td>No data to show</td>
+                                        <td>No data to show</td>
+                                        <td>No data to show</td>
+                                        <td>No data to show</td>
+                                        <td>No data to show</td>
+
+                                    </tr>
+                                    :
+                                    reports.map((person, index) => {
+                                        console.log("person is ", person)
+                                        return (
+
+                                            <tr>
+                                                <td>{index + 1}</td>
+                                                {/* <td>{person.name}</td> */}
+                                                <td>{person.time}</td>
+                                                <td>{person.cancer}</td>
+                                                <td>
+                                                    <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+                                                        <Button variant="success">
+                                                            <Link
+                                                                to={{
+                                                                    pathname: "/reports/aviewreports",
+                                                                    state: {
+                                                                        token: token,
+                                                                        user: user,
+                                                                        name: person.name,
+                                                                        age: age,
+                                                                        date: person.time,
+                                                                        patientid: person.p_id,
+                                                                        reportid: person.reportID,
+                                                                        gender: gender,
+                                                                        cancer: cancer,
+                                                                    },
+                                                                }}
+                                                                style={{
+                                                                    //marginTop:"5%",
+                                                                    //marginBottom:"10%",
+                                                                    color: "black"
+                                                                }}
+                                                            >
+                                                                View full report
+                                                            </Link>
+
+                                                        </Button>
+                                                    </div>
+
+                                                </td>
+
+                                                <td>
+                                                    <Button variant="danger" style={{ margin: "5px" }}>
                                                         <Link
+                                                            style={{ color: "#0c0530" }}
                                                             to={{
-                                                                pathname: "/reports/aviewreports",
+                                                                pathname: "/users/reports/view/delete",
                                                                 state: {
                                                                     token: token,
                                                                     user: user,
-                                                                    name: person.name,
-                                                                    age: age,
-                                                                    date: person.time,
-                                                                    patientid: person.p_id,
-                                                                    reportid: person.reportID,
-                                                                    gender: gender,
-                                                                    cancer: cancer,
                                                                 },
                                                             }}
-                                                            style={{
-                                                                //marginTop:"5%",
-                                                                //marginBottom:"10%",
-                                                                color: "black"
-                                                            }}
                                                         >
-                                                            View full report
+                                                            Delete Report
                                                         </Link>
-
                                                     </Button>
-                                                </div>
-
-                                            </td>
-
-                                            <td>
-                                                <Button variant="danger" style={{ margin: "5px" }}>
-                                                    <Link
-                                                        style={{ color: "#0c0530" }}
-                                                        to={{
-                                                            pathname: "/users/reports/view/delete",
-                                                            state: {
-                                                                token: token,
-                                                                user: user,
-                                                            },
-                                                        }}
-                                                    >
-                                                        Delete Report
-                                                    </Link>
-                                                </Button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-
-
-
-
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
                             </tbody>
                             {/* {check && <Button variant="link" onClick={hide}>Hide</Button>}
 
               {check !== true && <Button variant="link" onClick={show}>More</Button>} */}
 
                         </Table>
-
-                        {/* <ul>
-                    {
-                        reports.map(person =>
-                            <li className="shome-styles" style={{ fontSize: "20px" }}>
-                                Report of {person.name} and taken at {person.time} and you've {person.cancer}
-
-
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        textAlign: "left"
-                                    }}
-                                >
-
-                                </div>
-
-                            </li>
-
-                        )}
-
-                </ul>
- */}
                     </div>
                 </div>
             </div>
