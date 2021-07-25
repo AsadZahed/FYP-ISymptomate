@@ -35,9 +35,6 @@ import Results from "../components/Symptoms/results";
 import UserMain from "../components/UserManagment/usermain";
 import ChangeUsername from "../components/UserManagment/changeusername";
 import ChangePassword from "../components/UserManagment/changepassword";
-import ChangeEmail from "../components/UserManagment/changeemail";
-import ChangeDOB from "../components/UserManagment/changedob";
-import ESignup from "../components/UserManagment/signup";
 import DeleteAccount from "../components/UserManagment/deleteaccount";
 
 import Addbasicinfo from "../components/BasicAndPersonalInformation/basicinfo";
@@ -83,7 +80,7 @@ function Driver() {
         <Route path="/moreinfo" exact component={MoreInfo} />
         <Route path="/skincancerdetection" exact component={Skincancerdetecion} />
         <Route path="/symptomatediseasedetection" exact component={Symptomatediseasedetection} />
-        
+
         {/* SymptomSearch */}
         <Route path="/symptoms/terms" exact component={Terms} />
         <Route path="/symptoms/introduction" exact component={Introduction} />
@@ -101,9 +98,6 @@ function Driver() {
         <Route path="/editprofile" exact component={UserMain} />
         <Route path="/users/editprofile/changeusername" exact component={ChangeUsername} />
         <Route path="/users/editprofile/changepassword" exact component={ChangePassword} />
-        <Route path="/users/editprofile/changeemail" exact component={ChangeEmail} />
-        <Route path="/users/editprofile/changeDOB" exact component={ChangeDOB} />
-        <Route path="/editprofile/signup" exact component={ESignup} />
         <Route path="/users/editprofile/deleteuser" exact component={DeleteAccount} />
 
         <Route path="/addinfo/basicinfo" exact component={Addbasicinfo} />

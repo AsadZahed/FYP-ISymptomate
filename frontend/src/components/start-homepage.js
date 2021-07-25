@@ -51,8 +51,8 @@ export default function Slider() {
                 <div>
                     <div
                         style={{
-                            paddingLeft: "11.5%",
-                            paddingRight: "11.5%",
+                            paddingLeft: "12%",
+                            paddingRight: "12%",
                             paddingBottom: "0%"
                         }}
                     >
@@ -60,8 +60,8 @@ export default function Slider() {
                     </div>
                 </div>
                 <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
+                    paddingLeft: "12%",
+                    paddingRight: "12%",
                     paddingBottom: "0%",
                 }}>
                     <div>
@@ -78,8 +78,8 @@ export default function Slider() {
                     </div>
                 </div>
                 <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
+                    paddingLeft: "12%",
+                    paddingRight: "12%",
                     paddingBottom: "0%"
                 }}>
                     <div>
@@ -87,8 +87,8 @@ export default function Slider() {
                     </div>
                 </div>
                 <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
+                    paddingLeft: "12%",
+                    paddingRight: "12%",
                     paddingBottom: "0%"
                 }}>
                     <div>
@@ -96,8 +96,8 @@ export default function Slider() {
                     </div>
                 </div>
                 <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
+                    paddingLeft: "12%",
+                    paddingRight: "12%",
                     paddingBottom: "0%"
                 }}>
                     <div>
@@ -106,106 +106,113 @@ export default function Slider() {
                 </div>
             </AliceCarousel>
 
-
             <div>
                 <div
                     style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        paddingLeft: "28%",
-                        paddingRight: "28%",
-                        borderRadius: "10px"
+                        paddingLeft: "12%",
+                        paddingRight: "12%",
+                        paddingTop: "2%",
                     }}
                 >
-                    <Button variant="link">
-                        <div
-                            style={{
-                                padding: "2%",
-                                paddingLeft: "8%",
-                                paddingRight: "8%"
-                            }}
-                        >
-                            <Link
-                                style={{ color: "white" }}
-                                to={{
-                                    pathname: "/login",
+                    <div
+                        className="float-container"
+                        style={{
+                            border: "1px solid #DCDCDC",
+                            backgroundColor: "#fff",
+                            paddingTop: "4%",
+                            borderRadius: "5px",
+                            borderRadius: "10px"
+                        }}
+                    >
+                        <Button variant="link">
+                            <div
+                                style={{
+                                    padding: "2%",
+                                    paddingLeft: "8%",
+                                    paddingRight: "8%"
                                 }}
                             >
-                                <HiOutlineDocumentSearch size="80%" color="#0047b3" />
-                                <br />
-                                <h5 style={{ color: "#0047b3" }}>Online Reports</h5>
+                                <Link
+                                    style={{ color: "white" }}
+                                    to={{
+                                        pathname: "/login",
+                                    }}
+                                >
+                                    <HiOutlineDocumentSearch size="50%" color="#0047b3" />
+                                    <br />
+                                    <h5 style={{ color: "#0047b3" }}>Online Reports</h5>
 
-                            </Link>
-                        </div>
-                    </Button>
-                    <div style={{ padding: "1%" }}></div>
-                    <Button variant="link">
-                        <div
-                            style={{
-                                padding: "2%",
-                                paddingLeft: "8%",
-                                paddingRight: "8%"
-                            }}
-                        >
-                            <Link
-                                style={{ color: "white" }}
-                                to={{
-                                    pathname: "/login",
+                                </Link>
+                            </div>
+                        </Button>
+                        <div style={{ padding: "1%" }}></div>
+                        <Button variant="link">
+                            <div
+                                style={{
+                                    padding: "2%",
+                                    paddingLeft: "8%",
+                                    paddingRight: "8%"
                                 }}
                             >
-                                <AiOutlineScan size="80%" color="#0047b3" />
-                                <br />
-                                <h5 style={{ color: "#0047b3" }}>Scan Skin Image</h5>
-                            </Link>
-                        </div>
-                    </Button>
+                                <Link
+                                    style={{ color: "white" }}
+                                    to={{
+                                        pathname: "/login",
+                                    }}
+                                >
+                                    <AiOutlineScan size="50%" color="#0047b3" />
+                                    <br />
+                                    <h5 style={{ color: "#0047b3" }}>Scan Skin Image</h5>
+                                </Link>
+                            </div>
+                        </Button>
 
-                    <div style={{ padding: "1%" }}></div>
-                    <Button variant="link">
-                        <div
-                            style={{
-                                padding: "2%",
-                                paddingLeft: "8%",
-                                paddingRight: "8%"
-                            }}
-                        >
-                            <Link
-                                style={{ color: "white" }}
-                                to={{
-                                    pathname: "/login",
+                        <div style={{ padding: "1%" }}></div>
+                        <Button variant="link">
+                            <div
+                                style={{
+                                    padding: "2%",
+                                    paddingLeft: "8%",
+                                    paddingRight: "8%"
                                 }}
                             >
-                                <AiFillSecurityScan size="80%" color="#0047b3" style={{ paddingTop: "3%" }} />
-                                <br />
-                                <h5 style={{ color: "#0047b3" }}>Symptomate Disease Detection</h5>
+                                <Link
+                                    style={{ color: "white" }}
+                                    to={{
+                                        pathname: "/login",
+                                    }}
+                                >
+                                    <AiFillSecurityScan size="50%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                                    <br />
+                                    <h5 style={{ color: "#0047b3" }}>Symptomate Disease Detection</h5>
 
-                            </Link>
-                        </div>
-                    </Button>
+                                </Link>
+                            </div>
+                        </Button>
 
-                    <div style={{ padding: "1%" }}></div>
-                    <Button variant="link">
-                        <div
-                            style={{
-                                padding: "2%",
-                                paddingLeft: "8%",
-                                paddingRight: "8%"
-                            }}
-                        >
-                            <Link
-                                style={{ color: "white" }}
-                                to={{
-                                    pathname: "/login",
+                        <div style={{ padding: "1%" }}></div>
+                        <Button variant="link">
+                            <div
+                                style={{
+                                    padding: "2%",
+                                    paddingLeft: "8%",
+                                    paddingRight: "8%"
                                 }}
                             >
-                                <RiLoginBoxLine size="80%" style={{ paddingTop: "3%", color: "#0047b3" }} />
-                                <br />
-                                <h5 style={{ color: "#0047b3" }}>Login to symptomate</h5>
-                            </Link>
-                        </div>
-                    </Button>
+                                <Link
+                                    style={{ color: "white" }}
+                                    to={{
+                                        pathname: "/login",
+                                    }}
+                                >
+                                    <RiLoginBoxLine size="50%" style={{ paddingTop: "3%", color: "#0047b3" }} />
+                                    <br />
+                                    <h5 style={{ color: "#0047b3" }}>Login to symptomate</h5>
+                                </Link>
+                            </div>
+                        </Button>
+                    </div>
                 </div>
-
 
                 <div>
                     <div
