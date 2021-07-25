@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from 'axios';
 import Header from "../Navbar/header";
 import TableView from "./AnanlysisComponent/table-template";
 import TableSearchView from "./AnanlysisComponent/search-country";
@@ -7,7 +6,6 @@ import AnalysisTemplate from "./AnanlysisComponent/analysis-template";
 import "../../styles.css";
 import "../Reports/AnanlysisComponent/custom-styles.css"
 import Map from "./AnanlysisComponent/map";
-import { Table } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import ReactTooltip from "react-tooltip";
@@ -22,11 +20,13 @@ export default function Analysis() {
 
   useEffect(() => {
     if (location.state) {
-      console.log(location)
-      setUser(location.state.user);
-      setToken(location.state.token)
-    } else {
-      history.push('/reports/analysis')
+      if (location.state.user !== undefined) {
+        console.log(location)
+        setUser(location.state.user);
+        setToken(location.state.token)
+      } else {
+        history.push('/reports/analysis')
+      }
     }
   }, [location, history])
 

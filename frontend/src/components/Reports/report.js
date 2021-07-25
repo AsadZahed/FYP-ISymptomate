@@ -4,10 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import Header from "../Navbar/header";
-// import Print from "./ComponentToPrint"
-// import Example from "./ComponentToPrint";
 
-//import scan from "../../../../SBackend/public/images/screenshot.png"
 export default function Report() {
 
   const [token, setToken] = React.useState(null)
@@ -137,8 +134,6 @@ export default function Report() {
   };
 
   const setDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today);
-
-
 
   function handleSubmit(event) {
     event.preventDefault();

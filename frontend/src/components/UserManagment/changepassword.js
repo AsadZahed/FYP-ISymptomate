@@ -55,7 +55,6 @@ export default function ChangePassword() {
         }
         else {
           setMsg(res.data.message)
-          showResults(true)
           setShowResults(true)
         }
 

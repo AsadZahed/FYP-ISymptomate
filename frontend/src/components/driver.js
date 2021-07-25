@@ -48,11 +48,10 @@ import Allergy from "../components/BasicAndPersonalInformation/allergy";
 import ViewProfile from "../components/BasicAndPersonalInformation/viewprofile";
 import Library from "../components/BasicAndPersonalInformation/conditionLibrary";
 
-import Reports from "../components/Reports/viewreports";
+import Reports from "../components/Reports/report";
 import AReports from "../components/Reports/areport";
 import Analysis from "../components/Reports/anaylsis";
 import ViewReports from "../components/Reports/reportsview"
-
 import DeleteReports from "../components/Reports/delete"
 
 import About from "../components/Settings/about";
@@ -82,16 +81,9 @@ function Driver() {
         <Route path="/option" exact component={Option} />
         <Route path="/chatbot" exact component={Chatbot} />
         <Route path="/moreinfo" exact component={MoreInfo} />
-        <Route
-          path="/skincancerdetection"
-          exact
-          component={Skincancerdetecion}
-        />
-        <Route
-          path="/symptomatediseasedetection"
-          exact
-          component={Symptomatediseasedetection}
-        />
+        <Route path="/skincancerdetection" exact component={Skincancerdetecion} />
+        <Route path="/symptomatediseasedetection" exact component={Symptomatediseasedetection} />
+        
         {/* SymptomSearch */}
         <Route path="/symptoms/terms" exact component={Terms} />
         <Route path="/symptoms/introduction" exact component={Introduction} />
@@ -104,26 +96,15 @@ function Driver() {
         <Route path="/skin/skinforwhom" exact component={SForwhom} />
         <Route path="/skin/skincancer" exact component={SkinCheck} />
         <Route path="/skin/results" exact component={Results} />
+
         {/* USER MANAGEMENT */}
         <Route path="/editprofile" exact component={UserMain} />
-        <Route
-          path="/users/editprofile/changeusername"
-          exact
-          component={ChangeUsername}
-        />
-        <Route
-          path="/users/editprofile/changepassword"
-          exact
-          component={ChangePassword}
-        />
+        <Route path="/users/editprofile/changeusername" exact component={ChangeUsername} />
+        <Route path="/users/editprofile/changepassword" exact component={ChangePassword} />
         <Route path="/users/editprofile/changeemail" exact component={ChangeEmail} />
         <Route path="/users/editprofile/changeDOB" exact component={ChangeDOB} />
         <Route path="/editprofile/signup" exact component={ESignup} />
-        <Route
-          path="/users/editprofile/deleteuser"
-          exact
-          component={DeleteAccount}
-        />
+        <Route path="/users/editprofile/deleteuser" exact component={DeleteAccount} />
 
         <Route path="/addinfo/basicinfo" exact component={Addbasicinfo} />
         <Route path="/addinfo/personalinfo" exact component={AddPersonalInfo} />
@@ -132,7 +113,6 @@ function Driver() {
         <Route path="/addinfo/background" exact component={Allergy} />
         <Route path="/addinfo/viewprofile" exact component={ViewProfile} />
         <Route path="/addinfo/conditionlibrary" exact component={Library} />
-
 
         {/* Reports */}
         <Route path="/reports/viewreports" exact component={Reports} />
@@ -150,7 +130,7 @@ function Driver() {
         {/* Admin */}
         <Route path="/admin/signup" exact component={ASignup} />
         <Route path="/admin/privlages" exact component={Privlages} />
-        <Route path="/users/admin/viewusers" exact component={VUser} />   
+        <Route path="/users/admin/viewusers" exact component={VUser} />
         <Route path="/users/admin/viewusersname" exact component={VUserName} />
         <Route path="/users/admin/viewallreports" exact component={VAReports} />
 

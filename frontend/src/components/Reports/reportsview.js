@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Header from "../Navbar/header";
 import axios from 'axios';
-import { Button, Table } from "react-bootstrap";
-import { useHistory, Link } from "react-router-dom";
+import { Button,Table } from "react-bootstrap";
+import { useHistory,Link } from "react-router-dom";
 import { useLocation } from "react-router";
 
 export default function View() {
@@ -23,8 +23,8 @@ export default function View() {
 
 
     useEffect(() => {
-        if (location.state) {
-            console.log(location)
+        if (location.state) {            
+            console.log(location.state.user)
             setUser(location.state.user);
             setToken(location.state.token);
         } else {
@@ -35,8 +35,7 @@ export default function View() {
 
     useEffect(() => {
         if (location.state) {
-            setUser(location.state.user);
-            setToken(location.state.token);
+            console.log(location.state.user)
             setAge(location.state.user.age)
             setgender(location.state.user.gender)
 
@@ -63,7 +62,7 @@ export default function View() {
     return (
         <div>
             <div style={{ backgroundColor: "#F8F8F8" }}>
-                <Header token={token} users={user} />
+                <Header token={token} user={user} />
                 <div
                     style={{
                         paddingLeft: "12%",
