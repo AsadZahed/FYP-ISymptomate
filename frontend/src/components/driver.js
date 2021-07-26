@@ -32,6 +32,10 @@ import SForwhom from "../components/SkinCancer/sforwhom";
 import SkinCheck from "../components/SkinCancer/skincheck";
 import Results from "../components/Symptoms/results";
 
+import RTerms from "../components/Respiratory/rterms";
+import RIntroduction from "../components/Respiratory/rintroduction";
+import RForwhom from "../components/Respiratory/rforwhom";
+
 import UserMain from "../components/UserManagment/usermain";
 import ChangeUsername from "../components/UserManagment/changeusername";
 import ChangePassword from "../components/UserManagment/changepassword";
@@ -93,6 +97,11 @@ function Driver() {
         <Route path="/skin/skinforwhom" exact component={SForwhom} />
         <Route path="/skin/skincancer" exact component={SkinCheck} />
         <Route path="/skin/results" exact component={Results} />
+        {/* Respiratory */}
+        <Route path="/respiratory/respiratoryterms" exact component={RTerms} />
+        <Route path="/respiratory/respiratoryintroduction" exact component={RIntroduction} />
+        <Route path="/respiratory/respiratoryforwhom" exact component={RForwhom} />
+      
 
         {/* USER MANAGEMENT */}
         <Route path="/editprofile" exact component={UserMain} />

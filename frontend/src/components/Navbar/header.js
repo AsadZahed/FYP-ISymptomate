@@ -159,6 +159,19 @@ function Header(props) {
                   Skin Cancer Detection
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link
+                  to={{
+                    pathname: "/respiratory/respiratoryintroduction",
+                    state: {
+                      token: props.token,
+                      user: props.user,
+                    },
+                  }}
+                >
+                   Respiratory Diseases Detection
+                </Link>
+              </NavDropdown.Item>
             </NavDropdown>
 {/* 
             <NavDropdown title="Reports" id="basic-nav-dropdown">
