@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../styles.css";
 import emailjs from 'emailjs-com';
 import Header from "../Navbar/header"
+
+
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
+
 export default function Feedback() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [subject, setSubject] = React.useState("");
   const [body, setBody] = React.useState("");
+
+  const [token, setToken] = React.useState(null)
+  const [user, setUser] = React.useState(null);
+  var history = useHistory();
+  var location = useLocation();
+  const [someone, setSomeone] = React.useState(null);
+  useEffect(() => {
+    if (location.state) {
+      console.log(location)
+      setUser(location.state.user);
+      setToken(location.state.token);
+      setName(location.state.user.name)
+      setEmail(location.state.user.username)
+    } else {
+      history.push('/respiratory/respiratoryforwhom')
+    }
+  }, [location, history])
+
 
   function sendEmail(e) {
     e.preventDefault();
@@ -21,46 +44,43 @@ export default function Feedback() {
   }
   function validate() {
     return (
-      name.length > 0 &&
-      email.length > 0 &&
-      body.length > 0)
+      name.length > 0 && email.length > 0 && body.length > 0
+    )
   }
   return (
     <div>
-    <Header />
+      <Header token={token} user={user} />
 
-    <div>
+      <div>
 
-      <form style={{ padding: "35%", paddingTop: "5%", paddingBottom: "5%" }} onSubmit={sendEmail}>
+        <form style={{ padding: "35%", paddingTop: "5%", paddingBottom: "5%" }} onSubmit={sendEmail}>
 
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Name</label>
-          <input name="user_name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your name" onChange={(e) => setName(e.target.value)} />
-        </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Name</label>
+            <input name="user_name" type="text" class="form-control" id="exampleFormControlInput1" placeholder={name} disabled="true" />
+          </div>
 
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input name="user_email" type="email" class="form-control" id="exampleFormControlInput1" placeholder={email} disabled="true" />
+          </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Email address</label>
-          <input name="user_email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)} />
-        </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Subject</label>
+            <input name="subject" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject" onChange={(e) => setSubject(e.target.value)} />
+          </div>
 
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Body</label>
+            <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter text here...." onChange={(e) => setBody(e.target.value)}></textarea>
+          </div>
+          <div style={{ paddingRight: "45%", paddingLeft: "25%", textAlign: "center" }}>
+            <input className="button button3" type="submit" value="Send" disabled={!validate()} />
+          </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Subject</label>
-          <input name="subject" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject" onChange={(e) => setSubject(e.target.value)} />
-        </div>
+        </form>
 
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setBody(e.target.value)}></textarea>
-        </div>
-        <div style={{paddingLeft:"30%"}}>
-        <input className="button button3" type="submit" value="Send"  disabled={!validate()} />
-        </div>
-        
-      </form>
-
-    </div>
+      </div>
     </div>
   );
 }
