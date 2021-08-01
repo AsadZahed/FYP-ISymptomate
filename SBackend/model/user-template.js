@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 var UserTemplate = new Schema({
+    googleID:{
+        type: String,
+    },
     name: {
         type: String,
         default: 'true'

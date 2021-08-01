@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { Button , Alert } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import "./Login.css";
 
 // import { BrowserView, MobileView } from "react-device-detect";
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Header from "../components/Navbar/LSheader";
 import Image from "../components/images/logo2.jpeg";
+import { Link } from "react-router-dom";
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
@@ -19,11 +20,13 @@ export default function Signup() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [cpassword, setCPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [googleID, setgoogleID] = React.useState("");
   const [showResults, setShowResults] = React.useState(false);
+  const [otp, setotp] = React.useState()
   var history = useHistory();
+  console.log(otp)
 
- 
+
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
@@ -33,12 +36,6 @@ export default function Signup() {
       isAdmin: false
     };
 
-
-    // const googleData = {
-    //   name: fname,
-    //   username: email,
-    // }
-    console.log(data)
     axios.post('http://localhost:9000/users/signup', data, {
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -46,9 +43,6 @@ export default function Signup() {
       }
     })
       .then((res) => {
-        // if (res.data.success) {
-        //   history.push("/login");
-        // }
         if (res.data.user.isAdmin)
           history.push({
             pathname: "/login",
@@ -66,56 +60,65 @@ export default function Signup() {
             }
           })
 
-      }).catch(err =>setShowResults(true))
-    // .catch((res) => setError("Sign up error"))
+      }).catch(err => setShowResults(true))
 
-    // axios.post('http://localhost:9000/users/signup', googleData, {
-    //   headers: {
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    //   }
-    // })
-    //   .then((res) => {
-    //     if (res.data.success) {
-    //       history.push("/login");
-    //     }
-
-    //   }).catch((res) => setError("Sign up error"))
-
-    // axios.post('http://localhost:9000/users/auth/google/', data, {
-    //   headers: {
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    //   }
-    // })
-    //   .then((res) => {
-    //     if (res.data.success) {
-    //       history.push("/");
-    //     }
-
-    //   });
   }
 
-  
+  function GhandleSubmit(event) {
+    event.preventDefault();
+    console.log(otp)
+
+    const googleData = {
+      googleID: googleID,
+      name: fname,
+      username: email,
+      password: otp,
+      isAdmin: false
+
+    }
+    console.log(googleData.name);
+    console.log(googleData.username);
+
+    axios.post('http://localhost:9000/users/signup', googleData, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      }
+    })
+      .then((res) => {
+        if (res.data.user.isAdmin)
+          history.push({
+            pathname: "/admin/privlages",
+            state: {
+              user: res.data.user,
+              token: res.data.token,
+            }
+          })
+        else
+          history.push({
+            pathname: "/login",
+            state: {
+              user: res.data.user,
+              token: res.data.token,
+              opt : otp
+            }
+          })
+
+      }).catch(err => setShowResults(true))
+
+
+  }
+
+
   const [showloginButton, setShowloginButton] = React.useState(true);
   const [showlogoutButton, setShowlogoutButton] = React.useState(false);
   const onLoginSuccess = (res) => {
     console.log('Login Success:', res.profileObj);
-    setFname(res.profileObj.name)
-    setEmail(res.profileObj.email)
-    setPassword("1234")
-    console.log(fname + "       " + email)
-
-    // setEmail(res.profileObj.email)
-    // history.push({
-    //   pathname: "/login",
-    //   state: {
-    //     user: res.profileObj,
-    //   }
-    // })
-
-    setShowloginButton(false);
-    setShowlogoutButton(true);
+    setgoogleID(res.profileObj.googleId);
+    setFname(res.profileObj.name);
+    setEmail(res.profileObj.email);
+    setotp(res.profileObj.googleId.slice(0, 6))
+    setShowloginButton(true);
   };
 
   const onLoginFailure = (res) => {
@@ -141,7 +144,6 @@ export default function Signup() {
   }
   function validatePassword() {
     if (password !== cpassword) {
-      setError("Password Doesnot match");
     }
   }
   return (
@@ -217,9 +219,9 @@ export default function Signup() {
                         onChange={(e) => setCPassword(e.target.value)}
                       />
                     </Form.Group>
-                    
+
                     {showResults ? <Alert variant="danger">Error while registering</Alert> :
-                   <div></div>}
+                      <div></div>}
 
 
                     <div style={{ textAlign: "center", paddingTop: "3%" }}>
@@ -243,18 +245,21 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        {/* <Button variant="light" size="md" type="submit" href="/login">
+                        <Button variant="light" size="md" type="submit" onClick={GhandleSubmit} href="/">
 
                           {showloginButton ?
                             <GoogleLogin
                               clientId={clientId}
-                              buttonText="Sign In"
+                              buttonText="Continue With google"
                               onSuccess={onLoginSuccess}
                               onFailure={onLoginFailure}
                               cookiePolicy={'single_host_origin'}
                               isSignedIn={true}
                               href="/login"
+
                             /> : null}
+
+                    
                         </Button>
 
 
@@ -265,7 +270,7 @@ export default function Signup() {
                             onLogoutSuccess={onSignoutSuccess}
                           >
                           </GoogleLogout> : null
-                        } */}
+                        }
                       </div>
 
                       {/* <div class="col-sm-4">

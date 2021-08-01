@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Alert } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
+
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
+
 import Header from "../components/Navbar/LSheader";
 import Image from "../components/images/logo2.jpeg"
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -17,8 +20,15 @@ export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [gdata, setDData] = React.useState("");
+  const [otp, setotp] = React.useState("")
   const [showResults, setShowResults] = React.useState(false)
-  const history = useHistory();
+  const [fname, setFname] = React.useState("");
+  const [googleID, setgoogleID] = React.useState("");
+  var history = useHistory();
+  var location = useLocation();
+
+ 
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -55,42 +65,30 @@ export default function Login() {
 
 
   }
+  useEffect(() => {
+    console.log("this is login",location.state)
+    
+   
+    if (location.state) {
+      console.log(location)
+      console.log("this is login",location.state.opt)
+
+      setotp(location.state.opt);
+    } else {
+      history.push('/')
+    }
+  }, [location, history])
+
+
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
-  const [showloginButton, setShowloginButton] = React.useState(true);
-  const [showlogoutButton, setShowlogoutButton] = React.useState(false);
-  const onLoginSuccess = (res) => {
-    console.log('Login Success:', res.profileObj);
-    setDData(res.profileObj)
-    // setEmail(res.profileObj.email)
-    history.push({
-      pathname: "/",
-      state: {
-        user: res.profileObj,
-        token: res.data.token
-      }
-    })
-
-    setShowloginButton(false);
-    setShowlogoutButton(true);
-  };
-
-  const onLoginFailure = (res) => {
-    console.log('Login Failed:', res);
-  };
-
-  const onSignoutSuccess = () => {
-    alert("You have been logged out successfully");
-    console.clear();
-    setShowloginButton(true);
-    setShowlogoutButton(false);
-  };
-
   return (
     <div>
       <Header />
+
       <div style={{ backgroundColor: "#F8F8F8" }}>
+        <Alert variant="success" style={{ fontSize: "20px", textAlign: "center" }}><b>Your OTP is {otp}</b></Alert>
         <div className="btn-toolbar" style={{ paddingBottom: "3%", paddingLeft: "5%", paddingRight: "5%" }}>
 
           <div style={{
@@ -154,16 +152,7 @@ export default function Login() {
                           Login
                         </Button>
                       </div>
-                      <div>
-                        {/* <GoogleLogin 
-              clientId={CID}
-              buttonText="Login"
-              onSuccess={onSuccess}
-              onFailure={onFailure}
-              isSignedIn={true}
-            /> */}
-                      </div>
-
+                    
                       <div style={{ paddingTop: "3%" }}>
                         <Button variant="light" size="md" type="submit" href="/signup">
                           Don't have account? Register now

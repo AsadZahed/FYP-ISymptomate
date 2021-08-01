@@ -82,10 +82,9 @@ router.post('/signup', (req, res, next) => {
       }
     })
 });
-
 //ADMIN SIGNUP
 router.post('/admin/signup', (req, res, next) => {
-  UserTemplate.register(new User({ username: req.body.username }),
+  UserTemplate.findOrCreate(new User({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {
         res.statusCode = 500;
@@ -117,6 +116,16 @@ router.post('/admin/signup', (req, res, next) => {
 
 //PATIENT LOGIN
 router.post('/login', passport.authenticate('local'), (req, res, err) => {
+  console.log("Login")
+  var token = authenticate.getToken({ _id: req.user._id });
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.json({ success: true, token: token, message: 'You are successfully logged in!', status: 'You are successfully logged in!', user: req.user });
+
+});
+
+
+router.post('/google/login', passport.authenticate('google'), (req, res, err) => {
   console.log("Login")
   var token = authenticate.getToken({ _id: req.user._id });
   res.statusCode = 200;

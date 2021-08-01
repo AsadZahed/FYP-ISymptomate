@@ -2,6 +2,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
+    "passport-google-oauth": "^2.0.0",
     "react-chatbot-ui": "^0.3.2",
     "react-countup": "^4.4.0",
     "react-select": "^4.3.1",
