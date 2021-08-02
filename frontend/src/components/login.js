@@ -24,6 +24,7 @@ export default function Login() {
   const [showResults, setShowResults] = React.useState(false)
   const [fname, setFname] = React.useState("");
   const [googleID, setgoogleID] = React.useState("");
+  const [googleLogin, setgoogleLogin] = React.useState("");
   var history = useHistory();
   var location = useLocation();
 
@@ -65,19 +66,20 @@ export default function Login() {
 
 
   }
+
+
   useEffect(() => {
     console.log("this is login",location.state)
-    
-   
+       
     if (location.state) {
       console.log(location)
-      console.log("this is login",location.state.opt)
-
+      console.log("issue is in useeffect")
       setotp(location.state.opt);
+      setgoogleLogin(location.state.googleLogin)
     } else {
-      history.push('/')
+      history.push('/login')
     }
-  }, [location, history])
+  }, [])
 
 
   function validateForm() {
@@ -88,7 +90,7 @@ export default function Login() {
       <Header />
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
-        <Alert variant="success" style={{ fontSize: "20px", textAlign: "center" }}><b>Your OTP is {otp}</b></Alert>
+       {googleLogin && <Alert variant="success" style={{ fontSize: "20px", textAlign: "center" }}><b>Your OTP is {otp}</b></Alert>}
         <div className="btn-toolbar" style={{ paddingBottom: "3%", paddingLeft: "5%", paddingRight: "5%" }}>
 
           <div style={{

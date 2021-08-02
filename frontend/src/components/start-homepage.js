@@ -45,7 +45,6 @@ export default function Slider() {
                 <Header />
             </div>
             <div>
-
             </div>
             <AliceCarousel autoPlay autoPlayInterval="2000" style={{ borderRadius: "10px" }}>
                 <div>

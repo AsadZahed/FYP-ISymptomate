@@ -88,7 +88,7 @@ export default function Signup() {
       .then((res) => {
         if (res.data.user.isAdmin)
           history.push({
-            pathname: "/admin/privlages",
+            pathname: "/login",
             state: {
               user: res.data.user,
               token: res.data.token,
@@ -100,7 +100,8 @@ export default function Signup() {
             state: {
               user: res.data.user,
               token: res.data.token,
-              opt : otp
+              opt : otp,
+              googleLogin:true
             }
           })
 
@@ -245,7 +246,7 @@ export default function Signup() {
                       </div>
 
                       <div>
-                        <Button variant="light" size="md" type="submit" onClick={GhandleSubmit} href="/">
+                        <Button variant="light" size="md" type="submit" onClick={GhandleSubmit} href="/login">
 
                           {showloginButton ?
                             <GoogleLogin
