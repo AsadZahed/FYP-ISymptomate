@@ -35,6 +35,7 @@ import Results from "../components/Symptoms/results";
 import RTerms from "../components/Respiratory/rterms";
 import RIntroduction from "../components/Respiratory/rintroduction";
 import RForwhom from "../components/Respiratory/rforwhom";
+import RCheck from "../components/Respiratory/respcheck";
 
 import UserMain from "../components/UserManagment/usermain";
 import ChangeUsername from "../components/UserManagment/changeusername";
@@ -101,6 +102,7 @@ function Driver() {
         <Route path="/respiratory/respiratoryterms" exact component={RTerms} />
         <Route path="/respiratory/respiratoryintroduction" exact component={RIntroduction} />
         <Route path="/respiratory/respiratoryforwhom" exact component={RForwhom} />
+        <Route path="/respiratory/respiratorycheck" exact component={RCheck} />
       
 
         {/* USER MANAGEMENT */}

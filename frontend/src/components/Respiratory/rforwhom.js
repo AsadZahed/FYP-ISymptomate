@@ -71,7 +71,7 @@ function RForwhom() {
 
                   <Link
                     to={{
-                      pathname: "/respiratory/respiratorycancer",
+                      pathname: "/respiratory/respiratorycheck",
                       state: {
                         token: token,
                         user: user,
@@ -87,7 +87,7 @@ function RForwhom() {
                 <Button variant="light">
                   <Link
                     to={{
-                      pathname: "/respiratory/respiratorycancer",
+                      pathname: "/respiratory/respiratorycheck",
                       state: {
                         token: token,
                         user: user,

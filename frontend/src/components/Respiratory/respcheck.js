@@ -10,7 +10,7 @@ import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function SkinCheck() {
+function RCheck() {
     const [state, setState] = React.useState({
         suggestions: [],
         text: ""
@@ -44,11 +44,9 @@ function SkinCheck() {
             console.log("cancer is ", scancer)
 
         } else {
-            history.push('/skin/skincheck')
+            history.push('/respiratory/respiratorycheck')
         }
     }, [location, history])
-
-
 
 
     const mySubmitHandler = event => {
@@ -247,4 +245,4 @@ function SkinCheck() {
     );;
 }
 
-export default SkinCheck;
+export default RCheck;

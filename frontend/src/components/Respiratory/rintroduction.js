@@ -95,7 +95,7 @@ function RIntroduction() {
               <Button variant="warning">
                 <Link
                   to={{
-                    pathname: "/skin/skinterms",
+                    pathname: "/respiratory/respiratoryterms",
                     state: {
                       token: token,
                       user: user,

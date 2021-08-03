@@ -149,7 +149,7 @@ export default function RTerms() {
                   <Button variant="link">
                   <Link
                   to={{
-                    pathname: "/skin/skinterms",
+                    pathname: "/respiratory/respiratoryintroduction",
                     state: {
                       token: token,
                       user: user,
@@ -168,7 +168,7 @@ export default function RTerms() {
                   >
                      <Link
                   to={{
-                    pathname: "/skin/skinforwhom",
+                    pathname: "/respiratory/respiratoryforwhom",
                     state: {
                       token: token,
                       user: user,
