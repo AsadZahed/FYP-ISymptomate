@@ -160,12 +160,12 @@ function RForwhom() {
                   className="float-child"
                   style={{ marginRight: "20px", boder: "1px solid black" }}
                 >
-                  <Button variant="light" href="/skin/skincheck">
+                  <Button variant="light" href="/respiratory/respiratorycheck">
                     <img className="img-size-mobile" src={Myself} alt="Myslef" />
                   </Button>
                 </div>
                 <div className="float-child">
-                  <Button variant="light" href="/skin/skincheck">
+                  <Button variant="light" href="/respiratory/respiratorycheck">
                     <img
                       className="img-size-mobile"
                       src={Someone}
@@ -184,7 +184,7 @@ function RForwhom() {
               >
                 <div className="btn-toolbar">
                   <div className="left-group">
-                    <Button href="/skin/skinterms" variant="link">
+                    <Button href="/respiratory/respiratoryterms" variant="link">
                       back
                   </Button>
                   </div>

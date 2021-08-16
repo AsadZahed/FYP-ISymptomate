@@ -10,7 +10,8 @@ import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function RCheck() {
+function RespCheck() {
+
     const [state, setState] = React.useState({
         suggestions: [],
         text: ""
@@ -26,13 +27,8 @@ function RCheck() {
     const [scan, setScan] = React.useState(null)
     const [mess, setMess] = React.useState("")
     const listCancer = [
-        ' Actinic keratoses',
-        'Basal cell carcinoma',
-        'Benign keratosis-like lesions',
-        'Dermatofibroma',
-        'Melanocytic nevi',
-        'Melanoma',
-        'Vascular lesions'
+        'Pneumonia',
+        'Normal',
     ]
     useEffect(() => {
         if (location.state) {
@@ -49,12 +45,14 @@ function RCheck() {
     }, [location, history])
 
 
+
+
     const mySubmitHandler = event => {
         setMess("I-Symptomate is finding the disease!")
         event.preventDefault();
         const data = new FormData();
         data.append('file', fileInput.current.files[0]);
-        axios.post('http://localhost:5000/classify', data, {
+        axios.post('http://localhost:5000/respiratory', data, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -245,4 +243,4 @@ function RCheck() {
     );;
 }
 
-export default RCheck;
+export default RespCheck;
