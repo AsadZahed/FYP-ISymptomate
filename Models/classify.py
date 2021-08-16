@@ -7,12 +7,11 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-model = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\Updated-26-may\Intelligent-Symptomate\Models\model.h5', compile=True)
-models = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\Updated-28-may\Intelligent-Symptomate\Models\symptoms.h5', compile=True)
-
-
-
-def reshape_data(x):
+model = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\model.h5', compile=True)
+models = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\symptoms.h5', compile=True)
+modelr = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\xray_asad_faheem_new_92.h5', compile=True)
+                    
+def reshape_data(x,xpixel,ypixel,channels):
         """
         Reshapes arrays into format for MXNet
         INPUT
@@ -30,8 +29,8 @@ def reshape_data(x):
         # plt.show()
         x=x/255
         x = x.astype("float32")
-        x=x.reshape(100,75,3)
-        x= x.reshape(1,100,75,3)
+        x=x.reshape(xpixel,ypixel,channels)
+        x= x.reshape(1,xpixel,ypixel,channels)
         x = x.astype("float32")
         return x
 
@@ -55,7 +54,7 @@ def index():
         img = img.convert('RGB')
         x = np.array(img)
         print(x.shape)
-        x = reshape_data(x)
+        x = reshape_data(x,100,75,3)
         prediction = model.predict(x)
         label = prediction.argmax(axis=-1).tolist()
         print("Model Prediction in numpy form")
@@ -104,5 +103,35 @@ def symptoms():
             'label': label
         })
 
+@app.route('/respiratory', methods=['POST'])
+def respiratory():
+    if request.method == 'POST':
+        # print("--------+++++---------")
+        # #print(request.form.get('symptoms'))
+        # xr=request.form.get('symptoms')
+        # xr=np.array(xr)
+        # xr=[[request.form.getlist('symptoms')]]
+        # print(xr)
+        # print("--------+++++---------")
+        print(request.files['file'])
+        image = request.files['file']
+        image.save(image.filename)
+        # img_path = r'C:\Users\abdul\Desktop\isee-web\dr_model\eye.jpg'
+        # img = Image.open(img_path).resize((256, 256))
+        img = Image.open(image.filename).resize((150, 150))
+        img = img.convert('L')
+        x = np.array(img)
+        print(x.shape)
+        x = reshape_data(x,150,150,1)
+        prediction = modelr.predict(x)
+        label = prediction.argmax(axis=-1).tolist()
+        print("Model Prediction in numpy form")
+        print(type(label))
+        print(prediction)
+        os.remove(image.filename)
+        return jsonify({
+            'success': True,
+            'label': label
+        })
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
