@@ -11,7 +11,8 @@ import { useLocation } from "react-router";
 export default function DeleteAccount() {
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
-  const [msg, setMsg] = React.useState('')
+  const [msg, setMsg] = React.useState('');
+  const [ image,setImage] = React.useState('')
   var history = useHistory();
   var location = useLocation();
   const [show,setShow] = React.useState(0);
@@ -21,7 +22,9 @@ export default function DeleteAccount() {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/users/editprofile/deleteusers')
     }
@@ -61,7 +64,7 @@ setTimeout(()=>{
 
   return (
     <div>
-    <Header/>
+    <Header token={token} image={image} user={user} />
     
     <div style={{ backgroundColor: "#F8F8F8" }}>
     {show !==1 && <Alert variant="danger" style={{fontSize:"20px",textAlign:"center"}}><b>You are about to delete your account</b></Alert>}

@@ -20,6 +20,7 @@ export default function View() {
     // const [userId, setUSerID] = React.useState("")
     var history = useHistory();
     var location = useLocation();
+    const[image,setImage] = React.useState('');
 
 
     useEffect(() => {
@@ -27,6 +28,8 @@ export default function View() {
             console.log(location.state.user)
             setUser(location.state.user);
             setToken(location.state.token);
+            setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
         } else {
             history.push('/reports/view')
         }
@@ -62,7 +65,7 @@ export default function View() {
     return (
         <div>
             <div style={{ backgroundColor: "#F8F8F8" }}>
-                <Header token={token} user={user} />
+                <Header token={token} user={user} image={image} />
                 <div
                     style={{
                         paddingLeft: "12%",

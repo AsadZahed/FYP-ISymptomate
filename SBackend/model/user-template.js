@@ -27,7 +27,10 @@ var UserTemplate = new Schema({
     },
     isAdmin:{
         type:Boolean
-    }
+    },
+    pathprofilepic:{
+        type:String
+    },
 });
 
 UserTemplate.plugin(passportLocalMongoose);

@@ -12,6 +12,7 @@ export default function Report() {
     const [ages, setages] = React.useState("");
     const [gender, setgender] = React.useState("");
     const [email, setEmail] = React.useState("");
+    const [image,setImage] = React.useState("");
     var history = useHistory();
     var location = useLocation();
 
@@ -27,6 +28,8 @@ export default function Report() {
                 setgender(location.state.user.gender)
                 setheight(location.state.user.height + " feet")
                 setWeight(location.state.user.weight + " kg")
+                setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+  
             }
             else {
                 history.push('/addinfo/viewprofile')
@@ -41,7 +44,7 @@ export default function Report() {
         <div style={{
             paddingBottom: "5%"
         }}>
-            <Header token={token} user={user} />
+            <Header token={token} user={user} image={image} />
 
             <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom: "1%" }}>
                 <form >
@@ -60,6 +63,7 @@ export default function Report() {
                         <p style={{ fontSize: "20px", fontWeight: "500" }}>
                             I-Symptomate | An intelligent
                         </p>
+                        <img src={image} alt="profile Pic"  style={{width:"15%",borderRadius:"40px"}} />
                        
                     </div>
                     <div style={{ backgroundColor: "#ffff", padding: "10px" }}>

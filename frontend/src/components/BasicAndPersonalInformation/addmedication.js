@@ -27,12 +27,15 @@ export default function AddMedication() {
   const [data, setData] = React.useState("");
   const [items, setItems] = React.useState([]);
   const [message,setMessage]=React.useState("")
+  const [image,setImage] = React.useState('');
+ 
   
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token) 
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
       setMessage(message)
     } else {
       history.push('/')
@@ -165,7 +168,7 @@ const { text } = state;
 
 return (
     <div>
-      <Header user={user} token={token} />
+      <Header user={user} token={token} image={image} />
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

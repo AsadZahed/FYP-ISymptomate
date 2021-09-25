@@ -15,6 +15,7 @@ export default function Analysis() {
   const [token, setToken] = React.useState(null);
   const [content, setContent] = React.useState("");
   const [country, setCountry] = React.useState('');
+  const [image,setImage] = React.useState('');
   var history = useHistory();
   var location = useLocation();
 
@@ -23,7 +24,9 @@ export default function Analysis() {
       if (location.state.user !== undefined) {
         console.log(location)
         setUser(location.state.user);
-        setToken(location.state.token)
+        setToken(location.state.token);
+        setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
       } else {
         history.push('/reports/analysis')
       }
@@ -148,7 +151,7 @@ export default function Analysis() {
 
   return (
     <div style={{ backgroundColor: "#F8F8F8" }}>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image}/>
       <div
         style={{
           paddingLeft: "12%",

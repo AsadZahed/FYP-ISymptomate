@@ -15,7 +15,8 @@ export default function BasicInfo() {
   const [age, setage] = React.useState(0);
   const [ages, setages] = React.useState(0);
   const [user, setUser] = React.useState(null);
-  const [token, setToken] = React.useState(null)
+  const [token, setToken] = React.useState(null);
+  const [image,setImage] = React.useState('')
   var history = useHistory();
   var location = useLocation();
   const [showResults, setShowResults] = React.useState(false);
@@ -26,7 +27,9 @@ export default function BasicInfo() {
       setUser(location.state.user);
       setToken(location.state.token)
       setages(location.state.user.age)
-      setgender(location.state.user.gender)
+      setgender(location.state.user.gender) 
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/')
     }
@@ -68,7 +71,7 @@ export default function BasicInfo() {
   
   return (
     <div>
-      <Header user={user} token={token} />
+      <Header user={user} token={token} image={image}/>
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

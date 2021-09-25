@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 export default function RTerms() {
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
+  const [image,setImage] = React.useState('');
   var history = useHistory();
   var location = useLocation();
 
@@ -22,7 +23,9 @@ export default function RTerms() {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/respiratory/respiratoryterms')
     }
@@ -34,7 +37,7 @@ export default function RTerms() {
 
   return (
     <div>
-      <Header  token={token} user={user}/>
+      <Header  token={token} user={user} image={image}/>
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

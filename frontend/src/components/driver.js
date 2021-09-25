@@ -40,6 +40,8 @@ import RCheck from "../components/Respiratory/respcheck";
 import UserMain from "../components/UserManagment/usermain";
 import ChangeUsername from "../components/UserManagment/changeusername";
 import ChangePassword from "../components/UserManagment/changepassword";
+import ForgotPassword from "../components/UserManagment/forgorpassword";
+import ProfilePic from "../components/UserManagment/profilepic";
 import DeleteAccount from "../components/UserManagment/deleteaccount";
 
 import Addbasicinfo from "../components/BasicAndPersonalInformation/basicinfo";
@@ -109,7 +111,9 @@ function Driver() {
         <Route path="/editprofile" exact component={UserMain} />
         <Route path="/users/editprofile/changeusername" exact component={ChangeUsername} />
         <Route path="/users/editprofile/changepassword" exact component={ChangePassword} />
+        <Route path="/users/forgotpassword" exact component={ForgotPassword} />
         <Route path="/users/editprofile/deleteuser" exact component={DeleteAccount} />
+        <Route path="/users/editprofile/profilepic" exact component={ProfilePic} />
 
         <Route path="/addinfo/basicinfo" exact component={Addbasicinfo} />
         <Route path="/addinfo/personalinfo" exact component={AddPersonalInfo} />

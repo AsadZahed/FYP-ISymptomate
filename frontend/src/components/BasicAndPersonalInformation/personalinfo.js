@@ -17,6 +17,7 @@ export default function AddPersonalInfo() {
   const [token, setToken] = React.useState(null)
   var history = useHistory();
   var location = useLocation();
+  const [image,setImage] = React.useState('')
 
   useEffect(() => {
     if (location.state) {
@@ -25,6 +26,8 @@ export default function AddPersonalInfo() {
       setToken(location.state.token)
       setheight(location.state.user.height + " feet")
       setWeight(location.state.user.weight + " kg")
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/')
     }
@@ -67,7 +70,7 @@ export default function AddPersonalInfo() {
   }
   return (
     <div>
-      <Header user={user} token={token} />
+      <Header user={user} token={token} image={image}/>
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

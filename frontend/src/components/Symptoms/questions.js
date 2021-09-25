@@ -17,6 +17,7 @@ function Question() {
   const [checked4, setChecked4] = React.useState(true);
   const [checked5, setChecked5] = React.useState(true);
   const [checked6, setChecked6] = React.useState(true);
+  const [image,setImage] = React.useState('');
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
   var history = useHistory();
@@ -26,6 +27,8 @@ function Question() {
         console.log(location)
         setUser(location.state.user);
         setToken(location.state.token);
+        setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
         // setSCancer(cancer);
         // setImg(img);
        
@@ -36,7 +39,7 @@ function Question() {
   
   return (
     <div>
-    <Header/>
+    <Header user={user} token={token} image={image} />
     <div style={{ backgroundColor: "#F8F8F8" }}>
       <BrowserView>
         <div

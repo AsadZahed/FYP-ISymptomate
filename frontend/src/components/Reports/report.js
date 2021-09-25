@@ -17,6 +17,7 @@ export default function Report() {
   const [i, setI] = React.useState("")
   const today = Date.now();
   const [msg, setMSG] = React.useState(null);
+  const [image,setImage] = React.useState('');
   const dlist = [
     "Melanoma, also redundantly known as malignant melanoma, is a type of skin cancer that develops from the pigment-producing cells known as melanocytes. Melanomas typically occur in the skin but may rarely occur in the mouth, intestines or eye (uveal melanoma)",
     "Basal cell carcinoma Basal cell carcinoma is a type of skin cancer. Basal cell carcinoma begins in the basal cells — a type of cell within the skin that produces new skin cells as old ones die off. Basal cell carcinoma often appears as a slightly transparent bump on the skin, though it can take other forms.",
@@ -41,6 +42,8 @@ export default function Report() {
         setI(location.state.img)
         setages(location.state.user.age)
         setgender(location.state.user.gender)
+        setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
       } else {
         history.push('/skin/skincheck')
       }
@@ -180,7 +183,7 @@ export default function Report() {
   return (
     <div style={{ paddingBottom: "5%" }}>
 
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image}/>
 
       <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black", paddingBottom: "1%" }}>
         <form onSubmit={handleSubmit}>

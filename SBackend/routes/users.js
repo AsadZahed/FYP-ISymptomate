@@ -4,6 +4,8 @@ var UserTemplate = require('../model/user-template');
 var passport = require('passport');
 var Report = require("../model/report")
 var authenticate = require('../authenticate');
+const nodemailer = require("nodemailer");
+var multer = require('multer');
 // const mongoose = require("mongoose")
 // const passportlocalmangoose = require('passport-local-mongoose')
 router.use(express.json());
@@ -48,6 +50,125 @@ router.use(express.json());
 // const User = new mongoose.model("User", userSchema);
 // userSchema.plugin(findOrCreate)
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: "aazfrb711@gmail",
+    pass: "faheem1999"
+  }
+});
+
+router.post('/forgotpassword', (req, res, next) => {
+  const email = req.body.email;
+  console.log(req.body.email)
+  UserTemplate.findOne({ username: email }, (err, user) => {
+
+    if (err) {
+      console.log(err)
+      res.json({
+        err: err.name,
+        success: false
+      })
+    } else if (user) {
+      const newPass = parseInt(Math.random() * 100000000);
+      console.log(String(newPass))
+      user.setPassword(String(newPass), (err, user) => {
+        if (err) {
+          console.log(err)
+          res.json({
+            err: err.name,
+            success: false
+          })
+        } else {
+          console.log('test-err')
+          user.save((err) => {
+            if (err) {
+              console.log(err)
+              res.json({
+                err: err.name,
+                success: false
+              })
+            } else {
+              console.log('test-after-local')
+              var mailOptions = {
+                from: "aazfrb711@gmail.com",
+                to: email,
+                subject: 'New Password Updated Argi',
+                text: 'Your new password is: ' + String(newPass)
+              };
+              transporter.sendMail(mailOptions, function (err, info) {
+                if (err) {
+                  console.log(err)
+                  res.json({ err: err.name, success: false })
+                } else {
+                  res.json({ data: 'Email sent: ' + info.response, success: true });
+                }
+              });
+
+            }
+          })
+        }
+      })
+    } else {
+      res.json({
+        err: 'No User Found',
+        success: false,
+      })
+    }
+  })
+})
+
+const storage_pp = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public')
+  },
+  filename: (req, file, cb) => {
+    cb(null, 'images/' + req.user._id + "." + file.mimetype.split('/')[1])
+  }
+})
+
+const upload_pp = multer({ storage: storage_pp }).single('file')
+
+router.post("/uploadprofilepicture", authenticate.verifyUser, (req, res) => {
+  upload_pp(req, res, (err) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    console.log(req.file.path)
+  
+    UserTemplate.findOne({ _id: req.user._id }, (err, user) => {
+      console.log("user id is", req.user._id)
+      if (err)
+        res.json({
+          success: false,
+          message: err
+        })
+      else if (user) {
+        user.pathprofilepic = req.file.filename
+        user.save((err) => {
+          if (err) {
+            res.json({
+              success: false,
+              message: err.name
+            })
+          }
+          else {
+            res.json({
+              success: true,
+              message: 'Added link'
+            })
+          }
+        })
+      } else {
+        res.json({
+          success: false,
+          message: 'User not found'
+        }); // Return error, user was not found in db
+      }
+    })
+  });
+
+})
 
 //PATIENT SIGNUP
 router.get('/', authenticate.verifyUser, function (req, res, next) {

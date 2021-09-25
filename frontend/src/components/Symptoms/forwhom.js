@@ -21,11 +21,14 @@ function Forwhom() {
   const [user, setUser] = React.useState(null);
   var history = useHistory();
   var location = useLocation();
+  const [image,setImage] = React.useState('');
   useEffect(() => {
     if (location.state) {
         console.log(location)
         setUser(location.state.user);
         setToken(location.state.token);
+        setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
         // setSCancer(cancer);
         // setImg(img);
        
@@ -35,7 +38,7 @@ function Forwhom() {
 }, [location, history])
   return (
     <div>
-    <Header/>
+    <Header token={token} user={user} image={image}/>
  <div style={{ backgroundColor: "#F8F8F8" }}>
       <BrowserView>
         <div

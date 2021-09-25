@@ -7,10 +7,8 @@ import Header from "../Navbar/header"
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 
-export default function ChangePassword() {
-  const [oldpassword, setoldpassword] = React.useState("");
-  const [newpassword, setnewpassword] = React.useState("");
-  const [cpassword, setcpassword] = React.useState("");
+export default function ForgotPassword() {
+  const [email, setEmail] = React.useState("");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
   const [msg, setMsg] = React.useState('')
@@ -19,59 +17,42 @@ export default function ChangePassword() {
   const [showResults, setShowResults] = React.useState(false)  
   const [image,setImage] = React.useState();
 
-  useEffect(() => {
-    if (location.state) {
-      console.log(location)
-      setUser(location.state.user);
-      setToken(location.state.token)
-      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
- 
-    } else {
-      history.push('/users/editprofile/changepassword')
-    }
-  }, [location, history])
-
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
-      oldpassword: oldpassword,
-      newpassword: newpassword
-    };
-
-    axios.post('http://localhost:9000/users/editprofile/changepassword', data, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        'Authorization': `Bearer ${token}`
-      }
+        email: email,
+    }
+    console.log(email)
+    axios.post('http://localhost:9000/users/forgotpassword', data, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        }
     })
-      .then((res) => {
-        console.log(res)
-        if (res.data.success) {
-          history.push({
-            pathname: '/editprofile',
-            state: {
-              user: user,
-              token: token
+        .then(res => {
+            console.log(res)
+            if (res.data.success) {
+                history.push({
+                  pathname: "/users/forgotpassword",
+                  state: {
+                    user: res.data.user,
+                    token: res.data.token
+                  }
+                })
+            } else {
+                alert(res.data.err)
             }
-          });
-        }
-        else {
-          setMsg(res.data.message)
-          setShowResults(true)
-        }
-
-      });
-  }
+        })    
+}
 
   function validateForm() {
     return (
-      oldpassword.length > 0 && newpassword.length > 0 && cpassword.length > 0 && newpassword === cpassword
+      email.length>0
     );
   }
   return (
     <div>
-      <Header token={token} user={user} image={image} />
+      {/* <Header token={token} user={user} image={image} /> */}
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>
@@ -102,28 +83,13 @@ export default function ChangePassword() {
                 <h2 style={{ alignContent: "center" }}>Change Password</h2>
 
                 <form onSubmit={handleSubmit}>
+                
                   <input
-                    type="password"
+                    type="email"
                     className="fname"
-                    name="opassword"
-                    placeholder="Your old password.."
-                    onChange={(e) => setoldpassword(e.target.value)}
-                  />
-
-                  <input
-                    type="password"
-                    className="fname"
-                    name="npassword"
-                    placeholder="Your new password.."
-                    onChange={(e) => setnewpassword(e.target.value)}
-                  />
-
-                  <input
-                    type="password"
-                    className="fname"
-                    name="cnpassword"
-                    placeholder="Confirm new password.."
-                    onChange={(e) => setcpassword(e.target.value)}
+                    name="email"
+                    placeholder="your email..."
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <div style={{ alignContent: "center" }}>
                   {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
@@ -162,31 +128,6 @@ export default function ChangePassword() {
                 }}
               >
                 <form>
-                  <input
-                    type="password"
-                    className="fname"
-                    name="opassword"
-                    placeholder="Your old password.."
-                    onChange={(e) => setoldpassword(e.target.value)}
-                  />
-
-                  <input
-                    type="password"
-                    className="fname"
-                    name="npassword"
-                    placeholder="Your new password.."
-                    onChange={(e) => setnewpassword(e.target.value)}
-                  />
-
-                  <input
-                    type="password"
-                    className="fname"
-                    name="cnpassword"
-                    placeholder="Confirm new password.."
-                    onChange={(e) => setcpassword(e.target.value)}
-                  />
-                  {showResults ? <Alert variant="danger">Incoorect username or password</Alert> : ""}
-
                   <Button
                     href="/editprofile"
                     className="bsubmit"

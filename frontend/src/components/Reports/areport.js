@@ -21,7 +21,8 @@ export default function AReport() {
   const [cancer, sets] = React.useState("");
   const [i, setI] = React.useState("")
   const [msg, setMSG] = React.useState(null);
-  const [showResults, setShowResults] = React.useState(false)
+  const [showResults, setShowResults] = React.useState(false);
+  const [image, setImage] = React.useState('');
 
   const dlist = [
     "Melanoma, also redundantly known as malignant melanoma, is a type of skin cancer that develops from the pigment-producing cells known as melanocytes. Melanomas typically occur in the skin but may rarely occur in the mouth, intestines or eye (uveal melanoma)",
@@ -49,7 +50,9 @@ export default function AReport() {
         setName(location.state.name)
         sets(location.state.cancer)
         setI(location.state.img)
-        console.log(date)
+        console.log(date);
+        setImage("http://localhost:9000/" + location.state.user.pathprofilepic)
+
 
       } else {
         history.push('/skin/skincheck')
@@ -173,7 +176,7 @@ export default function AReport() {
 
   return (
     <div>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image}/>
       <div id="GFG" style={{ width: "50%", margin: "auto", border: "2px solid black" }}>
         <form onSubmit={handleSubmit}>
           <div

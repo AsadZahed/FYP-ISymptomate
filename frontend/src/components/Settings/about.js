@@ -12,14 +12,17 @@ export default function About() {
     var history = useHistory();
     var location = useLocation();
     const [user, setUser] = React.useState(null);
-    const [token, setToken] = React.useState(null)
+    const [token, setToken] = React.useState(null);
+    const [image,setImage] = React.useState('');
   
   
     useEffect(() => {
       if (location.state) {
         console.log(location)
         setUser(location.state.user);
-        setToken(location.state.token)
+        setToken(location.state.token);
+        setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
       } else {
         history.push('/addinfo/conditionlibrary')
       }
@@ -29,7 +32,7 @@ export default function About() {
   
     return (
        <div style={{ backgroundColor: "#F8F8F8" }}>
-           <Header token={token} user={user}/>  
+           <Header token={token} user={user} image={image}/>  
             <BrowserView>
                 <div
                     style={{

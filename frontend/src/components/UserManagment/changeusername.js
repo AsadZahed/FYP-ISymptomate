@@ -11,7 +11,8 @@ export default function ChangePassword() {
   const [fname, setname] = React.useState("");
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
-  const [msg, setMsg] = React.useState('')
+  const [msg, setMsg] = React.useState('');
+  const[image,setImage] = React.useState('')
   var history = useHistory();
   var location = useLocation();
   const [showResults, setShowResults] = React.useState(false)
@@ -20,7 +21,9 @@ export default function ChangePassword() {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/users/editprofile/changeusername')
     }
@@ -66,7 +69,7 @@ export default function ChangePassword() {
   }
   return (
     <div>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image} />
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

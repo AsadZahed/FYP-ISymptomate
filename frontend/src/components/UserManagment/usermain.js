@@ -9,6 +9,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { BiUserCheck } from "react-icons/bi";
 import { FcManager } from "react-icons/fc";
 import { MdDateRange } from "react-icons/md";
+import { GrUserManager } from "react-icons/gr";
 import { GiBodyHeight } from "react-icons/gi";
 import { AiFillDelete } from "react-icons/ai";
 
@@ -18,19 +19,22 @@ export default function UserMain() {
 
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
+  const[image,setImage] = React.useState('')
 
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/editprofile')
     }
   }, [location, history])
   return (
     <div>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image} />
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <div
@@ -134,6 +138,24 @@ export default function UserMain() {
                   Change height and weight
                 </Link>
               </Button>
+
+              <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
+                <Link
+                  style={{ color: "#0c0530" }}
+                  to={{
+                    pathname: "/users/editprofile/profilepic",
+                    state: {
+                      token: token,
+                      user: user,
+                    },
+                  }}
+                >
+                  <GrUserManager size="40%" color="#0047b3" style={{ paddingTop: "3%" }} />
+                  <br />
+                  Profile Picture
+                </Link>
+              </Button>
+
 
               <Button variant="link" style={{ margin: "5px", textDecoration: "none" }}>
                 <Link

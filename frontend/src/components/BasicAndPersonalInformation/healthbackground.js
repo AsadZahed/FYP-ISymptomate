@@ -19,6 +19,7 @@ function Healthbackgoround() {
   const [checked5, setChecked5] = React.useState(true);
   const [checked6, setChecked6] = React.useState(true);
 
+  const [ image, setImage] = React.useState('');
 
   const [q1, setq1] = React.useState("");
   const [q2, setq2] = React.useState("");
@@ -36,7 +37,9 @@ function Healthbackgoround() {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/')
     }
@@ -80,7 +83,7 @@ function Healthbackgoround() {
 
   return (
     <div>
-      <Header user={user} token={token} />
+      <Header user={user} token={token} image={image} />
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>

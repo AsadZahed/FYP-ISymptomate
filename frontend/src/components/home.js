@@ -26,6 +26,7 @@ function Home(props) {
   const [token, setToken] = React.useState();
   const [show,setShow] = React.useState(0);
   const [name,setName] = React.useState('');
+  const [image,setImage] = React.useState('');
 
   useEffect(() => {
     if (location.state) {
@@ -33,6 +34,7 @@ function Home(props) {
       setUser(location.state.user)
       setName(location.state.user.name)
       setToken(location.state.token)
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
     } else {
       history.push('./shomepage');
     }
@@ -42,10 +44,14 @@ function Home(props) {
     setShow(1)
   },3000)
 
+  console.log("image is home ",image);
+
 
   return (
     <div>
-      <Header user={user} token={token} />
+      <Header user={user} token={token}  image={image}/>
+      {/* <img src={image} alt='Profile Picture' style={{width:"10%",borderRadius:"40px"}} />
+       */}
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <div
           style={{
@@ -78,6 +84,7 @@ function Home(props) {
                   padding: "0px 0px 10px 0px"
                 }}
               >
+              
 
                 <div style={{ paddingBottom: "15%", paddingLeft: "10%" }}>
                   {/* <Button href="/option" className="homeButton" variant="warning">

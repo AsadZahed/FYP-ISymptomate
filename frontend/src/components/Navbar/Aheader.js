@@ -11,7 +11,7 @@ function Header(props) {
     <div>
       <div style={{paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}></div>
 
-      <Navbar style={{ paddingLeft: "12%",fontSize:"18px"}}bg="light" expand="lg">
+      <Navbar style={{ paddingLeft: "12%",fontSize:"22px"}}bg="light" expand="lg">
         <Navbar.Brand style={{fontSize:"30px"}}>
           {/* <SiAddthis style={{ width:"10px",height:"10px",paddingRight: "10px", paddingBottom: "9px" }} /> */}
           <Link
@@ -32,7 +32,7 @@ function Header(props) {
           <Nav className="mr-auto">
           <Nav.Link style={{ paddingTop: "4%"}} href="/login">Patient Login</Nav.Link>
           
-          <NavDropdown title="Account" id="basic-nav-dropdown" style={{ paddingTop: "1.5%",color: "#0c0530"}}>
+          <NavDropdown title="Account" id="basic-nav-dropdown" style={{  paddingTop: "8px",color: "#0c0530"}}>
               <NavDropdown.Item>
                 <Link
                   to={{

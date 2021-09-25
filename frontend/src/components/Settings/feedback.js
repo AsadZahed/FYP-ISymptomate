@@ -18,6 +18,7 @@ export default function Feedback() {
   var history = useHistory();
   var location = useLocation();
   const [someone, setSomeone] = React.useState(null);
+  const [image,setImage] = React.useState('');
   useEffect(() => {
     if (location.state) {
       console.log(location)
@@ -25,6 +26,8 @@ export default function Feedback() {
       setToken(location.state.token);
       setName(location.state.user.name)
       setEmail(location.state.user.username)
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/respiratory/respiratoryforwhom')
     }
@@ -49,7 +52,7 @@ export default function Feedback() {
   }
   return (
     <div>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image} />
 
       <div>
 

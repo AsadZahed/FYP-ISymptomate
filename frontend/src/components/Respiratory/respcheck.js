@@ -26,6 +26,7 @@ function RespCheck() {
     const fileInput = React.createRef();
     const [scan, setScan] = React.useState(null)
     const [mess, setMess] = React.useState("")
+    const[image,setImage] = React.useState('');
     const listCancer = [
         'Pneumonia',
         'Normal',
@@ -37,7 +38,9 @@ function RespCheck() {
             setToken(location.state.token);
             setCancer(cancer);
             setImg(img);
-            console.log("cancer is ", scancer)
+            console.log("cancer is ", scancer);
+            setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
 
         } else {
             history.push('/respiratory/respiratorycheck')
@@ -127,7 +130,7 @@ function RespCheck() {
 
     return (
         <div>
-            <Header token={token} user={user} />
+            <Header token={token} user={user} image={image}/>
 
             <div style={{ backgroundColor: "#F8F8F8" }}>
                 <div

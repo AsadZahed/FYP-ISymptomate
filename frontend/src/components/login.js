@@ -75,6 +75,7 @@ export default function Login() {
       console.log(location)
       console.log("issue is in useeffect")
       setotp(location.state.opt);
+      console.log(otp)
       setgoogleLogin(location.state.googleLogin)
     } else {
       history.push('/login')
@@ -154,7 +155,11 @@ export default function Login() {
                           Login
                         </Button>
                       </div>
-                    
+                      <div style={{ paddingTop: "3%" }}>
+                        <Button variant="light" size="md" type="submit" href="/users/forgotpassword">
+                          Forgot Password
+                        </Button>
+                      </div>
                       <div style={{ paddingTop: "3%" }}>
                         <Button variant="light" size="md" type="submit" href="/signup">
                           Don't have account? Register now

@@ -5,19 +5,30 @@ import Logo from "../images/logo.jpg";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import { GrUserManager } from "react-icons/gr";
 import Button from "react-bootstrap/Button";
 
 function Header(props) {
+
   return (
     <div>
-      <div style={{paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}></div>
+      <div style={{ paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}>
+      </div>
 
-      <Navbar style={{ paddingLeft: "12%",fontSize:"18px",color: "#0c0530"}} bg="light" expand="lg">
-        <Navbar.Brand style={{fontSize:"30px"}}>
-        {/* <img src={Logo} alt="logo.png" style={{width:"10%",borderRadius:"40px"}}/> */}
+      <Navbar style={{ paddingLeft: "10%", paddingRight: "10%", fontSize: "22px", color: "#0c0530" }} bg="light" expand="lg">
+        <Navbar.Brand style={{ fontSize: "30px" }}>
+
+          {props.image === null ? <img src={props.image} alt='Profile Picture' style={{ paddingRight: "1%", width: "25%", borderRadius: "40px" }} /> :
+            <GrUserManager size="15%"  style={{ borderRadius:"10%",paddingRight:"1%" ,color:"gray"}} />
+          }
+
+
+
+          {/* <img src={Logo} alt="logo.png" /> */}
           {/* <SiAddthis style={{ width:"10px",height:"10px",paddingRight: "10px", paddingBottom: "9px" }} /> */}
+
           <Link
-          style={{fontFamily: "Arial, Helvetica, sans-serif"}}
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
             to={{
               pathname: '/',
               state: {
@@ -29,11 +40,11 @@ function Header(props) {
             I-SYMPTOMATE
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" style = {{color: "#0c0530"}}/>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: "#0c0530" }} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" >
-            
-            <NavDropdown title="Account" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+
+            <NavDropdown title="Account" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -49,9 +60,9 @@ function Header(props) {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Profile" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
-           
-            <NavDropdown.Item>
+            <NavDropdown title="Profile" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
+
+              <NavDropdown.Item>
                 <Link
                   to={{
                     pathname: "/addinfo/viewprofile",
@@ -90,7 +101,7 @@ function Header(props) {
                   Personal Information
                 </Link>
               </NavDropdown.Item>
-             
+
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -132,7 +143,7 @@ function Header(props) {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Check up" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
+            <NavDropdown title="Check up" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -169,11 +180,11 @@ function Header(props) {
                     },
                   }}
                 >
-                   Respiratory Diseases Detection
+                  Respiratory Diseases Detection
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
-{/* 
+            {/* 
             <NavDropdown title="Reports" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link
@@ -189,8 +200,8 @@ function Header(props) {
                 </Link>
               </NavDropdown.Item>
             </NavDropdown> */}
-            
-            <NavDropdown title="Disease Info" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+
+            <NavDropdown title="Disease Info" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -206,36 +217,36 @@ function Header(props) {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Reports" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
-          
+            <NavDropdown title="Reports" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
 
-          <NavDropdown.Item>
-            <Link to={{
-              pathname: '/reports/view',
-              state: {
-                token: props.token,
-                user: props.user
-              }
-            }}>
-              View
-            </Link>
-          </NavDropdown.Item>
-          
-          <NavDropdown.Item>
-            <Link to={{
-              pathname: '/reports/analysis',
-              state: {
-                token: props.token,
-                user: props.user,
-                data:"FAHEEM"
-              }
-            }}>
-              Analysis
-            </Link>
-          </NavDropdown.Item>
-          </NavDropdown>
 
-            <NavDropdown title="Settings" id="basic-nav-dropdown" style={{ paddingTop: "1%",color: "#0c0530"}}>
+              <NavDropdown.Item>
+                <Link to={{
+                  pathname: '/reports/view',
+                  state: {
+                    token: props.token,
+                    user: props.user
+                  }
+                }}>
+                  View
+                </Link>
+              </NavDropdown.Item>
+
+              <NavDropdown.Item>
+                <Link to={{
+                  pathname: '/reports/analysis',
+                  state: {
+                    token: props.token,
+                    user: props.user,
+                    data: "FAHEEM"
+                  }
+                }}>
+                  Analysis
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
+
+            <NavDropdown title="Settings" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
               <NavDropdown.Item href="/setting/about">
                 <Link
                   to={{
@@ -248,7 +259,7 @@ function Header(props) {
                 >
                   About
                 </Link>
-          
+
               </NavDropdown.Item>
 
               {/* dummy */}
@@ -305,7 +316,7 @@ function Header(props) {
 
             </NavDropdown>
 
-            <NavDropdown title="Help and guide" id="basic-nav-dropdown"  style={{ paddingTop: "1%",color: "#0c0530"}}>
+            <NavDropdown title="Help and guide" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
               <NavDropdown.Item>
                 <Link
                   to={{
@@ -316,7 +327,7 @@ function Header(props) {
                     },
                   }}
                 >
-                  Help 
+                  Help
                 </Link>
               </NavDropdown.Item>
 
@@ -330,7 +341,7 @@ function Header(props) {
                     },
                   }}
                 >
-                  Guide 
+                  Guide
                 </Link>
               </NavDropdown.Item>
 
@@ -344,30 +355,30 @@ function Header(props) {
                     },
                   }}
                 >
-                  Tutoiral 
+                  Tutoiral
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
-                           
+
             <Nav.Link href="/login" >
-            <Button variant="warning">
-              <Link
-              style = {{color: "#0c0530" , fontFamily: "Arial, Helvetica, sans-serif"}}
-              to={{
-                  pathname: '/login',
-                  state: {
-                    token: props.token,
-                    user: props.user
-                  }
-                }}>
+              <Button variant="warning">
+                <Link
+                  style={{ color: "#0c0530", fontFamily: "Arial, Helvetica, sans-serif" }}
+                  to={{
+                    pathname: '/login',
+                    state: {
+                      token: props.token,
+                      user: props.user
+                    }
+                  }}>
                   Logout
                 </Link>
-                </Button>
-              </Nav.Link>
+              </Button>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        
-       
+
+
       </Navbar>
     </div>
   );

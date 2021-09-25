@@ -36,11 +36,14 @@ export default function AutoCompletedText() {
   const [cancer, setCancer] = React.useState("");
   const [mess, setMess] = React.useState("");
   const [id, setId] = React.useState([]);
+  const [image,setImage] = React.useState('');
   useEffect(() => {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     
     } else {
       history.push('/symptoms/symptomsearch')
@@ -225,7 +228,7 @@ export default function AutoCompletedText() {
   const { text, suggestions } = state;
   return (
     <div>
-      <Header />
+      <Header token={token} user={user} image={image} />
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>
           <div

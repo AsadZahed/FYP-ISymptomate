@@ -25,6 +25,7 @@ function Question() {
   const [q4, setq4] = React.useState("");
   const [q5, setq5] = React.useState("");
 
+  const [image,setImage] = React.useState();
 
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(null)
@@ -36,6 +37,8 @@ function Question() {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token)
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/')
     }
@@ -117,7 +120,7 @@ function Question() {
   }
   return (
     <div>
-    <Header user={user} token={token} />
+    <Header user={user} token={token} image={image} />
  
     <div style={{ backgroundColor: "#F8F8F8" }}>
       <BrowserView>

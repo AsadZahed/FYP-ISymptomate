@@ -264,14 +264,14 @@ export default function Signup() {
                         </Button>
 
 
-                        {showlogoutButton ?
+                        {/* {showlogoutButton ?
                           <GoogleLogout
                             clientId={clientId}
                             buttonText="Sign Out"
                             onLogoutSuccess={onSignoutSuccess}
                           >
                           </GoogleLogout> : null
-                        }
+                        } */}
                       </div>
 
                       {/* <div class="col-sm-4">

@@ -21,6 +21,8 @@ export default function Help() {
     const [check2, setCheck2] = React.useState(false);
     const [check3, setCheck3] = React.useState(false);
     const [check4, setCheck4] = React.useState(false);
+
+    const [image,setImage] = React.useState('');
     var history = useHistory();
     var location = useLocation();
 
@@ -28,7 +30,9 @@ export default function Help() {
         if (location.state) {
             console.log(location)
             setUser(location.state.user);
-            setToken(location.state.token)
+            setToken(location.state.token);
+            setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
         } else {
             history.push('/admin/privlages')
         }
@@ -68,7 +72,7 @@ export default function Help() {
     return (
         <div>
             <div style={{ backgroundColor: "#F8F8F8" }}>
-                <Header token={token} user={user} />
+                <Header token={token} user={user} image={image} />
                 <div
                     style={{
                         paddingLeft: "12%",

@@ -11,7 +11,8 @@ import { useLocation } from "react-router";
 export default function Delete() {
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
-  const [msg, setMsg] = React.useState('')
+  const [msg, setMsg] = React.useState('');
+  const [image,setImage] = React.useState('');
   var history = useHistory();
   var location = useLocation();
 
@@ -19,7 +20,9 @@ export default function Delete() {
     if (location.state) {
       console.log(location)
       setUser(location.state.user);
-      setToken(location.state.token)
+      setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
     } else {
       history.push('/users/reports/view/delete')
     }
@@ -54,7 +57,7 @@ export default function Delete() {
 
   return (
     <div>
-    <Header/>
+    <Header user={user} token={token} image={image}/>
     
     <div style={{ backgroundColor: "#F8F8F8" }}>
       <BrowserView>

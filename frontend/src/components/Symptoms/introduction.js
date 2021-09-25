@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 function Introduction() {
   const [token, setToken] = React.useState(null)
   const [user, setUser] = React.useState(null);
+  const [image,setImage] = React.useState('');
   var history = useHistory();
   var location = useLocation();
   useEffect(() => {
@@ -21,6 +22,8 @@ function Introduction() {
       console.log(location)
       setUser(location.state.user);
       setToken(location.state.token);
+      setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+ 
       // setSCancer(cancer);
       // setImg(img);
 
@@ -30,7 +33,7 @@ function Introduction() {
   }, [location, history])
   return (
     <div>
-      <Header token={token} user={user} />
+      <Header token={token} user={user} image={image} />
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>
           <div
