@@ -53,7 +53,7 @@ router.use(express.json());
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: "aazfrb711@gmail",
+    user: "aazfrb711@gmail.com",
     pass: "faheem1999"
   }
 });

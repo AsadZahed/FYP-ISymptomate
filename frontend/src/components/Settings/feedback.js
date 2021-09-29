@@ -29,7 +29,7 @@ export default function Feedback() {
       setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
  
     } else {
-      history.push('/respiratory/respiratoryforwhom')
+      history.push('/setting/feedback')
     }
   }, [location, history])
 

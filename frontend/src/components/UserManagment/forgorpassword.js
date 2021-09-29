@@ -53,7 +53,8 @@ export default function ForgotPassword() {
   return (
     <div>
       {/* <Header token={token} user={user} image={image} /> */}
-
+      <div style={{ paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}></div>
+    
       <div style={{ backgroundColor: "#F8F8F8" }}>
         <BrowserView>
           <div
