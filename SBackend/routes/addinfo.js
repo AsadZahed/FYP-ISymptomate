@@ -59,6 +59,7 @@ router.post('/savereports', authenticate.verifyUser, (req, res, next) => {
 router.post('/basicinfo', authenticate.verifyUser, (req, res, next) => {
     console.log(req.user._id)
     console.log(req.body)
+    console.log("I cam here...")
     UserTemplate.findById(req.user._id, (err, user) => {
         console.log(req.user._id)
         if (err)

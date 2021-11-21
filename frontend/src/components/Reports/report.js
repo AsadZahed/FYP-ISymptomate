@@ -142,7 +142,7 @@ export default function Report() {
     event.preventDefault();
     const data = {
       name: name,
-      cancer: "cancer",
+      cancer: cancer,
       age: ages,
       time: setDate,
       reportID: "1",

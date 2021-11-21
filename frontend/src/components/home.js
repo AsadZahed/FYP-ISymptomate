@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 //import HomeImage1 from "../components/images/newhome.PNG";
 import HomeImage1 from "../components/images/home.png";
-
+import ChatBotHelper from "../components/Chatbot/chatbot";
 import ChatbotImg from "../components/images/chatbot-img.PNG";
 import MoreInfoImg from "../components/images/more-info-img.PNG";
 import Header from "./Navbar/header";
@@ -30,11 +30,12 @@ function Home(props) {
 
   useEffect(() => {
     if (location.state) {
-      console.log(location)
+      //console.log(location)
       setUser(location.state.user)
       setName(location.state.user.name)
       setToken(location.state.token)
       setImage("http://localhost:9000/"+location.state.user.pathprofilepic)
+      console.log("home image ",image)
     } else {
       history.push('./shomepage');
     }
@@ -90,6 +91,7 @@ function Home(props) {
                   {/* <Button href="/option" className="homeButton" variant="warning">
                     Start Checkup
                   </Button> */}
+                  
                 </div>
               </div>
             </div>
@@ -143,6 +145,7 @@ function Home(props) {
             >
               <div className="float-container">
                 <div className="float-child">
+                {/* <ChatBotHelper name={name}/> */}
                   <h2 style={{fontWeight:"bold"}}>Intelligent technology you can trust</h2>
                   <h5>
                     Symptomate AI uses our doctors’ knowledge, scientific

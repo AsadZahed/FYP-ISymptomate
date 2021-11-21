@@ -12,13 +12,13 @@ function Header(props) {
 
   return (
     <div>
-      <div style={{ paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}>
+      <div style={{ paddingBottom: "30px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}>
       </div>
 
-      <Navbar style={{ paddingLeft: "10%", paddingRight: "10%", fontSize: "22px", color: "#0c0530" }} bg="light" expand="lg">
+      <Navbar style={{ paddingLeft: "3%",fontSize:"18px", paddingRight: "6%", fontSize: "22px", color: "#0c0530" }} bg="light" expand="lg">
         <Navbar.Brand style={{ fontSize: "30px" }}>
 
-          {props.image === null ? <img src={props.image} alt='Profile Picture' style={{ paddingRight: "1%", width: "25%", borderRadius: "40px" }} /> :
+          {props.image !== null ? <img src={props.image} alt='Profile Picture' style={{ paddingRight: "1%", width: "25%", borderRadius: "40px" }} /> :
             <GrUserManager size="15%"  style={{ borderRadius:"10%",paddingRight:"1%" ,color:"gray"}} />
           }
 
@@ -36,15 +36,16 @@ function Header(props) {
                 user: props.user,
               },
             }}
+            style={{color:'#0047b3'}}
           >
             I-SYMPTOMATE
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: "#0c0530" }} />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color:'#0047b3'}} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" >
 
-            <NavDropdown title="Account" id="basic-nav-dropdown" style={{ color: "#0c0530" }}>
+            <NavDropdown title="Account" id="basic-nav-dropdown" style={{color:'#0047b3'}}>
               <NavDropdown.Item>
                 <Link
                   to={{

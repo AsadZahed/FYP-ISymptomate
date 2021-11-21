@@ -5,12 +5,12 @@ import Header from "./Navbar/sheader";
 
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-import Image1 from "../components/images/slider-1.jpeg";
-import Image2 from "../components/images/slider-2.jpeg";
-import Image3 from "../components/images/slider-3.jpeg";
-import Image4 from "../components/images/slider-4.jpg";
-import Image5 from "../components/images/slider-5.jpg";
-import Image6 from "../components/images/slider-6.jpg";
+import Image1 from "../components/images/slider_new.jpg";
+import Image2 from "../components/images/slider2new.jpg";
+import Image3 from "../components/images/slider3new.jpg";
+import Image4 from "../components/images/slider4new.jpg";
+import Image5 from "../components/images/slider5new.jpg";
+import Image6 from "../components/images/slider6new.jpg";
 import HomeImage2 from "../components/images/homeimg.PNG";
 
 import { BiArrowFromLeft, BiCheck } from "react-icons/bi";
@@ -41,66 +41,61 @@ export default function Slider() {
 
     return (
         <div style={{ backgroundColor: "#F8F8F8" }}>
-            <div style={{ paddingBottom: "2%" }}>
+            
                 <Header />
-            </div>
+           
             <div>
             </div>
-            <AliceCarousel autoPlay autoPlayInterval="2000" style={{ borderRadius: "10px" }}>
+            <AliceCarousel autoPlay autoPlayInterval="2000" infinite>
                 <div>
                     <div
-                        style={{
-                            paddingLeft: "12%",
-                            paddingRight: "12%",
-                            paddingBottom: "0%"
-                        }}
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
                     >
-                        <img src={Image1} alt="img1" className="sliderimg" style={{ borderRadius: "10px" }} />
+                        <img src={Image1} alt="img1" className="sliderimg" style={{height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Check if your skin Mole is benign or Malignant in simple steps! </div>
                     </div>
                 </div>
                 <div style={{
-                    paddingLeft: "12%",
-                    paddingRight: "12%",
+                    // paddingLeft: "12%",
+                    // paddingRight: "12%",
                     paddingBottom: "0%",
                 }}>
-                    <div>
-                        <img src={Image2} alt="img2" className="sliderimg" style={{ borderRadius: "10px" }} />
+                    <div style={{paddingLeft:'5%',paddingTop:'1%'}}>
+                        <img src={Image2} alt="img2"  style={{height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Convienient, Easy and simple for poor people! </div>
+                    
                     </div>
                 </div>
-                <div style={{
-                    paddingLeft: "11.5%",
-                    paddingRight: "11.5%",
-                    paddingBottom: "0%"
-                }}>
-                    <div>
-                        <img src={Image3} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                        <img src={Image3} alt="img1" className="sliderimg" style={{height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Tell I-Symptomate your symptoms get possible prognosis! </div>
                     </div>
                 </div>
-                <div style={{
-                    paddingLeft: "12%",
-                    paddingRight: "12%",
-                    paddingBottom: "0%"
-                }}>
-                    <div>
-                        <img src={Image4} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                        <img src={Image4} alt="img1" className="sliderimg" style={{height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Growing with time! Now you can check Respiratory disease through xray image! </div>
                     </div>
                 </div>
-                <div style={{
-                    paddingLeft: "12%",
-                    paddingRight: "12%",
-                    paddingBottom: "0%"
-                }}>
-                    <div>
-                        <img src={Image5} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                        <img src={Image5} alt="img1" className="sliderimg" style={{height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Keep Record of your Mediciations through I-Symptomate! </div>
                     </div>
                 </div>
-                <div style={{
-                    paddingLeft: "12%",
-                    paddingRight: "12%",
-                    paddingBottom: "0%"
-                }}>
-                    <div>
-                        <img src={Image6} alt="imgg" className="sliderimg" style={{ borderRadius: "10px" }} />
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                        <img src={Image6} alt="img1" className="sliderimg" style={{border:"1px solid",height:'500px',width:'400px' }} />
+                        <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>I-Symptomate keep record of your Reports by profiling system! </div>
                     </div>
                 </div>
             </AliceCarousel>
@@ -239,7 +234,7 @@ export default function Slider() {
                             </div>
 
                         </div>
-                        <h3 style={{ paddingLeft: "32%", fontWeight: "bold", }}>Patients visited this website</h3>
+                        <h3 style={{ paddingLeft: "32%", fontWeight: "bold", }}>Patients visited I-Symptomate website</h3>
 
                     </div>
 
@@ -272,7 +267,7 @@ export default function Slider() {
                         >
                             <div className="float-child">
                                 <h2 style={{ textAlign: "left" }}>
-                                    Symptomate provides you with a fast and accurate health assessment
+                                    I-Symptomate provides you with a fast and accurate health assessment
                                     {/* <img src={Number} alt="number" /> */}
                                 </h2>
 

@@ -61,7 +61,7 @@ export default function Report() {
                     >
 
                         <p style={{ fontSize: "20px", fontWeight: "500" }}>
-                            I-Symptomate | An intelligent
+                            I-Symptomate | An intelligent disease prognosis system
                         </p>
                         <img src={image} alt="profile Pic"  style={{width:"15%",borderRadius:"40px"}} />
                        

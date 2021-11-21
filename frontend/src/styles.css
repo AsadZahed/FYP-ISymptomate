@@ -16,7 +16,10 @@ body {
   margin-top: -50px;
   margin-left: -50px;
 }
-
+.image_car{
+  height:'500px';
+  width:'400px'
+}
 /* HOME PAGE */
 .main-div {
   padding-left: "12%";

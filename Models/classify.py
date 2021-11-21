@@ -7,9 +7,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-model = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\model.h5', compile=True)
-models = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\symptoms.h5', compile=True)
-modelr = load_model(r'D:\CU 7th Semester\FYP-I\Updated Project Docs\project update-august-respiratory\Intelligent-Symptomate\Models\xray_asad_faheem_new_92.h5', compile=True)
+model = load_model(r'D:\first\Intelligent-Symptomate\Models\model.h5', compile=True)
+models = load_model(r'D:\first\Intelligent-Symptomate\Models\symptoms.h5', compile=True)
+modelr = load_model(r'D:\first\Intelligent-Symptomate\Models\xray_asad_faheem_new_92.h5', compile=True)
                     
 def reshape_data(x,xpixel,ypixel,channels):
         """
@@ -92,6 +92,11 @@ def symptoms():
         # x = reshape_data(x)
         prediction = models.predict(da)
         label = prediction.argmax(axis=-1).tolist()
+        
+        trt=prediction.argsort()[-3:][::-1]
+        print("jkj")
+        print(trt)
+        print("jkj")
         print("Model Prediction in numpy form")
         print("-----label-----")
         print(label)
@@ -128,6 +133,7 @@ def respiratory():
         print("Model Prediction in numpy form")
         print(type(label))
         print(prediction)
+        
         os.remove(image.filename)
         return jsonify({
             'success': True,

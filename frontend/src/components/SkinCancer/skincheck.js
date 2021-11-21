@@ -156,8 +156,8 @@ function SkinCheck() {
                             padding: "5%"
                         }}
                     >
-                        <h2>Predict Your Disease Here!</h2>
-
+                        <h2>Please give closeup image of Skin Mole!</h2>
+                        <hr/>
                         <div
                             style={{
                                 display: "flex",

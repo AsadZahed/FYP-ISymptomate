@@ -143,7 +143,7 @@ export default function AReport() {
     event.preventDefault();
     const data = {
       name: name,
-      cancer: "cancer",
+      cancer: cancer,
       age: ages,
       time: date,
       reportID: "1",
@@ -279,7 +279,7 @@ export default function AReport() {
                 }}
               >
                 <p style={{ fontSize: "20px", fontWeight: "500", paddingTop: "50px" }}>
-                  Screening Result: <i><u><b>GERD</b></u></i>
+                  Screening Result: <i><u><b>{cancer}</b></u></i>
                 </p>
                 <img
                   src={i}

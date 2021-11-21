@@ -96,7 +96,8 @@ export default function Help() {
                                 border: "1px solid #DCDCDC"
                             }}
                         >
-                            <div style={{ padding: "3%" }}>
+                            <div style={{ padding: "3%"
+                                ,display:"flex",alignContent:"center"}}>
 
                                 {check === false ?
                                     <Button style={{ color: "#0047b3", textDecoration: "none", }} variant="outline-light" onClick={status}>
@@ -136,7 +137,8 @@ export default function Help() {
 
                             </div>
 
-                            <div style={{ padding: "3%" }}>
+                            <div style={{ padding: "3%"
+                                ,display:"flex",alignContent:"center" }}>
                                 {check1 === false ?
                                     <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status1}>
                                         <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
@@ -172,7 +174,8 @@ export default function Help() {
                                 }
 
                             </div>
-                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                            <div style={{ paddingTop: "1%", padding: "3%" 
+                                ,display:"flex",alignContent:"center"}}>
                                 {check2 === false ?
                                     <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status2}>
                                         <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
@@ -206,7 +209,8 @@ export default function Help() {
                                     </Button>
                                 }
                             </div>
-                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                            <div style={{ paddingTop: "1%", padding: "3%"
+                                ,display:"flex",alignContent:"center" }}>
                                 {check3 === false ?
                                     <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status3}>
                                         <h5 style={{ color: "#0047b3", textDecoration: "none" }}>
@@ -240,7 +244,8 @@ export default function Help() {
                                     </Button>
                                 }
                             </div>
-                            <div style={{ paddingTop: "1%", padding: "3%" }}>
+                            <div style={{ paddingTop: "1%", padding: "3%" 
+                                ,display:"flex",alignContent:"center"}}>
                                 {check4 === false ?
                                     <Button style={{ color: "#0047b3", textDecoration: "none" }} variant="outline-light" onClick={status4}>
                                         <h5 style={{ color: "#0047b3", textDecoration: "none" }}>

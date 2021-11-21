@@ -6,7 +6,12 @@ import axios from 'axios';
 
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
+import Image1 from "../components/images/symptoms-intro-img.jpg";
+//import Image1 from "../components/images/newhome.jpg";
+import Image2 from "../components/images/more-info-img.jpg";
 import Header from "../components/Navbar/LSheader";
 import Image from "../components/images/logo2.jpeg"
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -92,15 +97,38 @@ export default function Login() {
 
       <div style={{ backgroundColor: "#F8F8F8" }}>
        {googleLogin && <Alert variant="success" style={{ fontSize: "20px", textAlign: "center" }}><b>Your OTP is {otp}</b></Alert>}
-        <div className="btn-toolbar" style={{ paddingBottom: "3%", paddingLeft: "5%", paddingRight: "5%" }}>
+        <div className="btn-toolbar" style={{ paddingLeft: "10%", paddingRight: "10%" }}>
 
           <div style={{
             display: "flex",
-            flex: "1",
             width: "30%",
             justifyContent: "flex-start"
           }}>
-            <img height="90%" src={Image} alt="img" />
+            {/* <img height="90%" src={Image} alt="img" /> */}
+            <AliceCarousel autoPlay autoPlayInterval="2000" infinite disableDotsControls disableButtonsControls>
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                         <img src={Image1} alt="img1" className="sliderimg" style={{height:'100%',width:'100%' }} /> 
+                        {/* <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Check if your skin Mole is benign or Malignant in simple steps! </div> */}
+                    </div>
+                </div>
+                <div style={{
+                    // paddingLeft: "12%",
+                    // paddingRight: "12%",
+                    paddingBottom: "0%",
+                }}>
+                    <div style={{paddingLeft:'5%',paddingTop:'1%'}}>
+                         <img src={Image2} alt="img2"  style={{height:'100%',width:'100%' }} />
+                        {/*<div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Convienient, Easy and simple for poor people! </div>
+                     */}
+                    </div>
+                </div>
+                
+                
+            </AliceCarousel>
+
           </div>
 
           <div style={{
@@ -112,7 +140,7 @@ export default function Login() {
             <div style={{
               width: '100%',
               backgroundColor: "#F8F8F8",
-              padding: "5%"
+              padding: "3% 10% 10% 10%"
             }}>
 
               <div className="main-div"
@@ -120,9 +148,9 @@ export default function Login() {
                   border: "1px solid #DCDCDC",
                   //paddingTop:"5%",
                   backgroundColor: "white",
-                  paddingRight: "50%",
-                  paddingTop: "10%",
-                  paddingBottom: "10%"
+                  // paddingRight: "50%",
+                  // paddingTop: "10%",
+                  // paddingBottom: "10%"
                 }}>
                 <h1>Login</h1>
 

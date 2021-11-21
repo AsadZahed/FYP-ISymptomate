@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 function Header(props) {
   return (
     <div>
-      <div style={{ paddingBottom: "70px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}></div>
+      <div style={{paddingBottom: "30px", backgroundColor: "#0047b3", fontFamily: "Arial, Helvetica, sans-serif" }}></div>
 
-      <Navbar style={{ paddingLeft: "12%", fontSize: "22px" }} bg="light" expand="lg">
-        <Navbar.Brand style={{ fontSize: "30px" }}>
+      <Navbar style={{ paddingLeft: "5%",fontSize:"18px", flex:2,flexDirection:"row",justifyContent:"space-evenly"}} bg="light" expand="lg">
+        <Navbar.Brand style={{fontSize:"30px"}}>
           {/* <SiAddthis style={{ width:"10px",height:"10px",paddingRight: "10px", paddingBottom: "9px" }} /> */}
           <Link
             to={{
@@ -21,17 +21,19 @@ function Header(props) {
                 user: props.user,
               },
             }}
+            style={{color:'#0047b3'}}
           >
             I-SYMPTOMATE
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-
-            <Nav.Link href="/admin/signup">Admin sign up</Nav.Link>
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
-            <Nav.Link href="/login">Log in</Nav.Link>
+        <Nav className="mr-auto" style={{ paddingLeft: "63%"}}>
+            <Nav.Link href="/admin/signup" style={{color:'#0047b3'}}>Admin sign up</Nav.Link>
+            <Nav.Link  style={{color:'#0047b3'}}>|</Nav.Link>
+            <Nav.Link href="/signup" style={{color:'#0047b3'}}>Sign Up</Nav.Link>
+            <Nav.Link  style={{color:'#0047b3'}}>|</Nav.Link>
+            <Nav.Link href="/login" style={{color:'#0047b3'}}>Log in</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>

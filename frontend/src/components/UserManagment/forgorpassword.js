@@ -14,8 +14,8 @@ export default function ForgotPassword() {
   const [msg, setMsg] = React.useState('')
   var history = useHistory();
   var location = useLocation();
-  const [showResults, setShowResults] = React.useState(false)  
-  const [image,setImage] = React.useState();
+  const [showResults, setShowResults] = React.useState(false) ;
+  const [error,setError] = React.useState(); 
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -33,14 +33,15 @@ export default function ForgotPassword() {
             console.log(res)
             if (res.data.success) {
                 history.push({
-                  pathname: "/users/forgotpassword",
+                  pathname: "/login",
                   state: {
                     user: res.data.user,
                     token: res.data.token
                   }
                 })
             } else {
-                alert(res.data.err)
+                setError(res.data.err)
+                setShowResults(true)
             }
         })    
 }
@@ -93,7 +94,7 @@ export default function ForgotPassword() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <div style={{ alignContent: "center" }}>
-                  {showResults ? <Alert variant="danger">Something went wrong</Alert> : ""}
+                  {showResults && <Alert variant="danger">{error}</Alert> }
 
                     <Button size="lg" type="submit" style={{ color: "#0c0530" }}
                       variant="warning" disabled={!validateForm()}>

@@ -41,6 +41,7 @@ export default function View() {
             console.log(location.state.user)
             setAge(location.state.user.age)
             setgender(location.state.user.gender)
+            setCancer(location.state.cancer)
 
             axios.get('http://localhost:9000/users/reports/view', {
                 headers: {

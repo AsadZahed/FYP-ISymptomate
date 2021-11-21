@@ -3,6 +3,14 @@ import Form from "react-bootstrap/Form";
 import { Button, Alert } from "react-bootstrap";
 import "./Login.css";
 
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
+//import Image1 from "../components/images/newhome.jpg";
+
+import Image1 from "../components/images/symptoms-intro-img.jpg";
+import Image2 from "../components/images/more-info-img.jpg";
+import Image3 from "../components/images/symptoms-intro-img.jpg";
+
 // import { BrowserView, MobileView } from "react-device-detect";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
@@ -151,16 +159,38 @@ export default function Signup() {
     <div>
       <Header />
       <div style={{ backgroundColor: "#F8F8F8" }}>
-        <div className="btn-toolbar" style={{ paddingBottom: "3%", paddingLeft: "5%", paddingRight: "5%" }}>
+        <div className="btn-toolbar" style={{ paddingLeft: "10%", paddingRight: "10%" }}>
 
           <div style={{
             display: "flex",
-            flex: "1",
-            width: "30%",
-            justifyContent: "flex-start"
+            width: "40%",
+            justifyContent: "flex-start",
+            marginBottom:"5%"
           }}>
-            <img src={Image} alt="img" />
+            {/* <img src={Image} alt="img" style={{paddingTop:'7%',height:'500px',width:'400px' }}/> */}
+            <AliceCarousel autoPlay autoPlayInterval="2000" infinite disableDotsControls disableButtonsControls>
+                <div>
+                    <div
+                        style={{paddingLeft:'5%',paddingTop:'1%'}}
+                    >
+                         <img src={Image1} alt="img1" className="sliderimg" style={{height:'100%',width:'100%' }} /> 
+                        {/* <div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Check if your skin Mole is benign or Malignant in simple steps! </div> */}
+                    </div>
+                </div>
+                <div style={{paddingLeft:'5%',paddingTop:'1%'}}>
+                    <div style={{paddingLeft:'5%',paddingTop:'1%'}}>
+                         <img src={Image2} alt="img2"  style={{height:'100%',width:'100%' }} />
+                        {/*<div style={{padding:'2%',position: 'absolute',top: '50%',left: '62%',border:'1px solid',color:'#0047b3',fontFamily: "Arial, Helvetica, sans-serif",transform: 'translate(-50%, -50%)',fontSize:'60px'}}>Convienient, Easy and simple for poor people! </div>
+                     */}
+                    </div>
+                </div>
+                
+                
+            </AliceCarousel>
+
+
           </div>
+
 
           <div style={{
             display: "flex",
@@ -171,7 +201,7 @@ export default function Signup() {
             <div style={{
               width: '100%',
               backgroundColor: "#F8F8F8",
-              padding: "5%"
+              padding: "3% 10% 10% 10%"
             }}>
 
               <div className="main-div"
@@ -179,7 +209,7 @@ export default function Signup() {
                   border: "1px solid #DCDCDC",
                   //paddingTop:"5%",
                   backgroundColor: "white",
-                  paddingRight: "50%"
+                  
                 }}>
 
                 <h1 style={{ color: "black" }}>Registration</h1>

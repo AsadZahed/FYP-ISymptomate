@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles.css";
 
 import {
@@ -13,10 +13,11 @@ import Home from "../components/home";
 import Login from "../components/login";
 import Signup from "../components/signup";
 import Option from "../components/option";
-import Chatbot from "../components/chatbot";
+import Chatbot from "../components/Chatbot/chatbot";
 import MoreInfo from "../components/moreinfo";
 import Skincancerdetecion from "../components/skinCancerDetecion";
 import Symptomatediseasedetection from "../components/symptomateDiseaseDetection";
+import { useHistory, useLocation } from "react-router";
 
 import Footer from "./Footer/footer";
 
@@ -71,9 +72,10 @@ import VAReports from "../components/AdminManagement/viewAllReports";
 import ASignup from "../components/AdminManagement/asignup";
 
 import Help from "../components/Help and guide/help";
-
+import ChatBotHelper from "../components/Chatbot/chatbot";
 
 function Driver() {
+  
   return (
     <Router>
       <Switch>
@@ -147,6 +149,7 @@ function Driver() {
         <Route path="/help" exact component={Help} />
 
       </Switch>
+      <ChatBotHelper />
       <Footer />
     </Router>
   );
